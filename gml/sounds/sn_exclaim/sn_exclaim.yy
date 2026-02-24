@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"sn_exclaim",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.2565625,
+  "exportDir":"",
+  "name":"sn_exclaim",
+  "parent":{
+    "name":"misc",
+    "path":"folders/Sounds/misc.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":48000,
+  "soundFile":"sn_exclaim.wav",
+  "volume":1.0,
+}

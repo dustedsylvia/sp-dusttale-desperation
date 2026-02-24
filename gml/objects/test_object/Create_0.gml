@@ -1,0 +1,1 @@
+hand = instance_create_depth(320-(sprite_get_width(necroptosis_hand)/2), 0, -9999, duster);

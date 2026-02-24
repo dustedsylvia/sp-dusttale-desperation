@@ -1,0 +1,1 @@
+objecttext = ["* Sans's eyesocket.[pauseforframes:60]\n* It's empty."]

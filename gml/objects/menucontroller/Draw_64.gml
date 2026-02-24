@@ -1,0 +1,10 @@
+draw_set_halign(fa_left);
+draw_sprite(logo, 0, logo_x, logo_y);
+draw_sprite_ext(sanssprite, 0, -30, sansy, 3, 3, 0, c_white, itemsopacity);
+draw_set_halign(fa_center);
+draw_set_font(dtf_sans);
+draw_text_transformed_colour(320, 70, "Necroptosis - Desperation", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
+draw_set_halign(fa_left);
+draw_text_transformed_colour(280, creditstexty, "SP!Dusttale by sprinz\nDesperation by ketchupsans\nGame by dustedsylvia\nPress R to return", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
+draw_text_transformed_colour(350, maintexty, "Press Z to start\nPress S for settings\nPress C for credits", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
+draw_text_transformed_colour(325, settingstexty, "Press E for easy mode\nPress N for no hit mode\nPress H for no heal mode\nPress R to return\n\nControls:\nWASD/arrows: movement\nZ/Enter: confirm\nC: heal (5 heals only)\nS: skip cutscenes\nF4: toggle fullscreen", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);

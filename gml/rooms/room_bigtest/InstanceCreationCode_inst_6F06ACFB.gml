@@ -1,0 +1,1 @@
+objecttext = ["* Sans's nose.[pauseforframes:30]\n* It's unclear how he actually\nuses this to smell."];

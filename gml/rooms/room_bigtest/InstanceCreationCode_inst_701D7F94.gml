@@ -1,0 +1,1 @@
+objecttext = ["* Sans's blue eye.[pauseforframes:10]\n* What does this even do?"];

@@ -1,0 +1,1 @@
+objecttext = ["* Golden flowers...", "* They appear to have somewhat\nbroken your fall."];

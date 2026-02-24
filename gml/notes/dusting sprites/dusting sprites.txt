@@ -1,0 +1,65 @@
+dusting sprites
+last updated 02/21/2026
+=======================
+
+alright, so if you've looked at the sprite dusting code, you might be asking yourself this question:
+"what the fuck is going on here?"
+don't worry. your extreme confusion is completely normal when looking at the sprite duster for the first time.
+this simple 3 step tutorial should let you hit the ground running with dusting sprites!
+
+(disclaimer: this tutorial may be very hard to follow. sorry.)
+(disclaimer~last breath: DO NOT DO THIS WITH LARGE IMAGES. SERIOUSLY. IT WON'T WORK.)
+
+step 1: getting the dust map of your sprite
+okay. so first, you have to generate a "dust map" using a python program. if you don't have python
+installed, that's okay too, i've packaged it into a binary on google drive. if you don't use windows
+or are more comfortable working with the source, that's fine too, the py file is in there for you as well.
+here's the google drive link:
+https://drive.google.com/drive/folders/1QSqdUpQhNgHz69mFTalBoNi1z0CuMt1Z?usp=sharing
+once you've downloaded the exe or py file, move the image you want to get the dust map of into the folder
+containing your corresponding duster file. run the duster file and type the name of the image (including the
+extension!!!). a file should be generated called "<sprite_name>.txt". open that file and copy ALL of its
+contents. if it lags, thats normal because this system is horrible, and if it doesn't well thats great.
+
+step 2: step 2
+okay, once you've copied the huge string, go into objects/dust_info. it might be in a different folder.
+once dust_info opens, go to the create event, make a new variable with the sprite name and set it equal
+to what you copied earlier. then put a semicolon, save the project, and CLOSE DUST_INFO because it'll
+probably lag gamemaker.
+
+it should look like this (if your sprite name is sans_undertale):
+
+sans_undertale = [[0, 0, 0], ...etc
+
+note: if gamemaker freezes for an extended period of time the image is probably too big. this usually happens
+with images like 640x480 or larger. or smaller. i don't know.
+after you've put it in dust_info, go into global_init. make a new global variable and set it to the name
+you used earlier with _dust_animation added to it. then add dusti.<sprite_name>.
+so it should be like this, continuing with the example:
+
+global.sans_undertale_dust_animation = dusti.sans_undertale;
+
+why is it so convoluted? i don't know. but it works, and that's the important thing.
+
+step 3: congratulations!! you can now dust that ONE sprite
+if you've made it this far, you've got a hell of a lot of determination. but you can now dust your sprite.
+whenever you want to make a sprite dust, you can do this:
+
+hand = instance_create_depth(sprite_x, sprite_y, sprite_depth, duster);
+hand.sprite_index = your_sprite;
+hand.dust_animation = global.your_sprite_dust_animation;
+
+that's the bare minimum. if you don't do that it'll use the default, which is the necroptosis
+hand. so you should probably like change that. there is one optional value to know about:
+
+hand.dust_speed = 3;
+
+behold, the pinnacle of human creation. the dust speed of sprites. this controls how quickly the sprite
+dusts...? it's the amount of rows every frame that will be turned to dust. yeah.
+note: this DOES take into account rows skipped by having a dust_speed greater than one.
+
+anyway, that's it. you should now be a master of making sprites turn to dust.
+
+final notes:
+ - the sprite duster only suppports monochrome. this is because copies are monochrome.
+   ...the real reason is putting full rgb values crashes gamemaker. so. monochrome it is.

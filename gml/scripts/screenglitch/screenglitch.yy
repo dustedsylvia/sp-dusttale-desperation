@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"screenglitch",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"screenglitch",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
