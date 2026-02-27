@@ -19,6 +19,13 @@ function load_save_file(ini_filepath) {
 			room_goto(room_bigtest);
 		break;
 		
+		case "story_file_1":
+			instance_create_depth(-100, -100, -9998, player);
+			global.can_menu = false;
+			global.can_move = false;
+			room_goto(room_fight_ending);
+		break;
+		
 		//case "cool creative savepoint name":
 		//	instance_create_depth(175, 130, -9998, player);
 		//	room_goto(room_welcometoanunderground);

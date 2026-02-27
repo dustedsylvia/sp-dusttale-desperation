@@ -1,0 +1,1 @@
+objecttext = ["* You looked into the\nroom...", "* It's atmosphere intimidates\nyou too much to\ngo in.", "* ...or, it's not finished.", "* One of the two."];

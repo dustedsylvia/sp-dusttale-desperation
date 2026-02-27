@@ -9,11 +9,6 @@ n_pressed = keyboard_check_pressed(ord("N"));
 h_pressed = keyboard_check_pressed(ord("H"));
 t_pressed = keyboard_check_pressed(ord("T"));
 
-if (t_pressed) { // testing things
-	dust = instance_create_depth(320 - (sprite_get_width(necroptosis_hand)/2), 16, -99999, duster);
-	dust.dust_speed = 5;
-}
-
 if (clock == -29 and state != "starting") {
 	audio_play_sound(bigreveal, 1, 0);
 	instance_create_depth(-100, -100, -9999, time);
@@ -138,7 +133,11 @@ if (clock >= 181) {
 if (state == "starting") {
 	if (clock == 90) {
 		audio_stop_all();
-		room_goto(room_fight_ending);
+		if (!fileExists or dontLoadFile) {
+			load_story_file_1("file0.ini");
+		} else {
+			load_save_file("file0.ini");
+		}
 	}
 }
 

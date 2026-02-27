@@ -1,33 +1,24 @@
 if (!variable_global_exists("player_initialized")) {
 	global.player_initialized = true;
 	
-	global.can_move = true;
-	global.can_menu = true;
-	global.player_name = "Chara";
-	global.player_lv = 1;
-	global.player_exp = 0;
-	global.player_maxhp = 16 + (4 * global.player_lv);
-	global.player_hp = global.player_maxhp;
-	global.weapon = "Stick";
-	global.armor = "Bandage";
-	global.inventory = [];
-	global.player_gold = 0;
+	// Don't overwrite variables if they were set before
+	// TODO: check and make sure the values aren't -1997 or "error_nodata"
+	// TODO: fix maxhp for LV >20
 	
-	switch global.weapon {
-		case "Stick":
-			global.weapon_atk = 0;
-		break;
-	}
+	if (!variable_global_exists("can_move")) { global.can_move = true; }
+	if (!variable_global_exists("can_menu")) { global.can_menu = true; }
+	if (!variable_global_exists("player_name")) { global.player_name = "Chara"; }
+	if (!variable_global_exists("player_lv")) { global.player_lv = 1; }
+	if (!variable_global_exists("player_exp")) { global.player_exp = 0; }
+	if (!variable_global_exists("player_maxhp")) { global.player_maxhp = 16 + (4 * global.player_lv); }
+	if (!variable_global_exists("player_hp")) { global.player_hp = global.player_maxhp; }
+	if (!variable_global_exists("weapon")) { global.weapon = "Stick"; }
+	if (!variable_global_exists("armor")) { global.armor = "Bandage"; }
+	if (!variable_global_exists("inventory")) { global.inventory = []; }
+	if (!variable_global_exists("player_gold")) { global.player_gold = 0; }
 	
-	switch global.armor {
-		case "Bandage":
-			global.armor_def = 0;
-		break;
-	}
+	player_recalc_stats();
 	
-	global.player_atk = (-2 + (2 * global.player_lv)) + global.weapon_atk;
-	global.player_def = ((global.player_lv - 1) / 4) + global.armor_def;
-	global.player_speed = 2.5;//5; // 2.5 for 60fps
 	global.player_x1speed = global.player_speed;
 	global.player_x2speed = global.player_speed;
 	global.player_y1speed = global.player_speed;

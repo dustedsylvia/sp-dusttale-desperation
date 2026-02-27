@@ -1,0 +1,1 @@
+objecttext = ["* Bones.\n* Can't go this way."];

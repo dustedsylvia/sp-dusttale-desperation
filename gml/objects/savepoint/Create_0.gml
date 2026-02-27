@@ -20,5 +20,8 @@ soul_spr = s_detailed_soul;
 soul_x = 142;
 soul_y = 246;
 
+savetext = ["* The sight of the unchanged\nflavor text fills you\n[color:#FF0000]with DETERMINATION[color:#FFFFFF]."];
+saveclone = [];
+
 _minutes = 0;
 _seconds = 0;

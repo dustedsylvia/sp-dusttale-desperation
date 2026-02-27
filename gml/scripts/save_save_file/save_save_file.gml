@@ -12,6 +12,8 @@ function save_save_file(ini_filepath) {
 	ini_write_real("player", "hp", global.player_hp);
 	ini_write_string("player", "weapon", global.weapon);
 	ini_write_string("player", "armor", global.armor);
+	ini_write_real("player", "exp", global.player_exp);
+	ini_write_string("player", "inventory", json_stringify(global.inventory));
 	
 	// Savepoint section
 	ini_write_string("savepoint", "id", global.savepoint);

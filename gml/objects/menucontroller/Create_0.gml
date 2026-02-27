@@ -14,3 +14,7 @@ state = "main";
 creditstexty = -200;
 maintexty = 200;
 settingstexty = 500;
+
+fileExists = ini_file_exists("file0.ini");
+
+dontLoadFile = true; // please don't enable this on releases

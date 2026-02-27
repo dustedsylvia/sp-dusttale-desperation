@@ -16,8 +16,9 @@ var confirm = (key_z or key_enter);
 //if (confirm and state == 0) {
 if (place_meeting(x, y, playerinteract) and confirm and state == 0) {
 	global.can_move = false;
+	array_copy(saveclone, 0, savetext, 0, array_length(savetext));
 	textbox = instance_create_depth(0, 0, -9998, flavorer);
-	textbox.text = ["* The sight of the unchanged\nflavor text fills you\n[color:#FF0000]with DETERMINATION[color:#FFFFFF]."];
+	textbox.text = saveclone;
 	state = 1;
 	_minutes = 0;
 	_seconds = 0;

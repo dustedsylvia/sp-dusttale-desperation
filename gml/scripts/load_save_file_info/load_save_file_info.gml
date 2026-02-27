@@ -11,10 +11,12 @@ function load_save_file_info(ini_filepath) {
 	// Player section
 	global.player_name = ini_read_string("player", "name", "error_nodata");
 	global.player_lv = ini_read_real("player", "lv", -1997);
+	global.player_exp = ini_read_real("player", "exp", -1997);
 	global.player_maxhp = 16 + (4 * global.player_lv);
 	global.player_hp = ini_read_real("player", "hp", -1997);
 	global.weapon = ini_read_string("player", "weapon", "error_nodata");
 	global.armor = ini_read_string("player", "armor", "error_nodata");
+	global.inventory = json_parse(ini_read_string("player", "inventory", []));
 	
 	// Savepoint section
 	global.savepoint = ini_read_string("savepoint", "id", "error_nodata");

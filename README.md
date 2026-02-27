@@ -8,4 +8,6 @@ This was built in the latest version of GameMaker BETA.
 [gamemaker beta for windows](https://gamemaker.io/en/download/windows/beta/GameMaker.exe)  
 [gamemaker beta for mac](https://gamemaker.io/en/download/mac/beta/GameMaker.pkg)  
 [gamemaker beta for ubuntu](https://gamemaker.io/en/download/ubuntu/beta/GameMaker.zip)  
-Once you've installed GameMaker, download this repo as a zip, extract it, then double-click the SP!Dusttale - desperation.yyp file. It should open in GameMaker!!
+Once you've installed GameMaker, download this repo as a zip, extract it, then double-click the SP!Dusttale - desperation.yyp file. It should open in GameMaker!!  
+
+version nightly-2

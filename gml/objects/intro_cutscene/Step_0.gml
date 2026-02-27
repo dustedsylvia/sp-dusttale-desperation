@@ -40,61 +40,120 @@ if (clock == 590) {
 }
 
 if (clock == 679) {
-	sanstext = "i died.";
+	voidv3 = instance_create_depth(-130, -30, -9999, sprawl);
+	audio_play_sound(menu, 1, true);
 }
 
-if (clock == 889) {
-	sanstext = "\nagain.";
+if (clock == 900) {
+	sanstext = "...";
 }
 
-if (clock == 1099) {
-	sanstext = "\n\nbut why do i feel so free now...?";
+if (clock == 1080) {
+	sanstext = "So many timelines\nhave passed";
 }
 
-if (clock == 1309) {
-	sanstext = "\n\n\ni just hope one thing.";
+if (clock == 1260) {
+	sanstext = "but all my actions\neverything i did";
 }
 
-if (clock == 1519) {
-	sanstext = "\n\n\n\nthat this will be the last reset.";
+if (clock == 1440) {
+	sanstext = "";
+	sanstextx = 320;
+	sanstexty = 240;
+	sansbasex = 320;
+	sansbasey = 240;
+	voidv3.fadeout = true;
 }
 
-if (clock >= 680 and clock <= 710) {
-	sanstextalpha += 0.033;
+if (clock >= 1441 and clock <= 2040) {
+	if (irandom_range(0, 5) == 5) {
+		sanstextx += 2;
+	}
+	if (irandom_range(0, 5) == 0) {
+		sanstextx -= 2;
+	}
+	if (irandom_range(0, 5) == 5) {
+		sanstexty += 2;
+	}
+	if (irandom_range(0, 5) == 0) {
+		sanstexty -= 2;
+	}
 }
 
-if (clock >= 800 and clock <= 830) {
-	sanstextalpha -= 0.033;
+if (clock == 1620) {
+	sanstext = "i can't justify them";
 }
 
-if (clock >= 890 and clock <= 920) {
-	sanstextalpha += 0.033;
+if (clock == 1800) {
+	sanstext = "not from that timeline.";
 }
 
-if (clock >= 1010 and clock <= 1040) {
-	sanstextalpha -= 0.033;
+if (clock == 2040) {
+	sanstext = "";
+	sansbasex = 475;
+	sansbasey = 240;
+	sanstextx = 475;
+	sanstexty = 240;
 }
 
-if (clock >= 1100 and clock <= 1130) {
-	sanstextalpha += 0.033;
+if (clock >= 2100 and clock <= 2150) {
+	sansopacity += 0.02;
 }
 
-if (clock >= 1220 and clock <= 1250) {
-	sanstextalpha -= 0.033;
+if (clock >= 2150 and clock <= 2740) {
+	if (clock % 30 == 0 and thing == true) {
+		thing = false;
+		sanssprite = sans_help_3;
+	} else if (clock % 30 == 0 and thing == false) {
+		thing = true;
+		sanssprite = sans_help_4;
+	}
 }
 
-if (clock >= 1310 and clock <= 1340) {
-	sanstextalpha += 0.033;
+if (clock == 2330) {
+	sanstext = "all my fault";
 }
 
-if (clock >= 1430 and clock <= 1460) {
-	sanstextalpha -= 0.033;
+if (clock == 2510) {
+	sanstext = "but i can't give up";
 }
 
-if (clock >= 1520 and clock <= 1550) {
-	sanstextalpha += 0.033;
+if (clock == 2690) {
+	sanstext = "";
+	sanstextx = 320;
+	sanstexty = 240;
+	sansbasex = 320;
+	sansbasey = 240;
 }
 
-if (clock >= 1640 and clock <= 1670) {
-	sanstextalpha -= 0.033;
+if (clock >= 2690 and clock <= 2740) {
+	sansopacity -= 0.02;
+}
+
+if (clock == 2920) {
+	sanstext = "not until everyone gets the ending\nthey deserve";
+}
+
+if (clock == 3100) {
+	sanstext = "and after they do...";
+}
+
+if (clock == 3280) {
+	sanstext = "...i will rot in hell.";
+}
+
+if (clock == 3460) {
+	sanstext = "...but i'll give everything\nfor this timeline.";
+}
+
+if (clock == 3640) {
+	sanstext = "maybe there is hope\nafter all.";
+}
+
+if (clock == 3820) {
+	sanstext = "i'll see.";
+}
+
+if (clock == 4000) {
+	sanstext = "";
 }

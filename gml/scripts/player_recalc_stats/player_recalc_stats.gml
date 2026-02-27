@@ -1,13 +1,21 @@
 function player_recalc_stats() {
-	switch global.weapon {
+	switch (global.weapon) {
 		case "Stick":
 			global.weapon_atk = 0;
 		break;
+		
+		case "Real Knife":
+			global.weapon_atk = 99;
+		break;
 	}
 	
-	switch global.armor {
+	switch (global.armor) {
 		case "Bandage":
 			global.armor_def = 0;
+		break;
+		
+		case "The Locket":
+			global.armor_def = 99;
 		break;
 	}
 	

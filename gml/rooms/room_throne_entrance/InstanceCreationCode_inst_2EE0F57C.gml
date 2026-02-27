@@ -1,0 +1,1 @@
+objecttext = ["* \"Throne Room\"."];
