@@ -1,3 +1,7 @@
+if (global.player_active == -67) {
+	exit; // don't run this event, the player has been deactivated by a cutscene or sum idk
+}
+
 if (inmenu) {
 	draw_sprite(menubox1, 0, 32, 52);
 	if (array_length(global.inventory) == 0) {

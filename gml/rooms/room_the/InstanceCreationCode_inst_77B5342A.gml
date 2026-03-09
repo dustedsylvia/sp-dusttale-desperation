@@ -1,0 +1,1 @@
+objecttext = ["* (It's a coffin.)[pauseforframes:30]\n* (There's a name engraved on\nit.)", string_concat("* (\"", global.player_name, ".\")")];

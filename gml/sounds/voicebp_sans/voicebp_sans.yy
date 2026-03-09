@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"voicebp_sans",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.1411875,
+  "exportDir":"",
+  "name":"voicebp_sans",
+  "parent":{
+    "name":"voicebeeps",
+    "path":"folders/Sounds/voicebeeps.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":48000,
+  "soundFile":"voicebp_sans.wav",
+  "volume":1.0,
+}

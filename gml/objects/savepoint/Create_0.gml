@@ -3,19 +3,14 @@ image_yscale = 2;
 
 fileExists = ini_file_exists("file0.ini");
 
-//nameoverride = 0;
-// The name should actually be the %username%.
-nameoverride = environment_get_variable("username");
-if (string_length(nameoverride) > 6) {
-    nameoverride = string_copy(nameoverride, 1, 6);
-}
+nameoverride = "";
 
 state = 0;
 textbox = pointer_null;
 menu_open = false;
 selected_option = 1;
 returntext = "Return";
-location = "???????????";
+location = "please_help_me";
 soul_spr = s_detailed_soul;
 soul_x = 142;
 soul_y = 246;

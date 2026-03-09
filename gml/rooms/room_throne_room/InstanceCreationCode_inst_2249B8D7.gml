@@ -1,0 +1,1 @@
+objecttext = ["* Toriel's throne."];

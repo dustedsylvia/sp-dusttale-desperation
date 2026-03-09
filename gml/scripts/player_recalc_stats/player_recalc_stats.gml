@@ -1,4 +1,11 @@
 function player_recalc_stats() {
+	
+	if (global.player_lv <= 19) {
+		global.player_maxhp = 16 + (4 * global.player_lv);
+	} else {
+		global.player_maxhp = 19 + (4 * global.player_lv);
+	}
+	
 	switch (global.weapon) {
 		case "Stick":
 			global.weapon_atk = 0;

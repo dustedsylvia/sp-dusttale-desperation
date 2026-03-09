@@ -23,6 +23,7 @@ if (!variable_global_exists("player_initialized")) {
 	global.player_x2speed = global.player_speed;
 	global.player_y1speed = global.player_speed;
 	global.player_y2speed = global.player_speed;
+	global.player_active = 67;
 }
 
 global.player_x = x;

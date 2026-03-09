@@ -11,4 +11,6 @@ global.prevminutes = 0;
 global.seconds = 0;
 global.prevseconds = 0;
 
+global.resetcam = false;
+
 timer = 0;

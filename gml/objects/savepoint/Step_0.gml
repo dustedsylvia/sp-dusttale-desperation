@@ -8,6 +8,10 @@ var key_z = keyboard_check_pressed(ord("Z"));
 var key_enter = keyboard_check_pressed(vk_enter);
 var confirm = (key_z or key_enter);
 
+if (string_length(nameoverride) > 6) {
+    nameoverride = string_copy(nameoverride, 1, 6);
+}
+
 // There's a problem with the collisions. It will NEVER move you to collide
 // with the collidable objects. Which I guess is intended. But it means
 // that savepoint will have to see if the player is within a certain

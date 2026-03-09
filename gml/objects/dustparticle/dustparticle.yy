@@ -10,8 +10,8 @@
   "name":"dustparticle",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"cutscenes",
+    "path":"folders/Objects/cutscenes.yy",
   },
   "parentObjectId":null,
   "persistent":false,

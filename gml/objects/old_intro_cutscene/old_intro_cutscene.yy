@@ -11,8 +11,8 @@
   "name":"old_intro_cutscene",
   "overriddenProperties":[],
   "parent":{
-    "name":"intro",
-    "path":"folders/Objects/intro.yy",
+    "name":"cutscenes",
+    "path":"folders/Objects/cutscenes.yy",
   },
   "parentObjectId":null,
   "persistent":false,

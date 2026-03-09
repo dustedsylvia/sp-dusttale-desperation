@@ -1,6 +1,10 @@
-// Note: I've gone through and deleted most of the unneccesary debugging
-// code from here. It saved a lot of lines but the original is at [object]flavorer_debug
-
+// i REALLY need to write documentation for this ;-;
+ 
+// NOTE: if you encounter a strange issue when using [noadvance], just put the tag after the asterisk.
+// e.x. * [noadvance]cool text  instead of  [noadvance]* cool text
+// why? no clue. but it has to be done.
+// this goes for noskip too
+ 
 // Textbox variables
 textbox_x = 32;
 textbox_y = 320;
@@ -20,16 +24,23 @@ text_line2_offset_y = 61;
 text_line3_offset_x = 60;
 text_line3_offset_y = 97;
 current_line = 0; // From 0-2 (a maximum of 3 lines per textbox)
+current_page = -1;
 total_lines = 0;
 needs_page_init = true;
 needs_line_init = true;
 line1_asterisk = false;
 line2_asterisk = false;
 line3_asterisk = false;
+currentportrait = noone;
+asteriskxoffset = 28;
+
+draw_box = true;
 
 // Text variable. This is the only variable you'll probably change.
 // The other variables CAN be changed but by default they're canon to Undertale.
 text = ["* Looks like no text was\nadded for this dialog box.", "* You're filled with the power\nof default variables!"];
+
+portraits = []; // Start with an empty array
 
 // You might want to change this too
 text_voicebeep = sn_voicebeep_narrator;
@@ -71,6 +82,7 @@ noadvancelastchar = false;
 done = false;
 
 thisLineHasAnAsterisk = function() {
+	// What the genuine FUCK could i possibly have been on when writing this
 	return ((current_line == 0 and line1_asterisk == true) or (current_line == 1 and line2_asterisk == true) or (current_line == 2 and line3_asterisk == true));
 }
 
@@ -83,6 +95,7 @@ normalize = function(text, exceptions=[]) {
 	if (array_contains(exceptions, "asterisk") == false) { text = string_replace_all(text, "* ", ""); };
 	if (array_contains(exceptions, "instant") == false) { text = string_replace_all(text, "[instant]", ""); };
 	if (array_contains(exceptions, "noskip") == false) { text = string_replace_all(text, "[noskip]", ""); };
+	if (array_contains(exceptions, "noadvance") == false) { text = string_replace_all(text, "[noadvance]", ""); };
 	
 	// next remove all of the argumentative tags
 	if (array_contains(exceptions, "color") == false) {
@@ -477,4 +490,19 @@ setupLine = function() {
 			break;
 		}
 	}
+}
+
+UpdateText = function(newText) {
+	text = newText;
+	needs_page_init = true;
+	needs_line_init = true;
+	current_line = 0;
+	current_page = -1;
+	done = false;
+	event_perform(ev_draw, ev_gui);
+}
+
+MoveTo = function(newX, newY) {
+	textbox_x = newX;
+	textbox_y = newY;
 }

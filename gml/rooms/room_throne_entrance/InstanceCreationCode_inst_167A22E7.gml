@@ -1,1 +1,1 @@
-objecttext = ["* Bones.\n* Can't go this way."];
+objecttext = ["* Bones.[pauseforframes:30]\n* Can't go this way."];

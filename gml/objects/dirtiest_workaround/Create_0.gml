@@ -1,0 +1,1 @@
+room_goto(room_until_the_end);

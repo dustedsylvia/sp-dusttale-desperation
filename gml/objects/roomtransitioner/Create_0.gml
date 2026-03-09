@@ -1,6 +1,6 @@
 state = 0;
 
-targetroom = test_room; // if you don't change ts you're getting sent to TEST ROOM.
+targetroom = room_overworld; // if you don't change ts you're getting sent to ROOM_OVERWORLD.
 targetx = 100;
 targety = 100;
 

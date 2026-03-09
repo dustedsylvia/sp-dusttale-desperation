@@ -1,5 +1,21 @@
 // Scroll to the bottom for very important information (not scrollbait)
 
+if (global.player_active == false) {
+	global.can_move = false;
+	global.can_menu = false;
+	image_alpha = 0;
+	global.player_active = -67;
+} else if (global.player_active == true) {
+	global.can_move = true;
+	global.can_menu = true;
+	image_alpha = 1;
+	global.player_active = 67;
+}
+
+if (global.player_active == -67) {
+	exit; // don't run this event, the player has been deactivated by a cutscene or sum idk
+}
+
 var leftp = keyboard_check_pressed(vk_left);
 var rightp = keyboard_check_pressed(vk_right);
 var upp = keyboard_check_pressed(vk_up);
@@ -149,6 +165,12 @@ camera_x = camera_get_view_x(camera);
 camera_y = camera_get_view_y(camera);
 camera_w = camera_get_view_width(camera);
 camera_h = camera_get_view_height(camera);
+
+if (global.resetcam == true) {
+	camera_x = x - 300;
+	camera_y = y - 210;
+	global.resetcam = false;
+}
 
 if (camera_x >= 0 and camera_x <= room_width - camera_w and x - 300 >= 0 and x - 300 <= room_width - camera_w) {
 	// 320 - (sprite_width * sprite_xscale) / 2
