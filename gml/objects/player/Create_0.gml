@@ -2,8 +2,6 @@ if (!variable_global_exists("player_initialized")) {
 	global.player_initialized = true;
 	
 	// Don't overwrite variables if they were set before
-	// TODO: check and make sure the values aren't -1997 or "error_nodata"
-	// TODO: fix maxhp for LV >20
 	
 	if (!variable_global_exists("can_move")) { global.can_move = true; }
 	if (!variable_global_exists("can_menu")) { global.can_menu = true; }
@@ -16,15 +14,16 @@ if (!variable_global_exists("player_initialized")) {
 	if (!variable_global_exists("armor")) { global.armor = "Bandage"; }
 	if (!variable_global_exists("inventory")) { global.inventory = []; }
 	if (!variable_global_exists("player_gold")) { global.player_gold = 0; }
-	
-	player_recalc_stats();
-	
-	global.player_x1speed = global.player_speed;
-	global.player_x2speed = global.player_speed;
-	global.player_y1speed = global.player_speed;
-	global.player_y2speed = global.player_speed;
-	global.player_active = 67;
 }
+
+player_recalc_stats();
+	
+global.player_atkbonus = 0;
+global.player_x1speed = global.player_speed;
+global.player_x2speed = global.player_speed;
+global.player_y1speed = global.player_speed;
+global.player_y2speed = global.player_speed;
+global.player_active = 67;
 
 global.player_x = x;
 global.player_y = y;

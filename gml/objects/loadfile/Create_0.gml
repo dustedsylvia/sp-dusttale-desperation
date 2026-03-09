@@ -1,0 +1,1 @@
+load_save_file("file0.ini");

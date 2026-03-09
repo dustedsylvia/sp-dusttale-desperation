@@ -43,7 +43,7 @@ text = ["* Looks like no text was\nadded for this dialog box.", "* You're filled
 portraits = []; // Start with an empty array
 
 // You might want to change this too
-text_voicebeep = sn_voicebeep_narrator;
+text_voicebeep = voicebp_narrator;
 
 // Text variables
 textspd = 2;

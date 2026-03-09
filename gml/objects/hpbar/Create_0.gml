@@ -68,3 +68,15 @@ applydamage = function(damage) {
 		global.player_hp = 0;
 	}
 }
+
+applyheal = function(healamt) {
+	global.KR = 0;
+	global.KR_clock = 0;
+	global.player_hp += healamt;
+	if (global.player_hp > global.player_maxhp) {
+		global.player_hp = global.player_maxhp;
+		return true; // true if hp had to be capped
+	} else {
+		return false; // false if it didn't
+	}
+}

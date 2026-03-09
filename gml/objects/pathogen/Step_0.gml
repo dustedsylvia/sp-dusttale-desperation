@@ -22,6 +22,10 @@ var key_shift = keyboard_check_pressed(vk_shift);
 var confirm = (key_z or key_enter);
 var cancel = (key_x or key_shift);
 
+if (global.player_hp <= 0) {
+	room_goto(room_gameover);
+}
+
 if (setup_kr) {
 	// NOTE: THE LOCATION OF THIS IS ONLY UPDATED ONCE!!!
 	global.kr_obj = instance_create_depth(global.hpbar.x+global.player_maxhp*1.2+10, 406, depth-5, kr);
@@ -88,11 +92,12 @@ if (global.battle_state == "actionselect") {
 			global.soul.LerpTo(65, 279);
 			global.arena_text.UpdateText(["[instant]* [noadvance]" + global.enemy_name]);
 			global.arena_text.MoveTo(73, 248);
-		} else if (global.selected == 3) {
+		} else if (global.selected == 3 and array_length(global.inventory) != 0) {
 			global.battle_state = "itemmenu";
 			global.soul.LerpTo(65, 279);
-			//global.arena_text.UpdateText(["[instant]* [noadvance]Spare\n* [noadvance]Flee"]);
-			//global.arena_text.MoveTo(73, 248);
+			itemindex = 0;
+			global.arena_text.UpdateText(getItemText());
+			global.arena_text.MoveTo(73, 248);
 		} else if (global.selected == 4) {
 			global.battle_state = "mercymenu";
 			global.soul.LerpTo(65, 279);
@@ -152,9 +157,9 @@ if (global.battle_state == "friskattack") {
 		// damage calculation
 		if (global.alwaysmiss == false) {
 			if (abs(global.attackfocusbar.x - 320) <= 12) {
-			    global.dealtdamage = round((global.player_atk - global.enemy_def + random(2)) * 2.2);
+			    global.dealtdamage = round(((global.player_atk + global.player_atkbonus) - global.enemy_def + random(2)) * 2.2);
 			} else {
-			    global.dealtdamage = round((global.player_atk - global.enemy_def + random(2)) * ((562 - abs(global.attackfocusbar.x - 320))/562) * 2);
+			    global.dealtdamage = round(((global.player_atk + global.player_atkbonus) - global.enemy_def + random(2)) * ((562 - abs(global.attackfocusbar.x - 320))/562) * 2);
 			}
 		} else {
 			global.dealtdamage = 0;
@@ -164,7 +169,6 @@ if (global.battle_state == "friskattack") {
 			global.missanim.alphavel = -0.04;
 		}
 		global.attackcounter += 1;
-		show_debug_message("calculated " + string(global.dealtdamage) + " damage");
 		global.battleclock = 120;
 	}
 	if (global.battleclock != -1) { global.battleclock -= 1; if (global.missanim.image_alpha == 0) { global.missanim.color = c_white; }; };
@@ -189,6 +193,123 @@ if (global.battle_state == "actmenu") {
 		global.arena_text.UpdateText(t);
 		global.arena_text.MoveTo(25, 248);
 	}
+	
+	if (confirm) {
+		audio_play_sound(select, 1, false);
+		confirm = false;
+		global.battle_state = "viewingacts";
+		switch (array_length(global.acts)) {
+			case 0:
+				show_error("you must have at least one ACT!", true);
+			break;
+			
+			case 1:
+				global.arena_text.UpdateText(["[instant]* [noadvance]" + global.acts[0]]);
+			break;
+			
+			case 2:
+				global.arena_text.UpdateText(["[instant]* [noadvance]" + global.acts[0] + "         * " + global.acts[1]]);
+			break;
+			
+			case 3:
+				global.arena_text.UpdateText(["[instant]* [noadvance]" + global.acts[0] + "         *[color:#000000]ㅤ[color:#FFFFFF]" + global.acts[1] + "\n* [noadvance]" + global.acts[2]]);
+			break;
+			
+			case 4:
+				// The following is such insanely bad practice that Dustdustdustfellinsanityinsanityinsanityinsanityinsanity!Sans couldn't match it.
+				global.arena_text.UpdateText(["[instant]* [noadvance]" + global.acts[0] + "         *[color:#000000]ㅤ[color:#FFFFFF]" + global.acts[1] + "\n* [noadvance]" + global.acts[2] +  "         * " + global.acts[3]]);
+			break;
+			
+			default:
+				show_error("you can't have more than four ACTs!", true);
+			break
+		}
+	}
+}
+
+if (global.battle_state == "viewingacts") {
+	if (cancel) {
+		global.soul.LerpTo(194, 447);
+		global.battle_state = "actionselect";
+		var t = [];
+		array_copy(t, 0, global.currenttext, 0, array_length(global.currenttext));
+		global.arena_text.UpdateText(t);
+		global.arena_text.MoveTo(25, 248);
+	}
+	if (global.selected_submenu == 1 or global.selected_submenu == 3) {
+		if ((left or right) and (array_length(global.acts) == 2 or array_length(global.acts) == 3 or array_length(global.acts) == 4)) {
+			if (global.selected_submenu == 1) {
+				global.selected_submenu = 3;
+			} else if (global.selected_submenu == 3) {
+				global.selected_submenu = 1;
+			}
+			updateSubmenu();
+		}
+		if ((up or down) and (array_length(global.acts) == 2 or array_length(global.acts) == 3 or array_length(global.acts) == 4)) {
+			if (global.selected_submenu == 1 and array_length(global.acts) == 3 or array_length(global.acts) == 4) {
+				global.selected_submenu = 2;
+			} else if (global.selected_submenu == 3 and array_length(global.acts) == 4) {
+				global.selected_submenu = 4;
+			}
+			updateSubmenu();
+		}
+	} else if (global.selected_submenu == 2 or global.selected_submenu == 4) {
+		if ((left or right) and (array_length(global.acts) == 2 or array_length(global.acts) == 4)) {
+			if (global.selected_submenu == 2) {
+				global.selected_submenu = 4;
+			} else if (global.selected_submenu == 4) {
+				global.selected_submenu = 2;
+			}
+			updateSubmenu();
+		}
+		if ((up or down) and (array_length(global.acts) == 2 or array_length(global.acts) == 3 or array_length(global.acts) == 4)) {
+			if (global.selected_submenu == 2) {
+				global.selected_submenu = 1;
+			} else if (global.selected_submenu == 4) {
+				global.selected_submenu = 3;
+			}
+			updateSubmenu();
+		}
+	}
+	
+	if (confirm) {
+		audio_play_sound(select, 1, false);
+		switch (global.selected_submenu) {
+			case 1:
+				onact(global.acts[0]);
+				cancel = false;
+				confirm = false;
+			break;
+			
+			case 2:
+				onact(global.acts[2]);
+			break;
+			
+			case 3:
+				onact(global.acts[1]);
+			break;
+			
+			case 4:
+				onact(global.acts[3]);
+			break;
+		}
+	}
+}
+
+if (global.battle_state == "displayingtext") {
+	with (global.arena_text) {
+		if (confirm and pauseforframes == 0 and current_line >= total_lines and text_char_index >= string_length(current_line_text)) {
+			other.textdone = true;
+		}
+	}
+	if (textdone) {
+		textdone = false;
+		global.battle_state = "dialog";
+		initDialog = true;
+		global.soul.MoveTo(-999, -999);
+		global.arena_text.UpdateText(["[noadvance]"]);
+		global.arena_text.MoveTo(-999, -999);
+	}
 }
 
 if (global.battle_state == "itemmenu") {
@@ -199,6 +320,24 @@ if (global.battle_state == "itemmenu") {
 		array_copy(t, 0, global.currenttext, 0, array_length(global.currenttext));
 		global.arena_text.UpdateText(t);
 		global.arena_text.MoveTo(25, 248);
+	}
+	
+	if (up) {
+		if (itemindex != 0) {
+			itemindex -= 1;
+			global.arena_text.UpdateText(getItemText());
+		}
+	}
+	
+	if (down) {
+		if (itemindex != array_length(global.inventory)-1) {
+			itemindex += 1;
+			global.arena_text.UpdateText(getItemText());
+		}
+	}
+	
+	if (confirm) {
+		onitem(global.inventory[itemindex]);
 	}
 }
 

@@ -43,7 +43,7 @@ text = ["* Looks like no text was\nadded for this dialog box.", "* You're filled
 portraits = []; // Start with an empty array
 
 // You might want to change this too
-text_voicebeep = sn_voicebeep_narrator;
+text_voicebeep = voicebp_narrator;
 
 // Text variables
 textspd = 2;
@@ -492,13 +492,133 @@ setupLine = function() {
 	}
 }
 
-UpdateText = function(newText) {
-	text = newText;
-	needs_page_init = true;
-	needs_line_init = true;
+Reset = function() {
+	textbox_outer_width = 578;
+	textbox_outer_height = 152;
+	textbox_outerinner_offset_x = 6;
+	textbox_outerinner_offset_y = 6;
+	textbox_inner_width = 566;
+	textbox_inner_height = 140;
+	textbox_outer_color = #FFFFFF;
+	textbox_inner_color = #000000;
+	asterisk_sprite = s_asterisk;
+	text_line1_offset_x = 60;
+	text_line1_offset_y = 25;
+	text_line2_offset_x = 60;
+	text_line2_offset_y = 61;
+	text_line3_offset_x = 60;
+	text_line3_offset_y = 97;
 	current_line = 0;
 	current_page = -1;
+	total_lines = 0;
+	needs_page_init = true;
+	needs_line_init = true;
+	line1_asterisk = false;
+	line2_asterisk = false;
+	line3_asterisk = false;
+	currentportrait = noone;
+	asteriskxoffset = 28;
+	text = ["* Looks like no text was\nadded for this dialog box.", "* You're filled with the power\nof default variables!"];
+	portraits = [];
+	textspd = 2;
+	textfont = dtf;
+	textxoffset = 16;
+	clock = 0;
+	text_char_index = 0;
+	text_page_index = 0;
+	pauseforframes = 0;
+	pauseforframescache = [];
+	pauseforframesoverride = false;
+	pauseforframeslastchar = -1;
+	colorl0 = [];
+	colorl1 = [];
+	colorl2 = [];
+	defaultcolor = #FFFFFF;
+	asteriskcolor1 = #FFFFFF;
+	asteriskcolor2 = #FFFFFF;
+	asteriskcolor3 = #FFFFFF;
+	noskip = -1;
+	noskipoverride = false;
+	noskiplastchar = false;
+	instant = -1;
+	instantoverride = false;
+	instantlastchar = false;
+	advance = -1;
+	advanceoverride = false;
+	advancelastchar = false;
+	noadvance = -1;
+	noadvanceoverride = false;
+	noadvancelastchar = false;
 	done = false;
+}
+
+TrueReset = function() {
+	textbox_x = 32;
+	textbox_y = 320;
+	textbox_outer_width = 578;
+	textbox_outer_height = 152;
+	textbox_outerinner_offset_x = 6;
+	textbox_outerinner_offset_y = 6;
+	textbox_inner_width = 566;
+	textbox_inner_height = 140;
+	textbox_outer_color = #FFFFFF;
+	textbox_inner_color = #000000;
+	asterisk_sprite = s_asterisk;
+	text_line1_offset_x = 60;
+	text_line1_offset_y = 25;
+	text_line2_offset_x = 60;
+	text_line2_offset_y = 61;
+	text_line3_offset_x = 60;
+	text_line3_offset_y = 97;
+	current_line = 0;
+	current_page = -1;
+	total_lines = 0;
+	needs_page_init = true;
+	needs_line_init = true;
+	line1_asterisk = false;
+	line2_asterisk = false;
+	line3_asterisk = false;
+	currentportrait = noone;
+	asteriskxoffset = 28;
+	draw_box = true;
+	text = ["* Looks like no text was\nadded for this dialog box.", "* You're filled with the power\nof default variables!"];
+	portraits = [];
+	text_voicebeep = voicebp_narrator;
+	textspd = 2;
+	textfont = dtf;
+	textxoffset = 16;
+	clock = 0;
+	text_char_index = 0;
+	text_page_index = 0;
+	pauseforframes = 0;
+	pauseforframescache = [];
+	pauseforframesoverride = false;
+	pauseforframeslastchar = -1;
+	colorl0 = [];
+	colorl1 = [];
+	colorl2 = [];
+	defaultcolor = #FFFFFF;
+	asteriskcolor1 = #FFFFFF;
+	asteriskcolor2 = #FFFFFF;
+	asteriskcolor3 = #FFFFFF;
+	noskip = -1;
+	noskipoverride = false;
+	noskiplastchar = false;
+	instant = -1;
+	instantoverride = false;
+	instantlastchar = false;
+	advance = -1;
+	advanceoverride = false;
+	advancelastchar = false;
+	noadvance = -1;
+	noadvanceoverride = false;
+	noadvancelastchar = false;
+	done = false;
+}
+
+UpdateText = function(newText) {
+	Reset();
+	text = newText;
 	event_perform(ev_draw, 0);
 }
 

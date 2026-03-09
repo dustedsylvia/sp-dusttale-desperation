@@ -14,7 +14,7 @@ text = ["[color:#000000]huh. no text here.[pauseforframes:30]\n[color:#000000]ma
 // a preset for papyrus? nah, that'd be too much.
 // but i'll probably have to add this eventually.
 // because i'll set the preset to "papyrus" and wonder why it doesn't work lmao
-voice = sn_voicebeep_narrator;
+voice = voicebp_narrator;
 spd = 2;
 font = monster;
 text_x_offset = 9;

@@ -2,8 +2,6 @@ clock += 1;
 
 if (clock == 1) {
 	image_alpha = startingOpacity;
-	show_debug_message(string_concat("startingOpacity: ", startingOpacity, ". targetOpacity: ", targetOpacity, ". image_alpha: ", image_alpha, "."));
-	show_debug_message("reset image_alpha.");
 }
 // there's no point.
 // there's no point.
@@ -30,12 +28,10 @@ if (mode == "fadeIn") {
 		image_alpha = startingOpacity;
 		offset = 1 / fadeOverFrames;
 		needsInit = false; 
-		show_debug_message(string_concat("image_alpha: ", image_alpha, ". offset: ", offset, "."));
 	}
 
 	if (targetOpacity != image_alpha) {
 		image_alpha -= offset;
-		show_debug_message("removed some from image_alpha.");
 	}
 	if (bounce and clock >= fadeOverFrames) {
 		needsInit = true;
@@ -46,7 +42,6 @@ if (mode == "fadeIn") {
 		mode = "fadeOut";
 		bounce = false;
 		executeOnFirstBounce();
-		show_debug_message("bounced from fadeIn to fadeOut!");
 		exit;
 	}
 	if (clock >= fadeOverFrames) {
@@ -66,7 +61,6 @@ if (mode == "fadeOut") {
 
 	if (targetOpacity != image_alpha) {
 		image_alpha += offset;
-		show_debug_message("added some to image_alpha.");
 	}
 	if (bounce and clock >= fadeOverFrames) {
 		needsInit = true;
@@ -77,7 +71,6 @@ if (mode == "fadeOut") {
 		mode = "fadeIn";
 		bounce = false;
 		executeOnFirstBounce();
-		show_debug_message("bounced from fadeOut to fadeIn!");
 		exit;
 	}
 	if (clock >= fadeOverFrames) {

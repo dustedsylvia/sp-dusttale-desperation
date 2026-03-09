@@ -18,10 +18,8 @@ global.enemy_maxhp = 50;
 global.enemy_def = 3;
 global.enemy_atk = 3;
 global.player_active = false;
-global.enemy_checkmsg = ["* MONSTER 15 ATK 15 DEF[pauseforframes:30]\n* No data available."];
+global.enemy_checkmsg = ["* [noadvance]MONSTER 3 ATK 3 DEF[pauseforframes:30]\n* No data available."];
 global.in_battle = true;
-
-//instance_create_depth(0, 0, 0, makearectangle);
 
 global.fight_button = instance_create_depth(33, 433, depth-5, button);
 global.fight_button.button_type = "fight"; // we don't actually have to do this as its the default.
@@ -47,6 +45,8 @@ global.arena = instance_create_depth(33, 251, depth-5, arena);
 
 // for testing purposes only
 global.sans_obj = instance_create_depth(272, 100, depth-5, break_sans);
+//global.inventory = ["Pie", "Noodles", "Steak", "S. Piece", "S. Piece", "S. Piece", "L. Hero", "L. Hero"];
+global.inventory = ["Pie"];
 
 global.flavortexts = [["* [noadvance]..."]];
 global.encountertext = ["* [noadvance]Now you've done it."];
@@ -62,7 +62,7 @@ global.selected = 1;
 prevselected = 1;
 global.selected_submenu = 1;
 global.battle_state = "actionselect";
-global.acts = ["Check", "Talk"];
+global.acts = ["Check"]; // You can have up to four ACTs, just add them here and add a case to the onact function
 global.randomdialog = [["[color:#000000]..."]];
 global.attacker = noone;
 global.attackfocusbar = noone;
@@ -77,24 +77,114 @@ global.attacktimer = 240;
 
 updateSoulLocation = true;
 
+textdone = false;
+
 attacked = true;
 initDialog = false;
 initEnemyAttack = false;
 attackid = 0;
+
+itemindex = 0;
+
 global.wasd_enabled = true;
 
 onspare = function() {
 	global.battle_state = "dialog";
 	initDialog = true;
 	global.soul.MoveTo(-999, -999);
-	global.arena_text.UpdateText([""]);
+	global.arena_text.UpdateText(["[noadvance]"]);
+	global.arena_text.MoveTo(-999, -999);
 }
 
 onflee = function() {
 	global.battle_state = "dialog";
 	initDialog = true;
 	global.soul.MoveTo(-999, -999);
-	global.arena_text.UpdateText([""]);
+	global.arena_text.UpdateText(["[noadvance]"]);
+	global.arena_text.MoveTo(-999, -999);
+}
+
+onact = function(actname) {
+	switch (actname) {
+		case "Check":
+			global.soul.MoveTo(-999, -999);
+			global.arena_text.MoveTo(25, 248);
+			var t = [];
+			array_copy(t, 0, global.enemy_checkmsg, 0, array_length(global.enemy_checkmsg));
+			global.arena_text.UpdateText(t);
+			global.battle_state = "displayingtext";
+		break;
+	}
+}
+
+onitem = function(itemname) {
+	switch (itemname) {
+		case "Pie":
+			audio_play_sound(heal, 1, false);
+			global.soul.MoveTo(-999, -999);
+			global.arena_text.MoveTo(25, 248);
+			array_delete(global.inventory, itemindex, 1);
+			if (global.hpbar.applyheal(global.player_maxhp)) {
+				global.arena_text.UpdateText(["* You ate the Butterscotch Pie.[pauseforframes:20]\n* Your HP was maxed out!"]);
+			} else {
+				global.arena_text.UpdateText(["* You ate the Butterscotch Pie.[pauseforframes:20]\n* Somehow, your HP wasn't\nmaxed out...?"]);
+			}
+			global.battle_state = "displayingtext";
+		break;
+		
+		case "Noodles":
+			audio_play_sound(heal, 1, false);
+			global.soul.MoveTo(-999, -999);
+			global.arena_text.MoveTo(25, 248);
+			array_delete(global.inventory, itemindex, 1);
+			if (global.hpbar.applyheal(90)) {
+				global.arena_text.UpdateText(["* You ate the Instant Noodles.[pauseforframes:20]\n* Your HP was maxed out!"]);
+			} else {
+				global.arena_text.UpdateText(["* You ate the Instant Noodles.[pauseforframes:20]\n* You recovered 90 HP!"]);
+			}
+			global.battle_state = "displayingtext";
+		break;
+		
+		case "Steak":
+			audio_play_sound(heal, 1, false);
+			global.soul.MoveTo(-999, -999);
+			global.arena_text.MoveTo(25, 248);
+			array_delete(global.inventory, itemindex, 1);
+			if (global.hpbar.applyheal(60)) {
+				global.arena_text.UpdateText(["* You ate the Face Steak.[pauseforframes:20]\n* Your HP was maxed out!"]);
+			} else {
+				global.arena_text.UpdateText(["* You ate the Face Steak.[pauseforframes:20]\n* You recovered 60 HP!"]);
+			}
+			global.battle_state = "displayingtext";
+		break;
+		
+		case "S. Piece":
+			audio_play_sound(heal, 1, false);
+			global.soul.MoveTo(-999, -999);
+			global.arena_text.MoveTo(25, 248);
+			array_delete(global.inventory, itemindex, 1);
+			if (global.hpbar.applyheal(45)) {
+				global.arena_text.UpdateText(["* You ate the Snowman Piece.[pauseforframes:20]\n* Your HP was maxed out!"]);
+			} else {
+				global.arena_text.UpdateText(["* You ate the Snowman Piece.[pauseforframes:20]\n* You recovered 45 HP!"]);
+			}
+			global.battle_state = "displayingtext";
+		break;
+		
+		case "L. Hero":
+			audio_play_sound(heal, 1, false);
+			global.soul.MoveTo(-999, -999);
+			global.arena_text.MoveTo(25, 248);
+			array_delete(global.inventory, itemindex, 1);
+			global.player_atkbonus += 4;
+			if (global.hpbar.applyheal(40)) {
+				global.arena_text.UpdateText(["* You ate the Legendary Hero.[pauseforframes:20]\n* Your HP was maxed out!"]);
+			} else {
+				global.arena_text.UpdateText(["* You ate the Legendary Hero.[pauseforframes:20]\n* You recovered 40 HP!"]);
+			}
+			global.battle_state = "displayingtext";
+		break;
+	}
 }
 
 updateSubmenu = function() {
@@ -130,5 +220,18 @@ updateSubmenu = function() {
 		default: 
 			show_error("updateSubmenu detected an invalid submenu value", true);
 		break;
+	}
+}
+
+getItemText = function() {
+	itemamount = array_length(global.inventory)-1;
+	if (itemindex + 2 <= itemamount) {
+		return ["[instant]* [noadvance]" + global.inventory[itemindex] + "\n* " + global.inventory[itemindex+1] + "\n* [noadvance]" + global.inventory[itemindex+2]];
+	} else if (itemindex + 1 <= itemamount) {
+		return ["[instant]* [noadvance]" + global.inventory[itemindex] + "\n* [noadvance]" + global.inventory[itemindex+1]];
+	} else if (itemindex <= itemamount) {
+		return ["[instant]* [noadvance]" + global.inventory[itemindex]];
+	} else {
+		show_error("getItemText failed as there are no items", true);
 	}
 }

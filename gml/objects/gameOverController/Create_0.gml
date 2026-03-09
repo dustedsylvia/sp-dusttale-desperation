@@ -26,26 +26,28 @@
 // fading in over 11 frames, 12 if you could the final frame with 1 opacity.
 // And that's it! That's the whole Game Over sequence.
 
-// These need to be changed when instantiated
-soul_x = 100;
-soul_y = 100;
-textMgr = undefined;
+soulx = global.soul.x;
+souly = global.soul.y;
+
+with (global.soul) {
+	instance_destroy();
+}
+
+with (instance_find(player, 0)) {
+	instance_destroy();
+}
 
 // These can be changed but they don't have to be
-gameOverText = ["It cannot end  \nnow!", "Chara!      \nStay determined..."];
-gameOverMusic = Determination;
-// Really, it should wait 13 frames in between the Chara! and Stay determined...
-// but textManager doesn't have a function for that, so...
+gameovertext = ["It cannot end now!", global.player_name + "![pauseforframes:26]\nStay determined..."];
+
+gameoverflavorer = noone;
+gameovermusic = Determination;
 
 // These should not be changed
-gameOverOpacity = 0;
+gameoveropacity = 0;
 timer = 0;
 soul_sprite = redsoul;
 state = 1;
-//textMgr = instance_create_depth(-100, -100, -10000, textManager);
-// Okay so this is really weird and I'm going to write about it here
-// For some reason, when running the above line of code, it will
-// only run the Create event of textManager. The Step/Draw events
-// never run. But if you use the same textManager from battleManager
-// it works?????? I really don't have any idea why this is the case
-gameOverTextIndex = "null";
+textdone = false;
+
+audio_stop_all();

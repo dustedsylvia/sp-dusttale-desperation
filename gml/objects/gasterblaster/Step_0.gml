@@ -19,7 +19,6 @@ if (round(x) == targetx and round(y) == targety and state == "movingintotargetpo
 
 if (state == "firing") {
 	clock += 1;
-	show_debug_message(clock);
 	
 	if (grabhelpercoords) {
 		targetendx = helper.x;

@@ -1,4 +1,4 @@
-timer += 1;
+timer += 0.5;
 
 if (timer == 20 and state == 1) {
 	state = 2;
@@ -12,40 +12,42 @@ if (timer == 60) {
 
 if (timer == 108) {
 	state = 4;
-	audio_play_sound(gameOverMusic, 1, 0);
+	audio_play_sound(gameovermusic, 1, 0);
 }
 
 if (timer == 158) {
 	state = 5;
-	gameOverOpacity = 1;
-	show_debug_message(textMgr);
-	if (instance_exists(textManager)) {
-		show_debug_message("A textManager instance exists!!!");
-	} else {
-		show_debug_message("Any textManager instance does not exist??");
-	}
-	if (instance_exists(textMgr)) {
-		gameOverTextIndex = textMgr.createPagedText(160, 328, 15, dtf, true, gameOverText, c_white, false, 20, 36, false, asgoretalk);
-	} else {
-		show_error("textMgr does not contain a valid reference to an instance", true);
-	}
+	gameoveropacity = 1;
+	gameoverflavorer = instance_create_depth(0, 0, depth-3, flavorer);
+	gameoverflavorer.textbox_x = 150;
+	gameoverflavorer.textbox_y = 300;
+	gameoverflavorer.text_voicebeep = voicebp_asgore;
+	gameoverflavorer.text = gameovertext;
+	gameoverflavorer.draw_box = false;
 }
 
 if (state == 5) { // this is when the text is being drawn
-	if ((textMgr.getPageIndex(gameOverTextIndex) == array_length(gameOverText) - 1) and (keyboard_check_pressed(ord("Z")) or keyboard_check_pressed(vk_enter))) {
+	if (!instance_exists(gameoverflavorer) and (keyboard_check_pressed(ord("Z")) or keyboard_check_pressed(vk_enter))) {
 		state = 6;
-		textMgr.get_textsp()[gameOverTextIndex][4] = false;
+		timer = 0;
 	}
-} else if (state == 6 and (keyboard_check_pressed(ord("Z")) or keyboard_check_pressed(vk_enter))) {
-	state = 7;
-	timer = 0;
 }
 
-if (timer == 29 and state >= 7) {
-	katamari = instance_create_depth(0, 0, -9999, fader);
-	katamari.fadeOverFrames = 12;
-	room_goto(battle);
-	audio_stop_all(); // You might not want to do this
-	instance_destroy(textMgr); // um
-	instance_destroy();
+if (timer == 29 and state >= 6) {
+	var fade = instance_create_depth(0, 0, -9999, fader);
+	fade.bounce = true;
+	fade.fadeOverFrames = 20;
+	fade.startingOpacity = 0;
+	fade.targetOpacity = 1;
+	fade.executeOnFirstBounce = function() {
+		load_save_file("file0.ini");
+		instance_destroy(gameovercontroller);
+		audio_stop_all();
+	}
+	fade.executeOnCompletion = function() {
+		global.in_battle = false;
+		global.can_move = true;
+		global.can_menu = true;
+	}
+	fade.mode = "fadeOut";
 }

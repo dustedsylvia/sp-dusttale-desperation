@@ -5,15 +5,11 @@
 
 function load_save_file(ini_filepath) {
 	load = load_save_file_info(ini_filepath);
+	global.resetcam = true;
 	
 	// At this point, you should have all the data needed to load a Savepoint.
 	
 	switch (global.savepoint) {
-		//case "???????????":
-		//	instance_create_depth(376, 256, -9998, player);
-		//	room_goto(room_test);
-		//break;
-		
 		case "big test room":
 			instance_create_depth(377, 257, -9998, player);
 			room_goto(room_bigtest);
@@ -26,9 +22,11 @@ function load_save_file(ini_filepath) {
 			room_goto(room_fight_ending);
 		break;
 		
-		//case "cool creative savepoint name":
-		//	instance_create_depth(175, 130, -9998, player);
-		//	room_goto(room_welcometoanunderground);
-		//break;
+		case "Throne Entrance":
+			instance_create_depth(928, 256, -9998, player);
+			global.resetcam = true;
+			show_debug_message("supposedly created player");
+			room_goto(room_throne_entrance);
+		break;
 	}
 }

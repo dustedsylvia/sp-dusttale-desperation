@@ -1,3 +1,4 @@
+
 var arrow_left = keyboard_check_pressed(vk_left);
 var arrow_right = keyboard_check_pressed(vk_right);
 var arrow_up = keyboard_check_pressed(vk_up);
@@ -54,7 +55,7 @@ if (keyboard_check(ord("Q"))) {
 
 if (global.player_hp <= 0) { // LOOKS [[Like And Subscribe]] Y OU'RE NOT A [[BIG SHOT!!!]] AN YMORE.
 	audio_stop_all();
-	gh1999 = instance_create_depth(-100, -100, -9999, gameOverController);
+	gh1999 = instance_create_depth(-100, -100, -9999, gameovercontroller);
 	gh1999.soul_x = soulInst.x;
 	gh1999.soul_y = soulInst.y;
 	gh1999.textMgr = textMgr;
