@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"megalobroken",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":158.7145,
+  "exportDir":"",
+  "name":"megalobroken",
+  "parent":{
+    "name":"bgm",
+    "path":"folders/Sounds/bgm.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":48000,
+  "soundFile":"megalobroken.ogg",
+  "volume":1.0,
+}

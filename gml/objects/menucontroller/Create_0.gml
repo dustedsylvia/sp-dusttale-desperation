@@ -17,4 +17,4 @@ settingstexty = 500;
 
 fileExists = ini_file_exists("file0.ini");
 
-dontLoadFile = true; // please don't enable this on releases
+dontLoadFile = false; // please don't enable this on releases

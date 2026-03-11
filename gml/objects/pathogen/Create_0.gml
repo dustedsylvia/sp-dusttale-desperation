@@ -41,7 +41,7 @@ global.kr_enabled = true;//false;
 setup_kr = global.kr_enabled;
 // NOTE: THE LOCATION OF THIS IS ONLY UPDATED ONCE!!!
 global.hp_text = instance_create_depth(global.hpbar.x+global.player_maxhp*1.2+14, 401, depth-5, hptext);
-global.arena = instance_create_depth(33, 251, depth-5, arena);
+global.arena = instance_create_depth(320, 321, depth-5, arena);
 
 // for testing purposes only
 global.sans_obj = instance_create_depth(272, 100, depth-5, break_sans);
@@ -67,13 +67,15 @@ global.randomdialog = [["[color:#000000]..."]];
 global.attacker = noone;
 global.attackfocusbar = noone;
 global.sliceanim = noone;
-global.missanim = noone;
+global.dmganim = noone;
 global.dealtdamage = 0;
 global.alwaysmiss = true;
 global.battleclock = -1;
 global.attackcounter = 0;
 global.dialogbubble = noone;
 global.attacktimer = 240;
+global.battlebgm = megalobroken;
+playbgm = true;
 
 updateSoulLocation = true;
 

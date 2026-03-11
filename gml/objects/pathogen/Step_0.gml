@@ -33,6 +33,11 @@ if (setup_kr) {
 	setup_kr = false;
 }
 
+if (playbgm) {
+	playbgm = false;
+	audio_play_sound(megalobroken, 2, true);
+}
+
 //if (keyboard_check(ord("Q"))) {
 //	if (global.kr_enabled == true) {
 //		global.hpbar.applykr(1);
@@ -138,8 +143,8 @@ if (global.battle_state == "friskattack") {
 		global.attackfocusbar.xvel = 0;
 		global.attackfocusbar.alphavel = -0.04;
 		global.attackfocusbar.xscalevel = -0.04;
-		global.missanim = instance_create_depth(320, 50, depth-5, misstext);
-		global.missanim.alphavel = -0.04;
+		global.dmganim = instance_create_depth(320, 50, depth-5, misstext);
+		global.dmganim.alphavel = -0.04;
 		global.dealtdamage = 0;
 		global.battleclock = 120;
 	}
@@ -161,17 +166,22 @@ if (global.battle_state == "friskattack") {
 			} else {
 			    global.dealtdamage = round(((global.player_atk + global.player_atkbonus) - global.enemy_def + random(2)) * ((562 - abs(global.attackfocusbar.x - 320))/562) * 2);
 			}
+			global.dmganim = instance_create_depth(320, 75, depth-5, damagenumbers);
+			global.dmganim.text = string(global.dealtdamage);
+			global.dmganim.yvel = -1.5;
+			global.dmganim.alphavel = -0.02;
+			audio_play_sound(hit, 1, false);
 		} else {
 			global.dealtdamage = 0;
 			global.sans_obj.startdodging = true;
-			global.missanim = instance_create_depth(320, 75, depth-5, misstext);
-			global.missanim.yvel = -3;
-			global.missanim.alphavel = -0.04;
+			global.dmganim = instance_create_depth(320, 75, depth-5, misstext);
+			global.dmganim.yvel = -3;
+			global.dmganim.alphavel = -0.04;
 		}
 		global.attackcounter += 1;
 		global.battleclock = 120;
 	}
-	if (global.battleclock != -1) { global.battleclock -= 1; if (global.missanim.image_alpha == 0) { global.missanim.color = c_white; }; };
+	if (global.battleclock != -1) { global.battleclock -= 1; if (global.dmganim.image_alpha == 0) { global.dmganim.color = c_white; }; };
 	
 	if (global.battleclock == 60) {
 		global.attacker.alphavel = -0.04;
@@ -392,11 +402,19 @@ if (global.battle_state == "enemyattack") {
 		attackid = irandom(0);
 		switch (attackid) { // initialize attacks here
 			case 0:
-				global.attacktimer = 240;
-				global.arena.LerpTo(131, 251);
+				global.attacktimer = 50000;//360;
+				global.arena.LerpTo(320, 321);
 				global.arena.LerpToSize(375, 140);
 				global.soul.MoveTo(312, 300);
-				global.soul.TurnBlue("down");
+				global.soul.TurnBlue("right");
+				var r = instance_create_depth(450, 320, depth-6, platform);
+				r.image_angle = 90;
+				var e = instance_create_depth(300, 340, depth-6, platform);
+				e.image_angle = 0;
+				var q = instance_create_depth(300, 320, depth-6, platform);
+				q.image_angle = 180;
+				var p = instance_create_depth(200, 300, depth-6, platform);
+				p.image_angle = 270;
 			break;
 		}
 		initEnemyAttack = false;
@@ -406,15 +424,35 @@ if (global.battle_state == "enemyattack") {
 	
 	switch (attackid) { // this isn't the best way to handle attacks, but it works and its fairly simple
 		case 0:
-			if (global.attacktimer == 200) {
-				createGasterBlaster(500, 0, 300, 200, true, depth-10, 0, 0);
-			}
+			if (keyboard_check_pressed(ord("U"))) { global.soul.TurnBlue("up"); };
+			if (keyboard_check_pressed(ord("H"))) { global.soul.TurnBlue("left"); };
+			if (keyboard_check_pressed(ord("J"))) { global.soul.TurnBlue("down"); };
+			if (keyboard_check_pressed(ord("K"))) { global.soul.TurnBlue("right"); };
+			
+		
+			//global.arena.image_angle += 1;
+			//global.arena.lerpangle += 1;
+			//if (global.attacktimer % 120 == 0) {
+			//	createGasterBlaster(irandom(640), irandom(480), irandom(640), irandom(480), true, depth-10, 0, 0);
+			//}
+			
+			//if (global.attacktimer % 60 == 0) {
+			//	createbone(global.arena.x+5, global.arena.y+5, sansbone130, "blue", 0, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-7, 0);
+			//}
 		break;
 	}
 	
 	if (global.attacktimer <= 0) {
+		if (attackid != 2) { // example attack you wouldn't want to clear it on
+			//global.arena.LerpToAngle(0);
+			with (boneattack) {instance_destroy();}
+			with (gasterblaster) {instance_destroy();}
+			with (gasterbeam) {instance_destroy();}
+			with (platform) {instance_destroy();}
+		}
+		
 		global.arena.LerpToSize(575, 140);
-		global.arena.LerpTo(33, 251);
+		global.arena.LerpTo(320, 321);
 		updateSoulLocation = true;
 		if (global.arena.width == 575 and global.arena.height == 140) {
 			global.battle_state = "actionselect"; // wait for arena to finish resizing
