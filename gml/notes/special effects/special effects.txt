@@ -1,0 +1,12 @@
+there are a few special effects included in this engine
+1. screenshake
+to use this simply do:
+screenshake(_time, _magnitude, _fade)
+more information on these arguments are included in the script
+2. color inversion
+startColorInversion() / stopColorInversion()
+hopefully self explanatory
+3. screen rotation
+global.screen.LerpToAngle(newAngle)
+or
+global.screen.SetAngle(newAngle)

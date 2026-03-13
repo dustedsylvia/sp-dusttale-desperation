@@ -10,6 +10,7 @@ outline_thickness = 2;
 outline_color = c_black;
 int = instance_create_depth(x+5, y+5, depth-99, arenainteract);
 col = instance_create_depth(x, y, depth-99, arenacollision);
+mask = instance_create_depth(x, y, depth-2, arenamask);
 
 function MoveTo(newX, newY) {
 	x = newX;

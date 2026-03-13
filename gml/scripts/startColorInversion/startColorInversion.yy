@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"startColorInversion",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"startColorInversion",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

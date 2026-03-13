@@ -8,6 +8,7 @@ if (!variable_global_exists("player_initialized")) {
 	if (!variable_global_exists("player_name")) { global.player_name = "Chara"; }
 	if (!variable_global_exists("player_lv")) { global.player_lv = 1; }
 	if (!variable_global_exists("player_exp")) { global.player_exp = 0; }
+	if (!variable_global_exists("player_kills")) { global.player_kills = 0; }
 	if (!variable_global_exists("player_maxhp")) { global.player_maxhp = 16 + (4 * global.player_lv); }
 	if (!variable_global_exists("player_hp")) { global.player_hp = global.player_maxhp; }
 	if (!variable_global_exists("weapon")) { global.weapon = "Stick"; }

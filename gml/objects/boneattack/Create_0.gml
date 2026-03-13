@@ -7,6 +7,6 @@ yscalevel = 0;
 
 type = "white";
 
-destroyIfNotTouchingArena = true;
+destroyIfNotTouchingArena = false;
 
 image_color = #FFFFFF;

@@ -22,6 +22,11 @@ lerpx = x;
 lerpy = y;
 lerp_speed = 0.2;
 
+clr = c_white;
+alpha = 1;
+
+spare = false;
+
 function MoveTo(newX, newY) {
 	x = newX;
 	y = newY;

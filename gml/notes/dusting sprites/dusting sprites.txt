@@ -61,5 +61,5 @@ note: this DOES take into account rows skipped by having a dust_speed greater th
 anyway, that's it. you should now be a master of making sprites turn to dust.
 
 final notes:
- - the sprite duster only suppports monochrome. this is because copies are monochrome.
+ - the sprite duster only supports monochrome. this is because copies are monochrome.
    ...the real reason is putting full rgb values crashes gamemaker. so. monochrome it is.

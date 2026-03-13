@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"flipHorizontal",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"flipHorizontal",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

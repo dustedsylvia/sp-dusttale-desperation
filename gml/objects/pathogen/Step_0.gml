@@ -90,12 +90,20 @@ if (global.battle_state == "actionselect") {
 		if (global.selected == 1) {
 			global.battle_state = "fightmenu";
 			global.soul.LerpTo(65, 279);
-			global.arena_text.UpdateText(["[instant]* [noadvance]" + global.enemy_name]);
+			if (global.canspare == false) {
+				global.arena_text.UpdateText(["[instant]* [noadvance]" + global.enemy_name]);
+			} else {
+				global.arena_text.UpdateText(["[instant]* [noadvance][asteriskcolor1:#FFFF00][color:#FFFF00]" + global.enemy_name]);
+			}
 			global.arena_text.MoveTo(73, 248);
 		} else if (global.selected == 2) {
 			global.battle_state = "actmenu";
 			global.soul.LerpTo(65, 279);
-			global.arena_text.UpdateText(["[instant]* [noadvance]" + global.enemy_name]);
+			if (global.canspare == false) {
+				global.arena_text.UpdateText(["[instant]* [noadvance]" + global.enemy_name]);
+			} else {
+				global.arena_text.UpdateText(["[instant]* [noadvance][asteriskcolor1:#FFFF00][color:#FFFF00]" + global.enemy_name]);
+			}
 			global.arena_text.MoveTo(73, 248);
 		} else if (global.selected == 3 and array_length(global.inventory) != 0) {
 			global.battle_state = "itemmenu";
@@ -171,6 +179,26 @@ if (global.battle_state == "friskattack") {
 			global.dmganim.yvel = -1.5;
 			global.dmganim.alphavel = -0.02;
 			audio_play_sound(hit, 1, false);
+			
+			global.enemy_hp -= global.dealtdamage;
+			global.enemyhpbar = instance_create_depth(250, 75, depth-5, enemyhpbar);
+			global.enemyhpbar.alphavel = -0.02;
+			
+			if (global.enemy_hp <= 0) {
+				global.battle_state = "sparing"; // sparing lmfaos
+				initDialog = true;
+				global.soul.MoveTo(-999, -999);
+				global.arena_text.MoveTo(25, 248);
+				var d = instance_create_depth(global.sans_obj.x, global.sans_obj.y, global.sans_obj.depth, duster);
+				d.dust_animation = global.testsansdustanimation; // hey CHANGE THIS
+				d.sprite_index = testsanssprite;
+				instance_destroy(global.sans_obj);
+				global.arena_text.UpdateText(["* [noadvance]YOU WON!\n* Gained " + string(global.expreward) + " EXP and " + string(global.gldreward) + "G."]);
+				global.player_gold += global.gldreward;
+				global.player_exp += global.expreward;
+				global.player_kills += 1;
+				instance_destroy(global.attacker);
+			}
 		} else {
 			global.dealtdamage = 0;
 			global.sans_obj.startdodging = true;
@@ -306,6 +334,31 @@ if (global.battle_state == "viewingacts") {
 	}
 }
 
+if (global.battle_state == "sparing") {
+	with (global.arena_text) {
+		if (confirm and pauseforframes == 0 and current_line >= total_lines and text_char_index >= string_length(current_line_text)) {
+			other.textdone = true;
+		}
+	}
+	if (textdone) {
+		textdone = false;
+		var fade = instance_create_depth(0, 0, -9999, fader);
+		fade.bounce = true;
+		fade.fadeOverFrames = 20;
+		fade.startingOpacity = 0;
+		fade.targetOpacity = 1;
+		fade.executeOnFirstBounce = function() {
+			global.in_battle = false;
+			global.can_move = true;
+			global.can_menu = true;
+			global.player_active = true;
+			instance_destroy(global.soul);
+			room_goto(global.prevroom);
+		}
+		fade.mode = "fadeOut";
+	}
+}
+
 if (global.battle_state == "displayingtext") {
 	with (global.arena_text) {
 		if (confirm and pauseforframes == 0 and current_line >= total_lines and text_char_index >= string_length(current_line_text)) {
@@ -404,17 +457,15 @@ if (global.battle_state == "enemyattack") {
 			case 0:
 				global.attacktimer = 50000;//360;
 				global.arena.LerpTo(320, 321);
-				global.arena.LerpToSize(375, 140);
+				//global.arena.LerpToSize(375, 140);
+				global.arena.LerpToSize(140, 140);
 				global.soul.MoveTo(312, 300);
-				global.soul.TurnBlue("right");
-				var r = instance_create_depth(450, 320, depth-6, platform);
-				r.image_angle = 90;
-				var e = instance_create_depth(300, 340, depth-6, platform);
-				e.image_angle = 0;
-				var q = instance_create_depth(300, 320, depth-6, platform);
-				q.image_angle = 180;
-				var p = instance_create_depth(200, 300, depth-6, platform);
-				p.image_angle = 270;
+				global.soul.TurnRed();
+				
+				// why      w o  n't   i t  a ll j u st   end
+				// en  d
+				/// en d
+				// end this
 			break;
 		}
 		initEnemyAttack = false;
@@ -424,43 +475,60 @@ if (global.battle_state == "enemyattack") {
 	
 	switch (attackid) { // this isn't the best way to handle attacks, but it works and its fairly simple
 		case 0:
-			if (keyboard_check_pressed(ord("U"))) { global.soul.TurnBlue("up"); };
-			if (keyboard_check_pressed(ord("H"))) { global.soul.TurnBlue("left"); };
-			if (keyboard_check_pressed(ord("J"))) { global.soul.TurnBlue("down"); };
-			if (keyboard_check_pressed(ord("K"))) { global.soul.TurnBlue("right"); };
-			
+			global.arena.image_angle += 2;
+			global.arena.lerpangle += 2;
 		
-			//global.arena.image_angle += 1;
-			//global.arena.lerpangle += 1;
+			//if (keyboard_check_pressed(ord("U"))) { global.soul.SlamBlue("up"); };
+			//if (keyboard_check_pressed(ord("H"))) { global.soul.SlamBlue("left"); };
+			//if (keyboard_check_pressed(ord("J"))) { global.soul.SlamBlue("down"); };
+			//if (keyboard_check_pressed(ord("K"))) { global.soul.SlamBlue("right"); };
+			
 			//if (global.attacktimer % 120 == 0) {
 			//	createGasterBlaster(irandom(640), irandom(480), irandom(640), irandom(480), true, depth-10, 0, 0);
 			//}
 			
+			if (global.attacktimer % 60 == 0) {
+				createbone(global.arena.x-(global.arena.width/2)+5, global.arena.y-(global.arena.height/2)+5, sansbone130, "blue", 0, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-3, 0);
+			}
+			
 			//if (global.attacktimer % 60 == 0) {
-			//	createbone(global.arena.x+5, global.arena.y+5, sansbone130, "blue", 0, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-7, 0);
+			//	if (instance_find(invertColors, 0) != noone) { stopColorInversion(); }
+			//	else { startColorInversion(); };
+				
+			//	if (global.screen.lerpangle == 0) {
+			//		global.screen.LerpToAngle(180);
+			//	} else {
+			//		global.screen.LerpToAngle(0);
+			//	}
 			//}
 		break;
 	}
 	
 	if (global.attacktimer <= 0) {
-		if (attackid != 2) { // example attack you wouldn't want to clear it on
-			//global.arena.LerpToAngle(0);
+		if (attackid != 2) { // example attack id you wouldn't want to clear it on
+			global.arena.LerpToAngle(0);
+			global.screen.LerpToAngle(0);
 			with (boneattack) {instance_destroy();}
 			with (gasterblaster) {instance_destroy();}
 			with (gasterbeam) {instance_destroy();}
 			with (platform) {instance_destroy();}
+			stopColorInversion();
 		}
 		
 		global.arena.LerpToSize(575, 140);
 		global.arena.LerpTo(320, 321);
+		global.arena.lerp_speed = 0.6;
+		global.soul.MoveTo(-999, -999);
 		updateSoulLocation = true;
 		if (global.arena.width == 575 and global.arena.height == 140) {
 			global.battle_state = "actionselect"; // wait for arena to finish resizing
 			var t = [];
 			var randomdialog = global.flavortexts[irandom(array_length(global.flavortexts)-1)];
 			array_copy(t, 0, randomdialog, 0, array_length(randomdialog));
+			array_copy(global.currenttext, 0, randomdialog, 0, array_length(randomdialog));
 			global.arena_text.UpdateText(t);
 			global.arena_text.MoveTo(25, 248);
+			global.arena.lerp_speed = 0.3;
 		}
 	}
 }

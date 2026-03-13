@@ -160,7 +160,7 @@ prevx = x;
 prevy = y;
 
 // UT style camera follow
-camera = view_get_camera(0);
+camera = view_camera[0];
 camera_x = camera_get_view_x(camera);
 camera_y = camera_get_view_y(camera);
 camera_w = camera_get_view_width(camera);

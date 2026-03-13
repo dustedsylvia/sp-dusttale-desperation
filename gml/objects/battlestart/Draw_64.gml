@@ -35,6 +35,7 @@ if (state == 1) {
 		}
 		fade.mode = "fadeOut";
 		audio_play_sound(battlefall, 1, false);
+		global.prevroom = room;
 	}
 }
 

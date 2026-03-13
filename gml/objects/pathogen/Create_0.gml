@@ -8,12 +8,16 @@
 // and set the values to what you want them to be.
 // (...the latter is probably better for bosses, and the former is better for simple fights)
 
+// quick note: if you want something to be behind the arena, well. forget about it. it's impossible.
+// why? it's a long, long story. you could try looking in arena_mask for more context.
+
 global.player_lv = 10;
 player_recalc_stats();
 global.player_hp = 56;
 
 global.enemy_name = "Monster";
 global.enemy_hp = 50;
+global.enemyhpbar = noone;
 global.enemy_maxhp = 50;
 global.enemy_def = 3;
 global.enemy_atk = 3;
@@ -41,13 +45,17 @@ global.kr_enabled = true;//false;
 setup_kr = global.kr_enabled;
 // NOTE: THE LOCATION OF THIS IS ONLY UPDATED ONCE!!!
 global.hp_text = instance_create_depth(global.hpbar.x+global.player_maxhp*1.2+14, 401, depth-5, hptext);
-global.arena = instance_create_depth(320, 321, depth-5, arena);
+global.arena = instance_create_depth(320, 321, depth-2, arena);
 
 // for testing purposes only
-global.sans_obj = instance_create_depth(272, 100, depth-5, break_sans);
+global.sans_obj = instance_create_depth(272, 90, depth-5, break_sans);
 //global.inventory = ["Pie", "Noodles", "Steak", "S. Piece", "S. Piece", "S. Piece", "L. Hero", "L. Hero"];
 global.inventory = ["Pie"];
 
+global.canspare = true;//false;
+
+global.expreward = 40;
+global.gldreward = irandom_range(10, 30);
 global.flavortexts = [["* [noadvance]..."]];
 global.encountertext = ["* [noadvance]Now you've done it."];
 global.arena_text = instance_create_depth(25, 251, depth-6, flavorer_not_top);
@@ -62,14 +70,14 @@ global.selected = 1;
 prevselected = 1;
 global.selected_submenu = 1;
 global.battle_state = "actionselect";
-global.acts = ["Check"]; // You can have up to four ACTs, just add them here and add a case to the onact function
+global.acts = ["Check", "Spare"]; // You can have up to four ACTs, just add them here and add a case to the onact function
 global.randomdialog = [["[color:#000000]..."]];
 global.attacker = noone;
 global.attackfocusbar = noone;
 global.sliceanim = noone;
 global.dmganim = noone;
 global.dealtdamage = 0;
-global.alwaysmiss = true;
+global.alwaysmiss = false;
 global.battleclock = -1;
 global.attackcounter = 0;
 global.dialogbubble = noone;
@@ -90,20 +98,59 @@ itemindex = 0;
 
 global.wasd_enabled = true;
 
+fleechance = 50;
+
+if (!variable_global_exists("prevroom")) {
+	show_error("\n\nglobal.prevroom was NOT set before entering the battle!\nIf you don't need this functionality, disable it in pathogen.\n\n", true);
+}
+
 onspare = function() {
-	global.battle_state = "dialog";
-	initDialog = true;
-	global.soul.MoveTo(-999, -999);
-	global.arena_text.UpdateText(["[noadvance]"]);
-	global.arena_text.MoveTo(-999, -999);
+	if (global.canspare) {
+		global.battle_state = "sparing";
+		initDialog = true;
+		global.soul.MoveTo(-999, -999);
+		global.arena_text.MoveTo(25, 248);
+		// CHANGE THIS
+		global.sans_obj.spare = true;
+		global.arena_text.UpdateText(["* [noadvance]YOU WON!\n* Gained 0 EXP and " + string(global.gldreward) + "G."]);
+		global.player_gold += global.gldreward;
+	} else {
+		global.battle_state = "dialog";
+		initDialog = true;
+		global.soul.MoveTo(-999, -999);
+		global.arena_text.UpdateText(["[noadvance]"]);
+		global.arena_text.MoveTo(-999, -999);
+	}
 }
 
 onflee = function() {
-	global.battle_state = "dialog";
-	initDialog = true;
-	global.soul.MoveTo(-999, -999);
-	global.arena_text.UpdateText(["[noadvance]"]);
-	global.arena_text.MoveTo(-999, -999);
+	if (global.armor == "Bandage" or irandom(100) < fleechance) {
+		textdone = false;
+		var fade = instance_create_depth(0, 0, -9999, fader);
+		fade.bounce = true;
+		fade.fadeOverFrames = 20;
+		fade.startingOpacity = 0;
+		fade.targetOpacity = 1;
+		fade.executeOnFirstBounce = function() {
+			global.in_battle = false;
+			global.can_move = true;
+			global.can_menu = true;
+			global.player_active = true;
+			room_goto(global.prevroom);
+		}
+		fade.mode = "fadeOut";
+		global.arena_text.MoveTo(25, 248);
+		global.arena_text.UpdateText(["* [noadvance]Escaped..."]);
+		instance_destroy(global.soul);
+		global.battle_state = "none";
+	} else {
+		fleechance += 10;
+		global.battle_state = "dialog";
+		initDialog = true;
+		global.soul.MoveTo(-999, -999);
+		global.arena_text.UpdateText(["[noadvance]"]);
+		global.arena_text.MoveTo(-999, -999);
+	}
 }
 
 onact = function(actname) {
@@ -114,6 +161,14 @@ onact = function(actname) {
 			var t = [];
 			array_copy(t, 0, global.enemy_checkmsg, 0, array_length(global.enemy_checkmsg));
 			global.arena_text.UpdateText(t);
+			global.battle_state = "displayingtext";
+		break;
+		
+		case "Spare":
+			global.canspare = true;
+			global.soul.MoveTo(-999, -999);
+			global.arena_text.MoveTo(25, 248);
+			global.arena_text.UpdateText(["* You're filled with[pauseforframes:30]\nDEBUG."]);
 			global.battle_state = "displayingtext";
 		break;
 	}

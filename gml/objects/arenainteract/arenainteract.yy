@@ -28,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"genericpixel2",
-    "path":"sprites/genericpixel2/genericpixel2.yy",
+    "name":"centeredpx",
+    "path":"sprites/centeredpx/centeredpx.yy",
   },
   "spriteMaskId":null,
   "visible":false,

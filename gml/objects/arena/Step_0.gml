@@ -18,11 +18,11 @@ if (image_angle != lerpangle) {
 	image_angle = lerp(image_angle, lerpangle, lerp_speed);
 }
 
-int.x = x+5;
-int.y = y+5;
+int.x = x;
+int.y = y;
 int.image_angle = image_angle;
-int.image_xscale = width-10;
-int.image_yscale = height-10;
+int.image_xscale = (width-10)/2;
+int.image_yscale = (height-10)/2;
 
 col.x = x;
 col.y = y;

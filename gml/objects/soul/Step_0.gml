@@ -13,6 +13,12 @@ var right = (arrow_right or key_d);
 var up = (arrow_up or key_w);
 var down = (arrow_down or key_s);
 
+if (keyboard_check(ord("X")) or keyboard_check(vk_shift)) {
+	move_speed = base_speed/2;
+} else {
+	move_speed = base_speed;
+}
+
 if (x != lerpx) {
 	x = lerp(x, lerpx, lerp_speed);
 }
@@ -28,15 +34,27 @@ if (global.battle_state == "enemyattack") {
 		
 		if (left) {
 			tmpx -= move_speed;
+			if (OnPlatform(tmpx, y)) {
+				tmpx += move_speed;
+			}
 		}
 		if (right) {
 			tmpx += move_speed;
+			if (OnPlatform(tmpx, y)) {
+				tmpx -= move_speed;
+			}
 		}
 		if (up) {
 			tmpy -= move_speed;
+			if (OnPlatform(x, tmpy)) {
+				tmpy += move_speed;
+			}
 		}
 		if (down) {
 			tmpy += move_speed;
+			if (OnPlatform(x, tmpy)) {
+				tmpy -= move_speed;
+			}
 		}
 		
 		// collisions brought to you by collisions r us
@@ -47,15 +65,27 @@ if (global.battle_state == "enemyattack") {
 		} else {
 			x = round(x);
 			var tmpx2 = x;
-			do {
+			var maxIterations = 15; // there is a possibility of an infinite loop here
+			do { // this patches that
 				tmpx2 += 1;
-			} until (place_meeting(tmpx2, y, arenacollision));
-			tmpx2 -= 1;
+				maxIterations -= 1;
+			} until (place_meeting(tmpx2, y, arenacollision) or maxIterations == 0);
+			if (maxIterations == 0) {
+				tmpx2 -= 15;
+			} else {
+				tmpx2 -= 1;
+			}
 			if (abs(tmpx2 - x) > move_speed) { // we went the wrong direction...
+				maxIterations = 15;
 				do {
 					tmpx2 -= 1;
-				} until (place_meeting(tmpx2, y, arenacollision));
-				tmpx2 += 1;
+					maxIterations -= 1;
+				} until (place_meeting(tmpx2, y, arenacollision) or maxIterations == 0);
+				if (maxIterations == 0) {
+					tmpx2 += 15;
+				} else {
+					tmpx2 += 1;
+				}
 			}
 			x = tmpx2;
 		}
@@ -65,27 +95,93 @@ if (global.battle_state == "enemyattack") {
 		} else {
 			y = round(y);
 			var tmpy2 = y;
+			var maxIterations = 15;
 			do {
 				tmpy2 += 1;
-			} until (place_meeting(x, tmpy2, arenacollision));
-			tmpy2 -= 1;
+				maxIterations -= 1;
+			} until (place_meeting(x, tmpy2, arenacollision) or maxIterations == 0);
+			if (maxIterations == 0) {
+				tmpy2 -= 15;
+			} else {
+				tmpy2 -= 1;
+			}
 			if (abs(tmpy2 - y) > move_speed) { // we went the wrong direction...
+				maxIterations = 15;
 				do {
 					tmpy2 -= 1;
-				} until (place_meeting(x, tmpy2, arenacollision));
-				tmpy2 += 1;
+					maxIterations -= 1;
+				} until (place_meeting(x, tmpy2, arenacollision) or maxIterations == 0);
+				if (maxIterations == 0) {
+					tmpy2 += 15;
+				} else {
+					tmpy2 += 1;
+				}
 			}
 			y = tmpy2;
 		}
+		
+		if (y >= global.arena.y) {
+			if (InWall(x, y)) {
+				var backup = y;
+				do {
+					y -= 1;
+				} until (!InWall(x, y));
+				if (!InArena(x, y)) {
+					y = backup;
+				}
+			}
+		} else {
+			if (InWall(x, y)) {
+				var backup = y;
+				do {
+					y += 1;
+				} until (!InWall(x, y));
+				if (!InArena(x, y)) {
+					y = backup;
+				}
+			}
+		}
+		
+		// final check
+		if (x >= global.arena.x) {
+			if (InWall(x, y)) {
+				var backup = x;
+				do {
+					x -= 1;
+				} until (!InWall(x, y));
+				if (!InArena(x, y)) {
+					x = backup;
+				}
+			}
+		} else {
+			if (InWall(x, y)) {
+				var backup = x;
+				do {
+					x += 1;
+				} until (!InWall(x, y));
+				if (!InArena(x, y)) {
+					x = backup;
+				}
+			}
+		}
+		
 	} else if (soulmode == "blue") {
-		//var tmpx = x;
-		//var tmpy = y;
+		// in case you're wondering, there *is* code to deal with the arena being rotated.
+		// it just doesn't work very well, so i've kept in the reliable version that
+		// doesn't take into account arena rotates.
+		// if you *really* need to rotate the arena when you're blue, you can
+		// try to fix the commented out code.
+		// i...wouldn't recommend it. you should probably just write some new code
+		// from scratch.
+		var tmpx = x;
+		var tmpy = y;
 		
 		bluevelocity += bluegravity;
 		if (bluedir == "down") {
 			//if (!grounded) { y += bluevelocity; }
 			y += bluevelocity;
 			if (y >= global.arena.y+(global.arena.height/2)-21 or OnPlatform()) { // must be on ground
+			//if (place_meeting(tmpx, y, arenacollision) or OnPlatform()) { // must be on ground
 				y -= bluevelocity; // move soul back
 				bluevelocity = 0; // reset velocity
 				canjump = true;
@@ -115,6 +211,16 @@ if (global.battle_state == "enemyattack") {
 			if (jumping and bluevelocity >= 0) {
 				jumping = false;
 			}
+			
+			//if (InWall(tmpx, tmpy)) {
+			//	var backup = tmpy;
+			//	do {
+			//		tmpy -= 1;
+			//	} until (!InWall(tmpx, tmpy));
+			//	if (!InArena(tmpx, tmpy)) {
+			//		tmpy = backup; // we are NOT in the arena
+			//	}
+			//}
 		}
 		
 		if (bluedir == "left") {
@@ -224,15 +330,19 @@ if (global.battle_state == "enemyattack") {
 		//} else {
 		//	x = round(x);
 		//	var tmpx2 = x;
+		//	var ctr = 0;
 		//	do {
 		//		tmpx2 += 1;
-		//	} until (place_meeting(tmpx2, y, arenacollision));
+		//		ctr += 1;
+		//	} until (place_meeting(tmpx2, y, arenacollision) or ctr >= 15); // Stop infinite loops
 		//	tmpx2 -= 1;
 		//	if (abs(tmpx2 - x) > move_speed) { // we went the wrong direction...
-		//		do {
-		//			tmpx2 -= 1;
-		//		} until (place_meeting(tmpx2, y, arenacollision));
-		//		tmpx2 += 1;
+		//		var ctr2 = 0;
+		//		do { // furry dick is so much better than regular dick
+		//			tmpx2 -= 1; // like omg its so hot
+		//			ctr2 += 1; // uhhgughguhg i want to be leaking from furry cum
+		//		} until (place_meeting(tmpx2, y, arenacollision) or ctr2 >= 15);
+		//		tmpx2 += 1; // mmmmmmph..........
 		//	}
 		//	x = tmpx2;
 		//}
@@ -242,17 +352,26 @@ if (global.battle_state == "enemyattack") {
 		//} else {
 		//	y = round(y);
 		//	var tmpy2 = y;
+		//	var ctr = 0;
 		//	do {
 		//		tmpy2 += 1;
-		//	} until (place_meeting(x, tmpy2, arenacollision));
+		//		ctr += 1;
+		//	} until (place_meeting(x, tmpy2, arenacollision) or ctr >= 15);
 		//	tmpy2 -= 1;
 		//	if (abs(tmpy2 - y) > move_speed) { // we went the wrong direction...
+		//		var ctr2 = 0;
 		//		do {
 		//			tmpy2 -= 1;
-		//		} until (place_meeting(x, tmpy2, arenacollision));
+		//			ctr2 += 1;
+		//		} until (place_meeting(x, tmpy2, arenacollision) or ctr2 >= 15);
 		//		tmpy2 += 1;
 		//	}
 		//	y = tmpy2;
+		//}
+		
+		//if (!InArena(x, y)) {
+		//	x = emergencyx;
+		//	y = emergencyy;
 		//}
 	}
 }
