@@ -1,5 +1,5 @@
 
-![SP!Dusttale logo](readmeassets/logo.png)
+![SP!Dusttale logo](readme_assets/logo.png)
 <p style="text-align: center;">version nightly-6</p>
 <hr>
 
