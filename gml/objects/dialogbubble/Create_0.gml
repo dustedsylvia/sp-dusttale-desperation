@@ -26,4 +26,6 @@ line1y = 25;
 line2y = 45;
 line3y = 65;
 finished = false;
+noskip = false;
 preset = "none";
+color = #000000;

@@ -33,6 +33,8 @@ if (state == 0) {
 	textbox.text_line1_offset_y = line1y;
 	textbox.text_line2_offset_y = line2y;
 	textbox.text_line3_offset_y = line3y;
+	textbox.disableskipping = noskip;
+	textbox.SetDefaultColor(color);
 	//textbox.text_rotation nope. there's no rotation
 	state = 1;
 }
@@ -45,4 +47,5 @@ if (state == 1) {
 
 if (finished) {
 	instance_destroy(); // don't destroy on line 25 so that objects can check if the text is done
+	                    // what the hell are you talking about gng
 }

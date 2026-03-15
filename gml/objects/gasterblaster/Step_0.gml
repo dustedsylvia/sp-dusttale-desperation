@@ -36,6 +36,7 @@ if (state == "firing") {
 		beam = instance_create_depth(x, y, depth+1, gasterbeam);
 		beam.image_angle = image_angle;
 		beam.firelen = firelen;
+		beam.target_xscale = image_xscale;
 		
 		helper = instance_create_depth(x, y, depth, helpercalculation);
 		helper.direction = image_angle + 90;

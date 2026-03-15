@@ -1,3 +1,11 @@
+if (x != lerpx) {
+	x = lerp(x, lerpx, lerp_speed);
+}
+
+if (y != lerpy) {
+	y = lerp(y, lerpy, lerp_speed);
+}
+
 if (setup == false) {
 	switch (button_type) {
 		case "fight":

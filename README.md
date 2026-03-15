@@ -1,9 +1,14 @@
 
-![SP!Dusttale logo](readmeassets/logo.png)
-<p style="text-align: center;">version nightly-6</p>
+![SP!Dusttale logo](readmeassets\logo.png)
+<p style="text-align: center;">version nightly-7</p>
 <hr>
 
 This GitHub repository contains all of the source code for SP!Dusttale: desperation. You can find the GameJolt page [here](https://gamejolt.com/games/spdusttaledesperation/1018009).
+
+### Changelog:
+version nightly-7:
+ - Includes a demo of the engine!
+ - Fixed some problems with the textboxes
 
 ### Credits:
  - Toby Fox and Temmie Chang: Created UNDERTALE

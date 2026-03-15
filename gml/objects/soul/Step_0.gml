@@ -380,12 +380,15 @@ collisionclock += 1;
 if (collisionclock % 2 == 0) {
 	if (place_meeting(x, y, gasterbeam)) {
 		global.hpbar.applykr(1);
+		audio_play_sound(playerhit, 1, false);
 	}
 	if (place_meeting(x, y, boneattack)) {
 		var collidedbone = instance_place(x, y, boneattack);
 		if (collidedbone != noone) {
-			if (collidedbone.type == "white" or (collidedbone.type == "blue" and (up or down or left or right)) or (collidedbone.type == "orange" and (!up or !down or !left or !right))) {
-				global.hpbar.applykr(1);
+			if (collidedbone.type == "white" or (collidedbone.type == "blue" and (up or down or left or right)) or (collidedbone.type == "orange" and (!up and !down and !left and !right))) {
+				global.hpbar.applykr(collidedbone.karma);
+				collidedbone.karma = 1;
+				audio_play_sound(playerhit, 1, false);
 			}
 		}
 	}

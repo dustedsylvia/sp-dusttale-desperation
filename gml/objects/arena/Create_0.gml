@@ -13,10 +13,25 @@ col = instance_create_depth(x, y, depth-99, arenacollision);
 mask = instance_create_depth(x, y, depth-2, arenamask);
 
 function MoveTo(newX, newY) {
+	oldx = x;
+	oldy = y;
 	x = newX;
 	y = newY;
 	lerpx = newX;
 	lerpy = newY;
+	
+	isNowCollidingWithSoul = false;
+	with (col) {
+		if (place_meeting(x, y, soul)) {
+			other.isNowCollidingWithSoul = true;
+		}
+	}
+	
+	if (isNowCollidingWithSoul) {
+		global.soul.x += newX - oldx;
+		global.soul.y += newY - oldy;
+		show_debug_message("Fixed soul position");
+	}
 }
 
 function LerpTo(newX, newY) {

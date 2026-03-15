@@ -1,0 +1,1 @@
+sintimer = 0;

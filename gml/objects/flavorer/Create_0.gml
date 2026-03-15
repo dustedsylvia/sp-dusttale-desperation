@@ -63,7 +63,8 @@ pauseforframeslastchar = -1;
 colorl0 = [];
 colorl1 = [];
 colorl2 = [];
-defaultcolor = #FFFFFF;
+textcolor = #FFFFFF;
+defaultcolor = textcolor;
 asteriskcolor1 = #FFFFFF;
 asteriskcolor2 = #FFFFFF;
 asteriskcolor3 = #FFFFFF;
@@ -80,6 +81,8 @@ noadvance = -1;
 noadvanceoverride = false;
 noadvancelastchar = false;
 done = false;
+
+disableskipping = false; // noskip lowkey doesn't work sometimes
 
 thisLineHasAnAsterisk = function() {
 	// What the genuine FUCK could i possibly have been on when writing this
@@ -505,4 +508,8 @@ UpdateText = function(newText) {
 MoveTo = function(newX, newY) {
 	textbox_x = newX;
 	textbox_y = newY;
+}
+
+SetDefaultColor = function(newColor) {
+	textcolor = newColor;
 }

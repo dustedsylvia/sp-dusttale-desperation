@@ -27,7 +27,7 @@ if (needs_page_init) {
 	colorl0 = [];
 	colorl1 = [];
 	colorl2 = [];
-	defaultcolor = #FFFFFF;
+	defaultcolor = textcolor;
 	asteriskcolor1 = #FFFFFF;
 	asteriskcolor2 = #FFFFFF;
 	asteriskcolor3 = #FFFFFF;
@@ -76,7 +76,7 @@ if (needs_line_init) {
 	pauseforframescache = [];
 	pauseforframesoverride = false;
 	pauseforframeslastchar = -1;
-	defaultcolor = #FFFFFF;
+	defaultcolor = textcolor;
 	noskip = -1;
 	noskipoverride = false;
 	noskiplastchar = false;
@@ -130,7 +130,7 @@ if (text_char_index == noadvance or noadvanceoverride == true or (text_char_inde
 	noadvanceoverride = false;
 }
 
-if (cancel and (noskip == -1 or text_char_index < noskip or noskipoverride == true) and pauseforframes == 0) {
+if (cancel and (noskip == -1 or (text_char_index < noskip and noskipoverride == false)) and pauseforframes == 0 and !disableskipping) {
 	noskipoverride = false;
 	if (!(text_char_index == 0 and noskip != -1)) {
 		skip();
@@ -178,7 +178,9 @@ if (text_char_index == instant or instantoverride == true or (text_char_index ==
 	}
 }
 
-if (text_char_index == advance or advanceoverride == true or (text_char_index == string_length(current_line_text) and advancelastchar == true) and pauseforframes == 0) { next(); };
+if ((text_char_index >= advance and advance != -1) or advanceoverride == true or (text_char_index >= string_length(current_line_text) and advancelastchar == true) and pauseforframes == 0) {
+	next();
+}
 
 // THIS causes a problem
 if (clock >= 2) {
