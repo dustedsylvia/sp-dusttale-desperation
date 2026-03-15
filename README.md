@@ -1,6 +1,6 @@
-
-![SP!Dusttale logo](readmeassets\logo.png)
+![SP!Dusttale logo](readmeassets/logo.png)
 <p style="text-align: center;">version nightly-7</p>
+
 <hr>
 
 This GitHub repository contains all of the source code for SP!Dusttale: desperation. You can find the GameJolt page [here](https://gamejolt.com/games/spdusttaledesperation/1018009).
