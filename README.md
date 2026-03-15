@@ -1,4 +1,4 @@
-![SP!Dusttale logo](readmeassets/logo.png)
+![SP!Dusttale logo](readmeassets\logo.png)
 <p style="text-align: center;">version nightly-7</p>
 
 <hr>
