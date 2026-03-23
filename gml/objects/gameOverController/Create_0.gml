@@ -51,3 +51,10 @@ state = 1;
 textdone = false;
 
 audio_stop_all();
+
+global.screen.LerpToAngle(0);
+with (boneattack) {instance_destroy();}
+with (gasterblaster) {instance_destroy();}
+with (gasterbeam) {instance_destroy();}
+with (platform) {instance_destroy();}
+stopColorInversion();

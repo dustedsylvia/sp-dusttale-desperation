@@ -142,6 +142,11 @@ if (inmenu) {
 	}
 }
 
+if (global.playercutscenemoveup) {
+	y -= 0.5;
+	sprite_index = friskup;
+}
+
 try { // weirdly this causes issues so we have to use a try statement
 	  // edit i was being stupid. it breaks when there's two player objects.
 	  // so just don't put two player objects ffs

@@ -436,11 +436,11 @@ if (global.battle_state == "dialog") {
 		global.battle_state = "enemyattack";
 		initEnemyAttack = true;
 		audio_sound_set_track_position(audioid, 21.13);
-		grad = instance_create_depth(320, 0, depth-5, gradient_obj);
+		grad = instance_create_depth(320, 480, depth-2, gradient_obj);
 	} else if (!instance_exists(global.dialogbubble)) {
 		global.battle_state = "enemyattack";
 		initEnemyAttack = true;
-		grad = instance_create_depth(320, 0, depth-5, gradient_obj);
+		grad = instance_create_depth(320, 480, depth-2, gradient_obj);
 	}
 }
 
@@ -459,7 +459,7 @@ if (global.battle_state == "enemyattack") {
 				var tmpx = 245;
 				for (var i = 0; i < 15; i++) {
 					tmpx += 10;
-					createbone(tmpx, 367, sansbone50, "white", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-3);
+					createbone(tmpx, 367, sansbone50, "white", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4);
 				}
 				screenshake(30, 2, 10);
 			break;
@@ -498,12 +498,12 @@ if (global.battle_state == "enemyattack") {
 				var tmpx = -10;
 				for (var i = 0; i < 75; i++) {
 					tmpx += 10;
-					createbone(tmpx, 367, sansbone50, "white", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-3);
+					createbone(tmpx, 367, sansbone50, "white", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4);
 				}
 				tmpx = -10;
 				for (var i = 0; i < 75; i++) {
 					tmpx += 10;
-					createbone(tmpx, 225, sansbone50, "white", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-3);
+					createbone(tmpx, 225, sansbone50, "white", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4);
 				}
 				screenshake(30, 2, 10);
 			}
@@ -513,8 +513,8 @@ if (global.battle_state == "enemyattack") {
 					createGasterBlaster(320, -100, irandom_range(100, 540), irandom_range(80, 380), true, depth-10, 0, 0, 60, 1, 1);
 				}
 				if (global.attacktimer % 60 == 0) {
-					createbone(global.arena.x-(global.arena.width/2)+5, global.arena.y-(global.arena.height/2)+5, sansbone130, "blue", 0, 1, 1, 1, 5, 0, 0, 0, 0, 0, depth-3);
-					createbone(global.arena.x+(global.arena.width/2)-5, global.arena.y-(global.arena.height/2)+5, sansbone130, "orange", 0, 1, 1, 1, -5, 0, 0, 0, 0, 0, depth-3);
+					createbone(global.arena.x-(global.arena.width/2)+5, global.arena.y-(global.arena.height/2)+5, sansbone130, "blue", 0, 1, 1, 1, 5, 0, 0, 0, 0, 0, depth-4);
+					createbone(global.arena.x+(global.arena.width/2)-5, global.arena.y-(global.arena.height/2)+5, sansbone130, "orange", 0, 1, 1, 1, -5, 0, 0, 0, 0, 0, depth-4);
 				}
 			}
 			
@@ -534,7 +534,7 @@ if (global.battle_state == "enemyattack") {
 				global.arena.lerpangle += 2;
 				sintimer += 1;
 				if (global.attacktimer % 60 == 0) {
-					createbone(50, global.arena.y-(global.arena.height/2)+5, sansbone600, "orange", 90, 1, 1, 1, 0, 5, 0, 0, 0, 0, depth-3);
+					createbone(50, global.arena.y-(global.arena.height/2)+5, sansbone600, "orange", 90, 1, 1, 1, 0, 5, 0, 0, 0, 0, depth-4);
 				}
 				if (global.attacktimer % 7 == 0) {
 					// alright so quick intervention
@@ -545,8 +545,8 @@ if (global.battle_state == "enemyattack") {
 					// i could generate them with a script?
 					// i should...actually probably do that but like later
 					
-					createbone(global.arena.x-(global.arena.lerpwidth/2)-20, global.arena.y-(global.arena.lerpheight/2)-5, asset_get_index($"sansbone{round(75 + (sin(sintimer)*20))}"), "white", 90, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-3);
-					createbone(global.arena.x+(global.arena.lerpwidth/2)-45+round((sin(sintimer)*20)), global.arena.y-(global.arena.lerpheight/2)-5, sansbone200, "white", 90, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-3);
+					createbone(global.arena.x-(global.arena.lerpwidth/2)-20, global.arena.y-(global.arena.lerpheight/2)-5, asset_get_index($"sansbone{round(75 + (sin(sintimer)*20))}"), "white", 90, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-4);
+					createbone(global.arena.x+(global.arena.lerpwidth/2)-45+round((sin(sintimer)*20)), global.arena.y-(global.arena.lerpheight/2)-5, sansbone200, "white", 90, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-4);
 				}
 			}
 			
@@ -577,8 +577,8 @@ if (global.battle_state == "enemyattack") {
 				}
 				
 				if (global.attacktimer % 50 == 0) {
-					createbone(global.arena.x-(global.arena.width/2), global.arena.y-(global.arena.height/2)-5, sansbone70, "white", 90, 1, 1, 1, 0, 2, 0, 0, 0, 0, depth-3);
-					createbone(global.arena.x, global.arena.y+(global.arena.height/2)+5, sansbone70, "white", 90, 1, 1, 1, 0, -2, 0, 0, 0, 0, depth-3);
+					createbone(global.arena.x-(global.arena.width/2), global.arena.y-(global.arena.height/2)-5, sansbone70, "white", 90, 1, 1, 1, 0, 2, 0, 0, 0, 0, depth-4);
+					createbone(global.arena.x, global.arena.y+(global.arena.height/2)+5, sansbone70, "white", 90, 1, 1, 1, 0, -2, 0, 0, 0, 0, depth-4);
 				}
 			}
 			
@@ -610,8 +610,8 @@ if (global.battle_state == "enemyattack") {
 				with (platform) {instance_destroy();}
 				screenshake(30, 2, 10);
 				global.arena.MoveTo(320, global.arena.y);
-				createbone(global.arena.x, global.arena.y, sansbone140, "white", 0, 1, 1, 1, 0, 0, 2, 0, 0, 0, depth-3, true);
-				createbone(global.arena.x, global.arena.y, sansbone140, "white", 90, 1, 1, 1, 0, 0, 2, 0, 0, 0, depth-3, true);
+				createbone(global.arena.x, global.arena.y, sansbone140, "white", 0, 1, 1, 1, 0, 0, 2, 0, 0, 0, depth-4, true);
+				createbone(global.arena.x, global.arena.y, sansbone140, "white", 90, 1, 1, 1, 0, 0, 2, 0, 0, 0, depth-4, true);
 				global.soul.TurnRed();
 			}
 			
@@ -637,10 +637,10 @@ if (global.battle_state == "enemyattack") {
 					else { startColorInversion(); };
 				}
 				if (global.attacktimer % 30 == 0) {
-					createbone(global.arena.x-(global.arena.width/2)-20, global.arena.y-(global.arena.height/2)+5, sansbone20, "white", 0, 1, 1, 1, 4, 0, 0, 0, 0, 0, depth-3, false);
-					createbone(global.arena.x-(global.arena.width/2)-20, global.arena.y-(global.arena.height/2)+50, sansbone85, "white", 0, 1, 1, 1, 4, 0, 0, 0, 0, 0, depth-3, false);
-					createbone(global.arena.x+(global.arena.width/2)+20, global.arena.y-(global.arena.height/2)+5, sansbone20, "white", 0, 1, 1, 1, -4, 0, 0, 0, 0, 0, depth-3, false);
-					createbone(global.arena.x+(global.arena.width/2)+20, global.arena.y-(global.arena.height/2)+50, sansbone85, "white", 0, 1, 1, 1, -4, 0, 0, 0, 0, 0, depth-3, false);
+					createbone(global.arena.x-(global.arena.width/2)-20, global.arena.y-(global.arena.height/2)+5, sansbone20, "white", 0, 1, 1, 1, 4, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(global.arena.x-(global.arena.width/2)-20, global.arena.y-(global.arena.height/2)+50, sansbone85, "white", 0, 1, 1, 1, 4, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(global.arena.x+(global.arena.width/2)+20, global.arena.y-(global.arena.height/2)+5, sansbone20, "white", 0, 1, 1, 1, -4, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(global.arena.x+(global.arena.width/2)+20, global.arena.y-(global.arena.height/2)+50, sansbone85, "white", 0, 1, 1, 1, -4, 0, 0, 0, 0, 0, depth-4, false);
 				}
 			}
 			
@@ -657,10 +657,10 @@ if (global.battle_state == "enemyattack") {
 			
 			if (global.attacktimer > 3020 and global.attacktimer < 3380) {
 				if (global.attacktimer % 30 == 0) {
-					createbone(global.arena.x-(global.arena.width/2), global.arena.y-(global.arena.width/2)+5, sansbone35, "white", 0, 1, 1, 1, 2, 0, 0, 0, 0, 0, depth-3, false);
-					createbone(global.arena.x+(global.arena.width/2), global.arena.y-(global.arena.width/2)+40, sansbone35, "white", 0, 1, 1, 1, -2, 0, 0, 0, 0, 0, depth-3, false);
-					createbone(global.arena.x-(global.arena.width/2), global.arena.y-(global.arena.width/2)+75, sansbone35, "white", 0, 1, 1, 1, 2, 0, 0, 0, 0, 0, depth-3, false);
-					createbone(global.arena.x+(global.arena.width/2), global.arena.y-(global.arena.width/2)+110, sansbone35, "white", 0, 1, 1, 1, -2, 0, 0, 0, 0, 0, depth-3, false);
+					createbone(global.arena.x-(global.arena.width/2), global.arena.y-(global.arena.width/2)+5, sansbone35, "white", 0, 1, 1, 1, 2, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(global.arena.x+(global.arena.width/2), global.arena.y-(global.arena.width/2)+40, sansbone35, "white", 0, 1, 1, 1, -2, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(global.arena.x-(global.arena.width/2), global.arena.y-(global.arena.width/2)+75, sansbone35, "white", 0, 1, 1, 1, 2, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(global.arena.x+(global.arena.width/2), global.arena.y-(global.arena.width/2)+110, sansbone35, "white", 0, 1, 1, 1, -2, 0, 0, 0, 0, 0, depth-4, false);
 				}
 			}
 			
@@ -687,8 +687,8 @@ if (global.battle_state == "enemyattack") {
 				global.screen.SetAngle(sin(sintimer/50) * 5);
 				
 				if (global.attacktimer % 7 == 0) {
-					createbone(global.arena.x+(global.arena.lerpwidth/2)+5, global.arena.y-(global.arena.lerpheight/2)-20, asset_get_index($"sansbone{round(75 + (sin(sintimer)*20))}"), "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-3);
-					createbone(global.arena.x+(global.arena.lerpwidth/2)+5, global.arena.y+(global.arena.lerpheight/2)-45+round((sin(sintimer)*20)), sansbone200, "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-3);
+					createbone(global.arena.x+(global.arena.lerpwidth/2)+5, global.arena.y-(global.arena.lerpheight/2)-20, asset_get_index($"sansbone{round(75 + (sin(sintimer)*20))}"), "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-4);
+					createbone(global.arena.x+(global.arena.lerpwidth/2)+5, global.arena.y+(global.arena.lerpheight/2)-45+round((sin(sintimer)*20)), sansbone200, "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-4);
 				}
 			}
 			

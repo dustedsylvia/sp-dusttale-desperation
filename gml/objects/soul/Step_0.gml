@@ -379,9 +379,19 @@ if (global.battle_state == "enemyattack") {
 collisionclock += 1;
 if (collisionclock % 2 == 0) {
 	if (place_meeting(x, y, gasterbeam)) {
-		global.hpbar.applykr(1);
-		audio_play_sound(playerhit, 1, false);
+		if (instance_place(x, y, gasterbeam).damage) {
+			global.hpbar.applykr(1);
+			audio_play_sound(playerhit, 1, false);
+		}
 	}
+	if (place_meeting(x, y, spgasterbeam)) {
+		if (instance_place(x, y, spgasterbeam).damage) {
+			global.hpbar.applykr(1);
+			audio_play_sound(playerhit, 1, false);
+		}
+	}
+	
+	
 	if (place_meeting(x, y, boneattack)) {
 		var collidedbone = instance_place(x, y, boneattack);
 		if (collidedbone != noone) {

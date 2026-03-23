@@ -19,7 +19,7 @@ if (timer == 158) {
 	state = 5;
 	gameoveropacity = 1;
 	gameoverflavorer = instance_create_depth(0, 0, depth-3, flavorer);
-	gameoverflavorer.textbox_x = 150;
+	gameoverflavorer.textbox_x = 125;
 	gameoverflavorer.textbox_y = 300;
 	gameoverflavorer.text_voicebeep = voicebp_asgore;
 	gameoverflavorer.text = gameovertext;

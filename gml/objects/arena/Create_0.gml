@@ -8,9 +8,9 @@ lerpangle = image_angle;
 lerp_speed = 0.3;
 outline_thickness = 2;
 outline_color = c_black;
-int = instance_create_depth(x+5, y+5, depth-99, arenainteract);
+int = instance_create_depth(x+5, y+5, depth-1, arenainteract);
 col = instance_create_depth(x, y, depth-99, arenacollision);
-mask = instance_create_depth(x, y, depth-2, arenamask);
+//mask = instance_create_depth(x, y, depth-2, arenamask);
 
 function MoveTo(newX, newY) {
 	oldx = x;

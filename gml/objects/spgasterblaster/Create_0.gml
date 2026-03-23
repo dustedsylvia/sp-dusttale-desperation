@@ -1,0 +1,20 @@
+targetx = 0;
+targety = 0;
+movespeed = 0.2;
+endangle = 0;
+clock = 0;
+state = "movingintotargetposition";
+beam = noone;
+helper = noone;
+chargesound = gbcharge;
+firesound = gbfire;
+start = true;
+firelen = 60; // 60 frames = 1 second
+targetspeed = 10;
+targetendx = 0;
+targetendy = 0;
+grabhelpercoords = false;
+calculationdistance = 480;
+facePlayer = false;
+playerAngleCalculated = false;
+image_speed = 0;

@@ -23,7 +23,7 @@
   ],
   "name":"gradient",
   "nineSlice":null,
-  "origin":1,
+  "origin":7,
   "parent":{
     "name":"battleui",
     "path":"folders/Sprites/battletest/battleui.yy",
@@ -76,7 +76,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":400,
-    "yorigin":0,
+    "yorigin":100,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

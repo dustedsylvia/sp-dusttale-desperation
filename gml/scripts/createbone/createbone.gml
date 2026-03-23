@@ -6,6 +6,7 @@ function createbone(bonex, boney, bonelength=sansbone50, bonetype="white", rot=0
 		sprite_set_offset(tmpsprite, round(sprite_get_width(tmpsprite)/2), round(sprite_get_height(tmpsprite)/2));
 		newbone.sprite_index = tmpsprite;
 		newbone.removeThisOnDestroy = tmpsprite;
+		newbone.centerpivoted = true;
 	} else {
 		newbone.sprite_index = bonelength;
 	}
@@ -15,6 +16,8 @@ function createbone(bonex, boney, bonelength=sansbone50, bonetype="white", rot=0
 	newbone.image_yscale = yscale;
 	newbone.xvel = xvel;
 	newbone.yvel = yvel;
+	newbone.lerpxspeed = xvel;
+	newbone.lerplength = -1;
 	newbone.rotvel = rotvel;
 	newbone.alphavel = alphavel;
 	newbone.xscalevel = xscalevel;

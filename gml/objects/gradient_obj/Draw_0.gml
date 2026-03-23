@@ -1,2 +1,2 @@
-draw_sprite(orang, 0, x, y-400);
+draw_sprite(orang, 0, x, y);
 draw_self();

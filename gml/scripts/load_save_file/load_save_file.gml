@@ -11,22 +11,24 @@ function load_save_file(ini_filepath) {
 	
 	switch (global.savepoint) {
 		case "big test room":
-			instance_create_depth(377, 257, -9998, player);
+			instance_create_depth(377, 257, 0, player);
 			room_goto(room_bigtest);
 		break;
 		
 		case "story_file_1":
-			instance_create_depth(-100, -100, -9998, player);
+			instance_create_depth(-100, -100, 0, player);
 			global.can_menu = false;
 			global.can_move = false;
 			room_goto(room_fight_ending);
 		break;
 		
 		case "Throne Entrance":
-			instance_create_depth(928, 256, -9998, player);
-			global.resetcam = true;
-			show_debug_message("supposedly created player");
-			room_goto(room_throne_entrance);
+			//instance_create_depth(928, 256, 0, player);
+			//global.resetcam = true;
+			//room_goto(room_throne_entrance);
+			
+			instance_create_depth(1120, 288, 0, player); // the debugging continues.
+			room_goto(room_sanspassage);
 		break;
 	}
 }

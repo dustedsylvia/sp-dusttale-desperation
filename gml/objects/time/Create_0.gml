@@ -20,4 +20,8 @@ global.fliphorizontal = false;
 
 global.screen = instance_create_depth(0, 0, 0, viewanglecontroller);
 
+global.playercutscenemoveup = false;
+
+global.reinitialized = false;
+
 timer = 0;

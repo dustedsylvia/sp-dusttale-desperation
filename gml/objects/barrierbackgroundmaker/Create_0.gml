@@ -1,0 +1,1 @@
+video_open("fixed_barrier.mp4");

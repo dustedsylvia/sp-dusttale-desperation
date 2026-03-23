@@ -3,4 +3,4 @@ clock = 0;
 soulx = 0;
 souly = 0;
 init = true;
-debug = false;
+debug = true;

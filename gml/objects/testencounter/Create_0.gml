@@ -46,6 +46,7 @@ setup_kr = global.kr_enabled;
 // NOTE: THE LOCATION OF THIS IS ONLY UPDATED ONCE!!!
 global.hp_text = instance_create_depth(global.hpbar.x+global.player_maxhp*1.2+14, 401, depth-5, hptext);
 global.arena = instance_create_depth(320, 700, depth-2, arena);
+global.bonemasker = instance_create_depth(0, 0, depth-3, bonemaskupdater);
 
 // for testing purposes only
 global.sans_obj = instance_create_depth(272, 90, depth-5, break_sans);

@@ -1,5 +1,6 @@
 ![SP!Dusttale logo](readme_assets/logo.png)
-<p style="text-align: center;">version nightly-7</p>
+<p style="text-align: center;">version nightly-7.5</p>
+<p style="text-align: center;"><i>i'm literally just using this repo as backups now😭😭</i></p>
 
 <hr>
 
@@ -9,6 +10,12 @@ This GitHub repository contains all of the source code for SP!Dusttale: desperat
 version nightly-7:
  - Includes a demo of the engine!
  - Fixed some problems with the textboxes
+
+version nightly-7.5:
+ - OVERWORLD IS 99% DONE!!!! (there's literally just one bug i have to fix smh)
+ - THE FIRST PART OF NECROPTOSIS IS DONE!!!
+ - fixed some other bugs too
+ - despite appearances  a LOT of tiny stuff got updated
 
 ### Credits:
  - Toby Fox and Temmie Chang: Created UNDERTALE

@@ -19,6 +19,7 @@
   "height":20,
   "HTile":false,
   "layers":[
+    {"$GMImageLayer":"","%Name":"3e62ef68-ecb1-4ec8-9d7c-560168029aad","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"3e62ef68-ecb1-4ec8-9d7c-560168029aad","opacity":0.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
     {"$GMImageLayer":"","%Name":"3ceec851-a267-4555-9315-00defb267721","blendMode":0,"displayName":"default","isLocked":false,"name":"3ceec851-a267-4555-9315-00defb267721","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"arena_sprite",
