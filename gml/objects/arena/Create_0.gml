@@ -12,6 +12,11 @@ int = instance_create_depth(x+5, y+5, depth-1, arenainteract);
 col = instance_create_depth(x, y, depth-99, arenacollision);
 //mask = instance_create_depth(x, y, depth-2, arenamask);
 
+shakingang = true;
+startang = image_angle;
+shakeintensity = 20;
+angclock = 0;
+
 function MoveTo(newX, newY) {
 	oldx = x;
 	oldy = y;
@@ -51,4 +56,13 @@ function SetAngle(newAngle) {
 
 function LerpToAngle(newAngle) {
 	lerpangle = newAngle;
+}
+
+function shakeang(startangle=image_angle, intensity=5) {
+	shakingang = true;
+	startang = startangle;
+	image_angle = startangle;
+	shakeintensity = intensity;
+	angclock = 0;
+	audio_play_sound(slam, 0.5, false);
 }

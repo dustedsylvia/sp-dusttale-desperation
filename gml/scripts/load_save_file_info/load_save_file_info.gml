@@ -4,7 +4,8 @@
 /// @return {Bool}
 
 function load_save_file_info(ini_filepath) {
-	if (!ini_file_exists(ini_filepath)) { return false; };
+	//if (!ini_file_exists(ini_filepath)) { return false; };
+	if (!ini_file_exists(ini_filepath)) { load_demo_file_info(); };
 	
 	ini_open(ini_filepath);
 	

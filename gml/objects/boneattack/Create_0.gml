@@ -10,7 +10,14 @@ length = sprite_get_height(sprite_index);
 lerplength = length;
 lerpspeed = 0.3;
 
+lifetime = 1000;
+
 lerpxspeed = xvel;
+
+len = sprite_get_height(sprite_index);
+lenmovespeed = 0;
+lenmovespeedspeed = 0;
+lentomoveto = -1;
 
 type = "white";
 
@@ -49,4 +56,10 @@ lengthbetween = function(minimum, maximum, length_speed=1, startingState=1) {
 	lengthmax = maximum;
 	state = startingState;
 	lengthing = true;
+}
+
+moveToLength = function(newLength, moveSpeedSpeed=2) {
+	lentomoveto = newLength;
+	lenmovespeed = 0;
+	lenmovespeedspeed = moveSpeedSpeed;
 }

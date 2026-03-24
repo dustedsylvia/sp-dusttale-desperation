@@ -44,6 +44,7 @@ function TurnBlue(newDirection) {
 	e.image_angle = image_angle;
 	e.image_xscale = image_xscale;
 	e.image_yscale = image_yscale;
+	audio_play_sound(eyeflash, 0.5, false);
 }
 
 function SlamBlue(newDirection="keepExisting") {
@@ -66,6 +67,7 @@ function TurnRed() {
 	e.image_angle = image_angle;
 	e.image_xscale = image_xscale;
 	e.image_yscale = image_yscale;
+	audio_play_sound(eyeflash, 0.5, false);
 }
 
 function OnPlatform(tstx=x, tsty=y) {

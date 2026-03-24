@@ -1,6 +1,5 @@
 ![SP!Dusttale logo](readme_assets/logo.png)
-<p style="text-align: center;">version nightly-7.5</p>
-<p style="text-align: center;"><i>i'm literally just using this repo as backups now😭😭</i></p>
+<p style="text-align: center;">DEMO-1</p>
 
 <hr>
 
@@ -17,6 +16,12 @@ version nightly-7.5:
  - fixed some other bugs too
  - despite appearances  a LOT of tiny stuff got updated
 
+version demo-1:
+ - RELEASED THE FIRST DEMO!!!!!
+ - This fixes save file issues if you don't have a save file
+ - Is purely a demo of the VERY first part of the battle
+ - Overworld, menu, first cutscene, etc is not included but will be included in the full release
+
 ### Credits:
  - Toby Fox and Temmie Chang: Created UNDERTALE
  - 反正是sprins就对了: Created the original AU
@@ -26,7 +31,7 @@ version nightly-7.5:
  - Full credits available in-game
 
 ### Building/modding/stealing the engine
-This game was built in the latest version (currently: IDE v2024.1400.4.1020 Beta Runtime v2024.1400.4.996) of [GameMaker BETA](https://gamemaker.io/en/download) (click the "GameMaker BETA version" dropdown). Once you've installed GameMaker for your platform, download/clone this repo and open the `yyp` file. Hopefully, it'll open in GameMaker and you can mod it or whatever. *Just please, PLEASE do not change the credits and pass this off as your own. You're welcome to use the undertale engine if you want, just credit appropriately.* **If this repository is abused, I will have to take it down.** :(
+This game was built in the latest version (currently: IDE v2024.1400.4.1020 Beta Runtime v2024.1400.4.996) of [GameMaker BETA](https://gamemaker.io/en/download) (click the "GameMaker BETA version" dropdown). Once you've installed GameMaker for your platform, download/clone this repo and open the `yyp` file. Hopefully, it'll open in GameMaker and you can mod it or whatever. *Just please, PLEASE do not change the credits and pass this off as your own. You're welcome to use the undertale engine if you want, just credit appropriately.* **If this repository is abused, I will have to take it down.**
 
 ### Playtesting the game
 This repo will also contain *early releases* of this fangame. If you want to, go over to the "Releases" section and download the latest release. If you play through the whole game, send me a DM on Discord (`@dusted.sylvia`) and I'll credit you at the end as a playtester!

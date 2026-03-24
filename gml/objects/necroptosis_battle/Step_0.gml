@@ -464,6 +464,7 @@ if (global.battle_state == "enemyattack") {
 				 
 				createAttackWarning(183, 271, 100, 120, depth-4, 0);
 				//createAttackWarning(10, 10, 108, 108, -9999, 0, 3000);
+				global.arena.shakeang();
 			break;
 		}
 		initEnemyAttack = false;
@@ -509,6 +510,7 @@ if (global.battle_state == "enemyattack") {
 					tmp.lerpToLength(irandom_range(200, 250));
 					array_push(bones1, tmp);
 				}
+				audio_play_sound(bigattack, 0.5, false);
 			}
 			
 			if (global.attacktimer == 130) {
@@ -538,6 +540,129 @@ if (global.battle_state == "enemyattack") {
 				bone5.lengthbetween(20, 50, 0.5, 1);
 				bone6.lengthbetween(20, 50, 0.5, 1);
 				bone7.lengthbetween(20, 50, 0.5, 1);
+			}
+			
+			if (global.attacktimer == 250) {
+				createAttackWarning(global.arena.x, global.arena.y-(global.arena.height/2), 1, global.arena.height-10);
+				
+				for (var i = 0; i <= 8; i++) {
+					bones1[i].moveToLength(13);
+					bones1[i].y += 2;
+				}
+			}
+			
+			if (global.attacktimer == 270) {
+				createbone(175, 333, sansbone60, "white", 20, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(155, 333, sansbone60, "white", 20, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-4, false);
+			}
+			
+			if (global.attacktimer == 300) {
+				createbone(175, 251, sansbone60, "white", -20, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(155, 251, sansbone60, "white", -20, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-4, false);
+			}
+			
+			if (global.attacktimer == 325) {
+				createbone(global.arena.x, arenaTopSideY(), sansbone296, "blue", 90, 1, 1, 1, 0, 6, 0, 0, 0, 0, depth-4, true);
+			}
+			
+			if (global.attacktimer == 330) {
+				bones2 = [];
+				for (var i = 0; i <= 14; i++) {
+					var tmp = createbone(arenaRightSideX(), arenaTopSideY()+12*i, sansbone12, "white", 270+irandom_range(-3, 3), 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4, true);
+					tmp.lerpToLength(irandom_range(350, 400));
+					array_push(bones2, tmp);
+				}
+				audio_play_sound(bigattack, 0.5, false);
+				
+				createNecroptosisGasterBlaster(arenaLeftSideX(), -100, arenaLeftSideX()+30, 110, false, depth-5, 0, 10, 45, 1.2, 1);
+				global.arena.shakeang();
+			}
+			
+			if (global.attacktimer == 340) {
+				createNecroptosisGasterBlaster(arenaLeftSideX()+120, -100, arenaLeftSideX()+90, 110, false, depth-5, 0, -10, 45, 1.2, 1);
+			}
+			
+			if (global.attacktimer == 370) {
+				for (var i = 0; i <= 13; i++) {
+					bones2[i].moveToLength(13, 3);
+					bones2[i].x += 2;
+				}
+				
+				global.arena.LerpToSize(150, 150);
+			}
+			
+			if (global.attacktimer == 400) {
+				createbone(arenaRightSideX(), 330, sansbone60, "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaRightSideX()+20, 330, sansbone60, "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaRightSideX()+40, 330, sansbone60, "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-4, false);
+			}
+			
+			if (global.attacktimer == 420) {
+				global.soul.TurnRed();
+				sintimer = 0;
+				stickyleftsidebones = [];
+				stickyrightsidebones = [];
+				global.arena.shakeang();
+			}
+			
+			if (global.attacktimer > 430 and global.attacktimer < 744) {
+				sintimer += 1;
+				if (global.attacktimer % 7 == 0) {
+					var leftbone = createbone(global.arena.x+(global.arena.width/2)-5, global.arena.y-(global.arena.height/2)-5, asset_get_index($"sansbone{round(65 + (sin(sintimer)*20))}"), "white", 270, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-4, false);
+					var rightbone = createbone(global.arena.x-(global.arena.width/2)+5, global.arena.y-(global.arena.height/2)+5, asset_get_index($"sansbone{round(35 + (sin(sintimer)*-20))}"), "white", 90, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-4, false);
+					array_push(stickyleftsidebones, leftbone);
+					array_push(stickyrightsidebones, rightbone);
+				}
+				global.arena.MoveTo(320+sin(sintimer/50)*50, global.arena.y);
+				
+				for (var i = 0; i < array_length(stickyleftsidebones); i++) {
+					stickyleftsidebones[i].x = global.arena.x+(global.arena.width/2)-5;
+				}
+				for (var i = 0; i < array_length(stickyrightsidebones); i++) {
+					stickyrightsidebones[i].x = global.arena.x-(global.arena.width/2)+5;
+				}
+			}
+			
+			if (global.attacktimer == 744) {
+				global.arena.MoveTo(320, global.arena.y);
+				global.arena.shakeang();
+				createAttackWarning(300, arenaTopSideY()+5, 40, global.arena.height, depth-5, 0);
+			}
+			
+			if (global.attacktimer == 800) {
+				bones3 = [];
+				for (var i = 0; i <= 3; i++) {
+					var tmp = createbone(300+10*i, arenaTopSideY(), sansbone12, "white", irandom_range(-3, 3), 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4, true);
+					tmp.lerpToLength(irandom_range(250, 280));
+					array_push(bones3, tmp);
+				}
+				audio_play_sound(bigattack, 0.5, false);
+				createNecroptosisGasterBlaster(arenaLeftSideX()-180, -100, arenaLeftSideX()-90, 110, true, depth-8, 0, 0, 45, 0.5, 1);
+				createNecroptosisGasterBlaster(arenaLeftSideX()+180, -100, arenaLeftSideX()+90, 110, true, depth-8, 0, 0, 45, 0.5, 1);
+			}
+			
+			if (global.attacktimer == 860) {
+				createNecroptosisGasterBlaster(arenaLeftSideX()-180, -100, arenaLeftSideX()-90, 110, true, depth-8, 0, 0, 45, 0.5, 1);
+				createNecroptosisGasterBlaster(arenaLeftSideX()+180, -100, arenaLeftSideX()+90, 110, true, depth-8, 0, 0, 45, 0.5, 1);
+			}
+			
+			if (global.attacktimer == 920) {
+				createNecroptosisGasterBlaster(arenaLeftSideX()-180, -100, arenaLeftSideX()-90, 110, true, depth-8, 0, 0, 45, 0.5, 1);
+				createNecroptosisGasterBlaster(arenaLeftSideX()+180, -100, arenaLeftSideX()+90, 110, true, depth-8, 0, 0, 45, 0.5, 1);
+			}
+			
+			if (global.attacktimer == 980) {
+				for (var i = 0; i <= 3; i++) {
+					bones3[i].moveToLength(13, 3);
+					bones3[i].y -= 2;
+				}
+				
+				global.arena.LerpToSize(140, 140);
+			}
+			
+			if (global.attacktimer == 1300) {
+				show_message("END OF DEMO===\nThanks so much for playing!\n\nThe menu, overworld, etc are 99% finished and you'll see them in the full game!");
+				game_end(0);
 			}
 			
 		break;

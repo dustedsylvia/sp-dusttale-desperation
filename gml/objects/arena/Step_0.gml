@@ -18,6 +18,24 @@ if (image_angle != lerpangle) {
 	image_angle = lerp(image_angle, lerpangle, lerp_speed);
 }
 
+if (shakingang) {
+	angclock += 1;
+	
+	if (angclock % 3 == 0) {
+		ispositive = (shakeintensity > 0);
+		shakeintensity = abs(shakeintensity) - 1;
+		if (!(shakeintensity > 0)) {
+			shakingang = false;
+			image_angle = startang;
+		} else {
+			if (ispositive) {
+				shakeintensity = shakeintensity * -1;
+			}
+			image_angle = startang + shakeintensity;
+		}
+	}
+}
+
 int.x = x;
 int.y = y;
 int.image_angle = image_angle;
