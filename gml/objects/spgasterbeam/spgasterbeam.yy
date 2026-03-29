@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spbasterbeamsprite",
-    "path":"sprites/spbasterbeamsprite/spbasterbeamsprite.yy",
+    "name":"spgasterbeamsprite",
+    "path":"sprites/spgasterbeamsprite/spgasterbeamsprite.yy",
   },
   "spriteMaskId":{
     "name":"gasterbeamsprite",

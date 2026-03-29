@@ -422,12 +422,27 @@ if (global.battle_state == "mercymenu") {
 
 if (global.battle_state == "dialog") {
 	if (initDialog) {
-		//global.dialogbubble = instance_create_depth(378, 107, depth-5, dialogbubble);
-		//global.dialogbubble.preset = "sans";
-		//global.dialogbubble.text = ["[noadvance]yknow, i never\nwanted anything\nclose to this.[pauseforframes:120][advance]", "[noadvance]but hey.[pauseforframes:120][advance]", "[noadvance]at least it's a\nbeautiful day\noutside.[pauseforframes:120][advance]", "birds are \nsinging...[pauseforframes:30] flowers\nare blooming...[pauseforframes:120][advance]", "days like these...[pauseforframes:30]\ni knew they were\ntoo good to last.[pauseforframes:140][advance]"];
-		//global.dialogbubble.noskip = true;
-		//global.dialogbubble.spd = 1.5;
 		initDialog = false;
+	}
+	
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 11.8, 0) <= 0.1 and !thing) {
+		global.sans_obj.preset("quiet");
+		thing = true;
+		instance_create_depth(0, 0, depth, whitefader);
+	}
+	
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 17.1, 0) <= 0.1 and !thing2) {
+		global.sans_obj.preset("sadredeyes");
+		thing2 = true;
+	}
+	
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 21, 0) <= 0.1 and !thing3) {
+		global.sans_obj.preset("sadredeyesshrug");
+		thing3 = true;
+	}
+	
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 22.5, 0) <= 0.1) {
+		coverScreen = true;
 	}
 	
 	if (keyboard_check_pressed(ord("C")) or audio_sound_get_track_position(audioid) >= 25.00 or global.reinitialized) {
@@ -465,6 +480,8 @@ if (global.battle_state == "enemyattack") {
 				createAttackWarning(183, 271, 100, 120, depth-4, 0);
 				//createAttackWarning(10, 10, 108, 108, -9999, 0, 3000);
 				global.arena.shakeang();
+				global.sans_obj.preset("blackoutwitheyes");
+				coverScreen = false;
 			break;
 		}
 		initEnemyAttack = false;
@@ -661,7 +678,7 @@ if (global.battle_state == "enemyattack") {
 			}
 			
 			if (global.attacktimer == 1300) {
-				show_message("END OF DEMO===\nThanks so much for playing!\n\nThe menu, overworld, etc are 99% finished and you'll see them in the full game!");
+				show_message("END OF DEMO===\nThanks for playing!\n\nAs you can tell, there's a few bugs that need to be fixed--and obviously Necroptosis needs to be finished--but the game is mostly completed.");
 				game_end(0);
 			}
 			

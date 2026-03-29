@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"SP!Dust!Sans",
-    "path":"folders/Sprites/SP!Dust!Sans.yy",
+    "name":"sepsprites",
+    "path":"folders/Sprites/SP!Dust!Sans/sepsprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -41,7 +41,7 @@ if (clock == 590) {
 
 if (clock == 679) {
 	voidv3 = instance_create_depth(-130, -30, -9999, sprawl);
-	audio_play_sound(menu, 1, true);
+	audio = audio_play_sound(menu, 1, true);
 }
 
 if (clock == 900) {
@@ -156,4 +156,12 @@ if (clock == 3820) {
 
 if (clock == 4000) {
 	sanstext = "";
+	audio_sound_gain(audio, 0, 2000);
+}
+
+if (clock == 4120) {
+	instance_destroy(player);
+	load_demo_file_info();
+	save_save_file("file0.ini");
+	load_save_file("file0.ini");
 }

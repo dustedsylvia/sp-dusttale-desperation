@@ -18,3 +18,5 @@ sanstalkdelay = 180;
 sanssprite = sans_help_3;
 sansopacity = 0;
 thing = true;
+
+audio = noone;

@@ -48,6 +48,7 @@ if (clock >= 181) {
 			fade.targetOpacity = 1;
 			fade.mode = "fadeOut";
 			fade.destroyOnFinish = false;
+			fade.bounce = true;
 			clock = 0;
 		}
 		if (s_pressed) {
@@ -131,7 +132,7 @@ if (clock >= 181) {
 }
 
 if (state == "starting") {
-	if (clock == 90) {
+	if (clock == 65) {
 		audio_stop_all();
 		if (!fileExists or dontLoadFile) {
 			load_story_file_1("file0.ini");

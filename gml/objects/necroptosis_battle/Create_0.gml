@@ -48,10 +48,10 @@ global.hp_text = instance_create_depth(global.hpbar.x+global.player_maxhp*1.2+14
 global.arena = instance_create_depth(320, 700, depth-2, arena);
 global.bonemasker = instance_create_depth(0, 0, depth-3, bonemaskupdater);
 
-// for testing purposes only
-global.sans_obj = instance_create_depth(265, 75, depth-5, sp_dust_sans);
+//global.sans_obj = instance_create_depth(320, 75, depth-5, sp_dust_sans_new);
+global.sans_obj = instance_create_depth(320, 75, depth-5, sp_dust_sans_old); // if the gifs ever get fixed smh
 //global.inventory = ["Pie", "Noodles", "Steak", "S. Piece", "S. Piece", "S. Piece", "L. Hero", "L. Hero"];
-global.inventory = ["Pie"];
+//global.inventory = ["Pie"];
 
 global.canspare = true;//false;
 
@@ -106,6 +106,12 @@ audioid = noone;
 necropbg = noone;
 
 heals = 999;
+
+thing = false;
+thing2 = false;
+thing3 = false;
+
+coverScreen = false;
 
 if (!variable_global_exists("prevroom")) {
 	show_error("\n\nglobal.prevroom was NOT set before entering the battle!\nIf you don't need this functionality, disable it in testencounter.\n\n", true);

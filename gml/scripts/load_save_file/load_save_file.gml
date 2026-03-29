@@ -23,12 +23,12 @@ function load_save_file(ini_filepath) {
 		break;
 		
 		case "Throne Entrance":
-			//instance_create_depth(928, 256, 0, player);
-			//global.resetcam = true;
-			//room_goto(room_throne_entrance);
+			instance_create_depth(928, 256, 0, player);
+			global.resetcam = true;
+			room_goto(room_throne_entrance);
 			
-			instance_create_depth(1120, 288, 0, player); // the debugging continues.
-			room_goto(room_sanspassage);
+			//instance_create_depth(1120, 288, 0, player); // the debugging continues.
+			//room_goto(room_sanspassage);
 		break;
 	}
 }

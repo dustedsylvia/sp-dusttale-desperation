@@ -1,5 +1,5 @@
 ![SP!Dusttale logo](readme_assets/logo.png)
-<p style="text-align: center;">DEMO-1</p>
+<p style="text-align: center;">DEMO-2</p>
 
 <hr>
 
@@ -21,6 +21,10 @@ version demo-1:
  - This fixes save file issues if you don't have a save file
  - Is purely a demo of the VERY first part of the battle
  - Overworld, menu, first cutscene, etc is not included but will be included in the full release
+version demo-2:
+ - second demo!
+ - includes the overworld and cutscenes!
+ - still some bugs but this is the LAST demo until the full game!!! (dont quote me on that)
 
 ### Credits:
  - Toby Fox and Temmie Chang: Created UNDERTALE

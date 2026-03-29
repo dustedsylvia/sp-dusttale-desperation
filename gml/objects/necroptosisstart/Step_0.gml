@@ -48,7 +48,7 @@ if (state == 1) {
 	
 	if (clock == 180) {
 		textbox = instance_create_depth(0, 0, -9999, flavorer);
-		textbox.text = ["* im want kill you"];
+		textbox.text = ["* placeholder"];
 		textbox.text_voicebeep = voicebp_sans;
 		textbox.textspd = 2;
 		textbox.textfont = comicsans;
