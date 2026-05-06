@@ -36,11 +36,41 @@ lengthing = false;
 
 centerpivoted = false;
 
+arena_properties = [];
+redrawMask = false;
+
+tmpsprite = -4;
+
+maskToArena = true;
+
+starty = 0;
+targety = 0;
+sinspeed = 0;
+sintmr = 0;
+
+lerpx = x;
+lerpy = y;
+lerp_speed = 0.3;
+lerping = false;
+
 if (!variable_global_exists("bone_mask_surface")) { global.bone_mask_surface = -1; };
 if (!variable_global_exists("bone_clip_surface")) { global.bone_clip_surface = -1; };
 
 //arena_properties = [global.arena.sprite_index, global.arena.image_index, global.arena.x, global.arena.y, global.arena.image_xscale, global.arena.image_yscale, global.arena.image_angle, global.arena.image_alpha];
 //redrawMask = false;
+
+function MoveTo(newX, newY) {
+	x = newX;
+	y = newY;
+	lerpx = newX;
+	lerpy = newY;
+}
+
+function LerpTo(lerpX, lerpY) {
+	lerpx = lerpX;
+	lerpy = lerpY;
+	lerping = false;
+}
 
 lerpToLength = function(newLength) {
 	lerplength = newLength;
@@ -62,4 +92,11 @@ moveToLength = function(newLength, moveSpeedSpeed=2) {
 	lentomoveto = newLength;
 	lenmovespeed = 0;
 	lenmovespeedspeed = moveSpeedSpeed;
+}
+
+sinBetweenYPos = function(start_y, target_y, sin_speed) {
+	starty = start_y;
+	targety = target_y;
+	sinspeed = sin_speed;
+	sintmr = 0;
 }

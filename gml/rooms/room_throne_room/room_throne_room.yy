@@ -29,6 +29,7 @@
     {"name":"inst_59EB0DB3","path":"rooms/room_throne_room/room_throne_room.yy",},
     {"name":"inst_570D3EA1","path":"rooms/room_throne_room/room_throne_room.yy",},
     {"name":"inst_7568A600","path":"rooms/room_throne_room/room_throne_room.yy",},
+    {"name":"inst_7FF00E9C","path":"rooms/room_throne_room/room_throne_room.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -56,6 +57,7 @@
         {"$GMRInstance":"v4","%Name":"inst_7748C80A","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7748C80A","objectId":{"name":"roomtransitioner","path":"objects/roomtransitioner/roomtransitioner.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":80.0,"scaleY":4.5672607,"x":280.0,"y":1195.4327,},
         {"$GMRInstance":"v4","%Name":"inst_570D3EA1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_570D3EA1","objectId":{"name":"playercollision","path":"objects/playercollision/playercollision.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.34375,"scaleY":0.625,"x":413.0,"y":231.0,},
         {"$GMRInstance":"v4","%Name":"inst_7568A600","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7568A600","objectId":{"name":"asgoresthrone","path":"objects/asgoresthrone/asgoresthrone.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":280.0,"y":360.0,},
+        {"$GMRInstance":"v4","%Name":"inst_7FF00E9C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7FF00E9C","objectId":{"name":"overlay","path":"objects/overlay/overlay.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":30.0,"animationSpeedType":0,"colour":4294967295,"depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":{"name":"throneroom","path":"sprites/throneroom/throneroom.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],

@@ -1,14 +1,21 @@
-draw_set_halign(fa_left);
-draw_sprite(logo, 0, logo_x, logo_y);
-draw_sprite_ext(sanssprite, 0, -30, sansy, 3, 3, 0, c_white, itemsopacity);
-draw_set_halign(fa_center);
-draw_set_font(dtf_sans);
-draw_text_transformed_colour(320, 70, "Necroptosis - Desperation", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
-draw_set_halign(fa_left);
-draw_text_transformed_colour(280, creditstexty, "SP!Dusttale by sprinz\nDesperation by ketchupsans\nCoding by dustedsylvia\nPress R to return", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
-if (!fileExists) {
-	draw_text_transformed_colour(350, maintexty, "Press Z to start\nPress S for settings\nPress C for credits", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
+if (agreedToTermsOfDeathAndDespair) {
+	draw_set_halign(fa_left);
+	draw_sprite(logo, 0, logo_x, logo_y);
+	draw_sprite_ext(sanssprite, 0, -30, sansy, 3, 3, 0, c_white, itemsopacity);
+	draw_set_halign(fa_center);
+	draw_set_font(dtf_sans);
+	draw_text_transformed_colour(320, 70, "Necroptosis - Desperation", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
+	draw_set_halign(fa_left);
+	draw_text_transformed_colour(280, creditstexty, "SP!Dusttale by sprins\nDesperation by ketchupsans\nCoding by dustedsylvia\nPress R to return", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
+	if (!fileExists) {
+		draw_text_transformed_colour(350, maintexty, "Press Z to start\nPress S for settings\nPress C for credits", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
+	} else {
+		draw_text_transformed_colour(350, maintexty, "Press Z to continue\nPress S for settings\nPress C for credits", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
+	}
+	draw_text_transformed_colour(325, settingstexty, "Press E for easy mode\nPress N for no hit mode\nPress H for no heal mode\nPress R to return\n\nControls:\nWASD/arrows: movement\nZ/Enter: confirm\nC: heal (5 heals only)\nS: skip cutscenes\nF4: toggle fullscreen", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
 } else {
-	draw_text_transformed_colour(350, maintexty, "Press Z to continue\nPress S for settings\nPress C for credits", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);
+	draw_set_halign(fa_center);
+	draw_set_font(dtf_sans);
+	draw_text_transformed_colour(320, 70, "\nEPILEPSY WARNING!!!!\n\nThis game may cause seizures\nin epileptic individuals. If you\nhave epilepsy, you have to\nCLOSE THE GAME!!!!!\n\n\nPress Z to continue.", 2, 2, 0, c_white, c_white, c_white, c_white, clamp(tinyclock/100, 0, 1));
+	draw_set_halign(fa_left);
 }
-draw_text_transformed_colour(325, settingstexty, "Press E for easy mode\nPress N for no hit mode\nPress H for no heal mode\nPress R to return\n\nControls:\nWASD/arrows: movement\nZ/Enter: confirm\nC: heal (5 heals only)\nS: skip cutscenes\nF4: toggle fullscreen", 2, 2, 0, c_red, c_red, c_red, c_red, itemsopacity);

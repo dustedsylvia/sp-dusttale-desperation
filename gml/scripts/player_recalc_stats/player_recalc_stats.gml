@@ -28,5 +28,5 @@ function player_recalc_stats() {
 	
 	global.player_atk = (-2 + (2 * global.player_lv)) + global.weapon_atk;
 	global.player_def = ((global.player_lv - 1) / 4) + global.armor_def;
-	global.player_speed = 2.5; // 2.5 for 60fps
+	global.player_speed = 30;//2.5;//15;//2.5; // 2.5 for 60fps because 5 for 30fps
 }

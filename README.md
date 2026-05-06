@@ -1,5 +1,6 @@
 ![SP!Dusttale logo](readme_assets/logo.png)
-<p style="text-align: center;">DEMO-2</p>
+<h2 style="text-align: center;">an SP!Dusttale fangame by Ketchup_sans2009</h2>
+<p style="text-align: center;">version nightly-8</p>
 
 <hr>
 
@@ -14,7 +15,7 @@ version nightly-7.5:
  - OVERWORLD IS 99% DONE!!!! (there's literally just one bug i have to fix smh)
  - THE FIRST PART OF NECROPTOSIS IS DONE!!!
  - fixed some other bugs too
- - despite appearances  a LOT of tiny stuff got updated
+ - despite appearances a LOT of tiny stuff got updated
 
 version demo-1:
  - RELEASED THE FIRST DEMO!!!!!
@@ -26,6 +27,13 @@ version demo-2:
  - includes the overworld and cutscenes!
  - still some bugs but this is the LAST demo until the full game!!! (dont quote me on that)
 
+version nightly-8:
+Note: I haven't uploaded to this repo in a LONG time. Despite this, the game is still *actively* being worked on. You can expect a release within three weeks of me writing this (writing this on 5/6/2026).  
+ - added credits
+ - Partially fixed the lag
+ - Added some new attacks
+ - Fixed a lot of other things
+
 ### Credits:
  - Toby Fox and Temmie Chang: Created UNDERTALE
  - 反正是sprins就对了: Created the original AU
@@ -34,8 +42,14 @@ version demo-2:
  - Coding by dustedsylvia
  - Full credits available in-game
 
-### Building/modding/stealing the engine
-This game was built in the latest version (currently: IDE v2024.1400.4.1020 Beta Runtime v2024.1400.4.996) of [GameMaker BETA](https://gamemaker.io/en/download) (click the "GameMaker BETA version" dropdown). Once you've installed GameMaker for your platform, download/clone this repo and open the `yyp` file. Hopefully, it'll open in GameMaker and you can mod it or whatever. *Just please, PLEASE do not change the credits and pass this off as your own. You're welcome to use the undertale engine if you want, just credit appropriately.* **If this repository is abused, I will have to take it down.**
+### Modding the game (why...?????)
+This game was built in the latest version of [GameMaker BETA](https://gamemaker.io/en/download) (click the "GameMaker BETA version" dropdown). Once you've installed GameMaker for your platform, download/clone this repo and open the `yyp` file. Hopefully, it'll open in GameMaker and you can mod it or whatever. *Just please, PLEASE do not change the credits and pass this off as your own. You're welcome to use the undertale engine if you want, just credit appropriately.*
+
+### Quick note on stealing things
+Because there are some people out there that are d-ckholes, i have to put this here.  
+**STEALING THE SPRITES OR CODE OF THIS ENGINE WILL RESULT IN A DMCA TAKEDOWN.**  
+so, just don't be an asshole and *behave*. please, ffs.  
 
 ### Playtesting the game
-This repo will also contain *early releases* of this fangame. If you want to, go over to the "Releases" section and download the latest release. If you play through the whole game, send me a DM on Discord (`@dusted.sylvia`) and I'll credit you at the end as a playtester!
+This repo will also contain *early releases* of this fangame. If you want to, go over to the "Releases" section and download the latest release. If you play through the whole game, send me a DM on Discord (`@dusted.sylvia`) and I'll credit you at the end as a playtester!  
+*(...Note. The binaries in "releases" are **EXTREMELY** outdated. if you really want the latest version, download GameMaker and run it from there.)*

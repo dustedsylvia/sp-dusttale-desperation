@@ -49,6 +49,13 @@ function LerpToSize(lerpWidth, lerpHeight) {
 	lerpheight = lerpHeight;
 }
 
+function SetSize(newWidth, newHeight) {
+	lerpwidth = newWidth;
+	lerpheight = newHeight;
+	width = newWidth;
+	height = newHeight;
+}
+
 function SetAngle(newAngle) {
 	lerpangle = newAngle;
 	image_angle = newAngle;

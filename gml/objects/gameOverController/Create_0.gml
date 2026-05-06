@@ -41,7 +41,7 @@ with (instance_find(player, 0)) {
 gameovertext = ["It cannot end now!", global.player_name + "![pauseforframes:26]\nStay determined..."];
 
 gameoverflavorer = noone;
-gameovermusic = Determination;
+gameovermusic = no_way_back;
 
 // These should not be changed
 gameoveropacity = 0;

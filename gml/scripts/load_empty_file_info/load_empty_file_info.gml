@@ -3,7 +3,7 @@
 
 function load_empty_file_info() {
 	// Player section
-	global.player_name = "Chara";
+	global.player_name = "Frisk";
 	global.player_lv = 1;
 	global.player_maxhp = 20;
 	global.player_hp = 20;

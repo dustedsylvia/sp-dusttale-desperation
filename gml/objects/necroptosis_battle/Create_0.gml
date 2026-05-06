@@ -1,3 +1,7 @@
+if (global.is_gm_live_enabled) {
+	if (live_call()) return live_result;
+}
+
 // note: every piece of ui here is drawn using objects. why? it's a lot easier, in two ways:
 // for one, you can rotate it, apply physics to it, change the depth, delete it, move it, scale it, etc.
 // with one variable change. now that's a lot easier than drawing them all in one object. which is...
@@ -25,31 +29,32 @@ global.player_active = false;
 global.enemy_checkmsg = ["* [noadvance]sans.[pauseforframes:30]\n* ..."];
 global.in_battle = true;
 
-global.fight_button = instance_create_depth(33, 433, depth-5, button);
+global.fight_button = instance_create_depth(33, 500, depth-5, button); // 433
 global.fight_button.button_type = "fight"; // we don't actually have to do this as its the default.
                                            // but i'm doing it anyway!!!
-global.act_button = instance_create_depth(186, 433, depth-5, button);
+global.act_button = instance_create_depth(186, 500, depth-5, button);
 global.act_button.button_type = "act";
-global.item_button = instance_create_depth(346, 433, depth-5, button);
+global.item_button = instance_create_depth(346, 500, depth-5, button);
 global.item_button.button_type = "item";
-global.mercy_button = instance_create_depth(501, 433, depth-5, button);
+global.mercy_button = instance_create_depth(501, 500, depth-5, button);
 global.mercy_button.button_type = "mercy";
 
 // you can control the following instances using `global.object.property_you_want_to_change = value;`.
 global.soul = instance_create_depth(-999, -999, depth-8, soul);
-global.nametext = instance_create_depth(31, 401, depth-5, name);
-global.lovetext = instance_create_depth(133, 401, depth-5, lovevalue);
-global.hp_obj = instance_create_depth(225, 406, depth-5, hp);
-global.hpbar = instance_create_depth(256, 401, depth-5, hpbar);
+global.nametext = instance_create_depth(31, 500, depth-5, name); // 401
+global.lovetext = instance_create_depth(133, 500, depth-5, lovevalue); // 401
+global.hp_obj = instance_create_depth(225, 500, depth-5, hp); // 406
+global.hpbar = instance_create_depth(256, 500, depth-5, hpbar); // 401
 global.kr_enabled = true;//false;
 setup_kr = global.kr_enabled;
 // NOTE: THE LOCATION OF THIS IS ONLY UPDATED ONCE!!!
-global.hp_text = instance_create_depth(global.hpbar.x+global.player_maxhp*1.2+14, 401, depth-5, hptext);
+global.hp_text = instance_create_depth(global.hpbar.x+global.player_maxhp*1.2+14, 500, depth-5, hptext); // 401
 global.arena = instance_create_depth(320, 700, depth-2, arena);
 global.bonemasker = instance_create_depth(0, 0, depth-3, bonemaskupdater);
 
 //global.sans_obj = instance_create_depth(320, 75, depth-5, sp_dust_sans_new);
 global.sans_obj = instance_create_depth(320, 75, depth-5, sp_dust_sans_old); // if the gifs ever get fixed smh
+global.sans_obj.animationstyle = 1;
 //global.inventory = ["Pie", "Noodles", "Steak", "S. Piece", "S. Piece", "S. Piece", "L. Hero", "L. Hero"];
 //global.inventory = ["Pie"];
 
@@ -83,7 +88,7 @@ global.battleclock = -1;
 global.attackcounter = 0;
 global.dialogbubble = noone;
 global.attacktimer = 240;
-global.battlebgm = megalobroken;
+global.battlebgm = necroptosisv2;
 playbgm = true;
 
 updateSoulLocation = true;
@@ -105,17 +110,41 @@ clock = 180;
 audioid = noone;
 necropbg = noone;
 
-heals = 999;
+heals = 3;
+if (global.mode == "No Heal Mode") {
+	heals = 0;
+}
+
+if (global.mode == "No Hit Mode") {
+	global.player_maxhp = 1;
+	global.player_hp = 1;
+}
 
 thing = false;
+thing1dot5 = false;
 thing2 = false;
 thing3 = false;
+thing4 = false;
+thing5 = false;
+thing6 = false;
 
 coverScreen = false;
 
-if (!variable_global_exists("prevroom")) {
-	show_error("\n\nglobal.prevroom was NOT set before entering the battle!\nIf you don't need this functionality, disable it in testencounter.\n\n", true);
-}
+rainclock = 0;
+
+fragmentsofsentencesfromacompletelysaneindividual = ["there's no point", "you called for help", "nobody came", "obviously", "help", "end", "am i worth it?", "i hate myself"];
+
+drawtext = "";
+
+debugmode = false;
+
+draw_hangman = false;
+hxs = 1;
+hys = 1;
+
+bn1 = false;
+
+enable_scrapped_attacks = false;
 
 onspare = function() {
 	if (global.canspare) {

@@ -164,4 +164,6 @@ if (clock == 4120) {
 	load_demo_file_info();
 	save_save_file("file0.ini");
 	load_save_file("file0.ini");
+	global.can_move = true;
+	//global.can_menu = true;
 }

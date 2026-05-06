@@ -1,6 +1,10 @@
 if (global.mode != "Normal") {
 	draw_set_font(mnc);
 	draw_text(5, 5, global.mode);
+} else if (global.debug == true) {
+	draw_set_font(mnc);
+	draw_text(5, 5, "FPS: " + string(fps));
+	draw_set_font(dtf_sans);
 }
 
 if (global.drawsidebars) {

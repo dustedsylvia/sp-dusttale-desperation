@@ -2,3 +2,6 @@
 //the object "time" HAS TO BE CREATED. not because it sets some variables or something, but
 //because IT DRAWS THE WHOLE APPLICATION. so if you can't see anything, make sure obj_time is created.
 nevermind
+
+im fucking crine did you just comment that out😭😭😭
+it's already a comment😭😭😭😭😭

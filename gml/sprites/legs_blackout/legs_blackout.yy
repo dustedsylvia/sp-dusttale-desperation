@@ -23,7 +23,7 @@
   ],
   "name":"legs_blackout",
   "nineSlice":null,
-  "origin":1,
+  "origin":7,
   "parent":{
     "name":"sepsprites",
     "path":"folders/Sprites/SP!Dust!Sans/sepsprites.yy",
@@ -76,7 +76,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":18,
-    "yorigin":0,
+    "yorigin":23,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

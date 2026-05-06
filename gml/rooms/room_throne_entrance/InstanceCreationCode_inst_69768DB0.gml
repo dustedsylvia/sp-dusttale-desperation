@@ -1,2 +1,2 @@
 location = "Throne Entrance";
-savetext = ["* ...[color:#333333]wowo such edgy"];
+savetext = ["* You are ready for what's coming.\n* You're filled with\ndetermination."];

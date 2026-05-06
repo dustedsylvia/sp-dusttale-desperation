@@ -537,14 +537,6 @@ if (global.battle_state == "enemyattack") {
 					createbone(50, global.arena.y-(global.arena.height/2)+5, sansbone600, "orange", 90, 1, 1, 1, 0, 5, 0, 0, 0, 0, depth-4);
 				}
 				if (global.attacktimer % 7 == 0) {
-					// alright so quick intervention
-					// i had to disable "remove unused assets when compiling" as it would not include most of the bone assets.
-					// i was very confused by this for a good hour
-					// but according to [this](https://github.com/YoYoGames/GameMaker-Bugs/issues/9011) you have to do that
-					// it's not a good solution but i am NOT typing out 640 sprites in obj_time
-					// i could generate them with a script?
-					// i should...actually probably do that but like later
-					
 					createbone(global.arena.x-(global.arena.lerpwidth/2)-20, global.arena.y-(global.arena.lerpheight/2)-5, asset_get_index($"sansbone{round(75 + (sin(sintimer)*20))}"), "white", 90, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-4);
 					createbone(global.arena.x+(global.arena.lerpwidth/2)-45+round((sin(sintimer)*20)), global.arena.y-(global.arena.lerpheight/2)-5, sansbone200, "white", 90, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-4);
 				}

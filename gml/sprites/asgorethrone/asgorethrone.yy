@@ -2,7 +2,7 @@
   "$GMSprite":"v2",
   "%Name":"asgorethrone",
   "bboxMode":0,
-  "bbox_bottom":133,
+  "bbox_bottom":87,
   "bbox_left":0,
   "bbox_right":75,
   "bbox_top":0,
@@ -12,14 +12,14 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"v1","%Name":"4ac90555-2e14-4a30-8b48-ab5726e660b4","name":"4ac90555-2e14-4a30-8b48-ab5726e660b4","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"a1369c1f-fcc0-44eb-8cdd-8a8c5a9b53f3","name":"a1369c1f-fcc0-44eb-8cdd-8a8c5a9b53f3","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
-  "height":134,
+  "height":88,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"4e5fdb3e-272b-4c3a-af72-142db4bc0e30","blendMode":0,"displayName":"default","isLocked":false,"name":"4e5fdb3e-272b-4c3a-af72-142db4bc0e30","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"8bb50379-e39f-435d-adeb-bea181bd9a12","blendMode":0,"displayName":"default","isLocked":false,"name":"8bb50379-e39f-435d-adeb-bea181bd9a12","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"asgorethrone",
   "nineSlice":null,
@@ -69,8 +69,8 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4ac90555-2e14-4a30-8b48-ab5726e660b4","path":"sprites/asgorethrone/asgorethrone.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"c66a7b81-2a6d-4780-92bb-a44e38e653c6","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a1369c1f-fcc0-44eb-8cdd-8a8c5a9b53f3","path":"sprites/asgorethrone/asgorethrone.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"f1fdfea2-7b62-43ef-84c8-fe2c6fa1874b","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

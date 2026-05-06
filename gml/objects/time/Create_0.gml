@@ -24,4 +24,15 @@ global.playercutscenemoveup = false;
 
 global.reinitialized = false;
 
+//global.cam = instance_create_depth(0, 0, -9999, camera_controller);
+
 timer = 0;
+
+global.debug = false;
+
+global.drewMaskSurfacesPhaseOne = false;
+global.drewMaskSurfacesPhaseTwo = false;
+
+global.disablepivotedbonewarning = false;
+
+global.is_gm_live_enabled = false;

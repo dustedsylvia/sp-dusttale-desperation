@@ -5,7 +5,7 @@ if (!variable_global_exists("player_initialized")) {
 	
 	if (!variable_global_exists("can_move")) { global.can_move = true; }
 	if (!variable_global_exists("can_menu")) { global.can_menu = true; }
-	if (!variable_global_exists("player_name")) { global.player_name = "Chara"; }
+	if (!variable_global_exists("player_name")) { global.player_name = "Frisk"; }
 	if (!variable_global_exists("player_lv")) { global.player_lv = 1; }
 	if (!variable_global_exists("player_exp")) { global.player_exp = 0; }
 	if (!variable_global_exists("player_kills")) { global.player_kills = 0; }

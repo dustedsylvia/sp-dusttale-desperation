@@ -1,3 +1,11 @@
+if (x != lerpx) {
+	x = lerp(x, lerpx, lerp_speed);
+}
+
+if (y != lerpy) {
+	y = lerp(y, lerpy, lerp_speed);
+}
+
 text = global.player_name;
 
 var t = draw_get_font();

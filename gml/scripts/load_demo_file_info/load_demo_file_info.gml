@@ -3,7 +3,7 @@
 
 function load_demo_file_info() {
 	// Player section
-	global.player_name = "Chara";
+	global.player_name = "Frisk";
 	global.player_lv = 10;
 	global.player_maxhp = 56;
 	global.player_hp = 56;

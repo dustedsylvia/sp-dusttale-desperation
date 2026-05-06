@@ -1,3 +1,7 @@
+if (global.is_gm_live_enabled) {
+	if (live_call()) return live_result;
+}
+
 var arrow_left = keyboard_check_pressed(vk_left);
 var arrow_right = keyboard_check_pressed(vk_right);
 var arrow_up = keyboard_check_pressed(vk_up);
@@ -22,20 +26,33 @@ var key_shift = keyboard_check_pressed(vk_shift);
 var confirm = (key_z or key_enter);
 var cancel = (key_x or key_shift);
 
-if (global.player_hp <= 0) {
+if (global.player_hp + global.KR < 1 and global.mode != "No Hit Mode") {
 	room_goto(room_gameover);
+} else if (global.player_hp + global.KR < 1) {
+	room_goto(room_necroptosis);
+	global.reinitialized = true;
+	global.arena.LerpToAngle(0);
+	global.screen.LerpToAngle(0);
+	with (boneattack) {instance_destroy();}
+	with (gasterblaster) {instance_destroy();}
+	with (gasterbeam) {instance_destroy();}
+	with (platform) {instance_destroy();}
+	with (soul) {instance_destroy();}
+	audio_stop_all();
+	stopColorInversion();
+	exit;
 }
 
 if (setup_kr) {
 	// NOTE: THE LOCATION OF THIS IS ONLY UPDATED ONCE!!!
-	global.kr_obj = instance_create_depth(global.hpbar.x+global.player_maxhp*1.2+10, 406, depth-5, kr);
+	global.kr_obj = instance_create_depth(global.hpbar.x+global.player_maxhp*1.2+10, 500, depth-5, kr); // 406
 	global.hp_text.x = global.hpbar.x+global.player_maxhp*1.2+50;
 	setup_kr = false;
 }
 
 if (playbgm) {
 	playbgm = false;
-	audioid = audio_play_sound(necroptosis, 2, false);
+	audioid = audio_play_sound(necroptosisv2, 2, false);
 }
 
 if (global.battle_state == "actionselect") {
@@ -425,10 +442,34 @@ if (global.battle_state == "dialog") {
 		initDialog = false;
 	}
 	
-	if (point_distance(audio_sound_get_track_position(audioid), 0, 11.8, 0) <= 0.1 and !thing) {
+	rainclock += 1;
+	if (rainclock >= 0 and rainclock <= 1320 and rainclock % 5 == 0) {
+		instance_create_depth(irandom(640), 0, 0, raindrop);
+		instance_create_depth(640, irandom(480), 0, raindrop);
+	}
+	
+	if (rainclock > 708 and rainclock % 20 == 0 and drawtext != " ") {
+		drawtext = fragmentsofsentencesfromacompletelysaneindividual[irandom_range(0, array_length(fragmentsofsentencesfromacompletelysaneindividual)-1)];
+	}
+	
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 11.2, 0) <= 0.1 and !thing) {
 		global.sans_obj.preset("quiet");
 		thing = true;
 		instance_create_depth(0, 0, depth, whitefader);
+		global.nametext.LerpTo(31, 401);
+		global.lovetext.LerpTo(133, 401);
+		global.hp_obj.LerpTo(225, 406);
+		global.hpbar.LerpTo(256, 401);
+		global.hp_text.LerpTo(global.hpbar.x+global.player_maxhp*1.2+50, 401);
+		global.kr_obj.LerpTo(global.hpbar.x+global.player_maxhp*1.2+10, 406);
+	}
+	
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 12.3, 0) <= 0.1 and !thing1dot5) {
+		thing1dot5 = true;
+		global.fight_button.LerpTo(33, 433);
+		global.act_button.LerpTo(186, 433);
+		global.item_button.LerpTo(346, 433);
+		global.mercy_button.LerpTo(501, 433);
 	}
 	
 	if (point_distance(audio_sound_get_track_position(audioid), 0, 17.1, 0) <= 0.1 and !thing2) {
@@ -441,47 +482,105 @@ if (global.battle_state == "dialog") {
 		thing3 = true;
 	}
 	
-	if (point_distance(audio_sound_get_track_position(audioid), 0, 22.5, 0) <= 0.1) {
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 22.0, 0) <= 0.1) {
 		coverScreen = true;
+		drawtext = " ";
 	}
 	
-	if (keyboard_check_pressed(ord("C")) or audio_sound_get_track_position(audioid) >= 25.00 or global.reinitialized) {
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 23.4, 0) <= 0.1 and !thing4) {
+		hxs = 0.6;
+		hys = 0.6;
+		draw_hangman = true;
+		thing4 = true;
+		screenshake(54, 10, 54);
+	}
+	
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 23.7, 0) <= 0.1 and !thing5) {
+		hxs = 0.8;
+		hys = 0.8;
+		thing5 = true;
+	}
+	
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 24, 0) <= 0.1 and !thing6) {
+		hxs = 1;
+		hys = 1;
+		thing6 = true;
+	}
+	
+	if (point_distance(audio_sound_get_track_position(audioid), 0, 24.3, 0) <= 0.1) {
+		draw_hangman = false;
+	}
+
+	if (keyboard_check_pressed(ord("S")) or audio_sound_get_track_position(audioid) >= 24.7 or global.reinitialized) {
 		global.battle_state = "enemyattack";
 		initEnemyAttack = true;
-		audio_sound_set_track_position(audioid, 25.00);
-		necropbg = instance_create_depth(320, 480, depth, necroptosisbackgroundmaker);
+		audio_sound_set_track_position(audioid, 24.7);
+		necropbg = instance_create_depth(320, 480, depth, lagmachine);
 		global.reinitialized = false;
+		global.nametext.MoveTo(31, 401);
+		global.lovetext.MoveTo(133, 401);
+		global.hp_obj.MoveTo(225, 406);
+		global.hpbar.MoveTo(256, 401);
+		global.hp_text.MoveTo(global.hpbar.x+global.player_maxhp*1.2+50, 401);
+		global.kr_obj.MoveTo(global.hpbar.x+global.player_maxhp*1.2+10, 406);
+		global.fight_button.MoveTo(33, 433);
+		global.act_button.MoveTo(186, 433);
+		global.item_button.MoveTo(346, 433);
+		global.mercy_button.MoveTo(501, 433);
+		drawtext = " ";
 	}
 }
 
 if (global.battle_state == "enemyattack") {
+	if (debugmode) {
+		heals = 3;
+	}
+	
 	if (initEnemyAttack) {
 		attackid = irandom(0);
 		switch (attackid) { // initialize attacks here
 			case 0:
-				global.attacktimer = 0;
-				global.arena.MoveTo(320, 400);
-				global.arena.LerpTo(320, 321);
-				global.arena.LerpToSize(296, 146);
-				global.soul.MoveTo(312, 300);
-				global.soul.TurnBlue("down");
-				createbone(arenaRightSideX(), 375, sansbone25, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
-				createbone(arenaRightSideX()+20, 360, sansbone30, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
-				createbone(arenaRightSideX()+40, 345, sansbone45, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
-				createbone(arenaRightSideX()+60, 330, sansbone60, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
-				createbone(arenaRightSideX()+80, 315, sansbone75, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
-				bone1 = createbone(arenaLeftSideX(), 255, sansbone50, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
-				bone2 = createbone(arenaLeftSideX()-20, 255, sansbone50, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+				if (debugmode) {
+					global.attacktimer = 1201;
+					global.arena.MoveTo(320, 321);
+					global.arena.LerpToSize(140, 140);
+					
+					global.soul.TurnRed();
+					global.soul.MoveTo(320, 321);
+					
+					if (instance_exists(necropbg) == false) {
+						necropbg = instance_create_depth(320, 480, depth, lagmachine);
+					}
+					
+					global.sans_obj.preset("sadredeyes");
+					coverScreen = false;
+					global.arena.shakeang(0, 0);
+				} else {
+					global.attacktimer = 0;
+					global.arena.MoveTo(320, 400);
+					global.arena.LerpTo(320, 321);
+					global.arena.LerpToSize(296, 146);
+					
+					global.soul.MoveTo(312, 300);
+					global.soul.TurnBlue("down");
+					createbone(arenaRightSideX(), 375, sansbone25, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaRightSideX()+20, 360, sansbone30, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaRightSideX()+40, 345, sansbone45, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaRightSideX()+60, 330, sansbone60, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaRightSideX()+80, 315, sansbone75, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+					bone1 = createbone(arenaLeftSideX(), 255, sansbone50, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+					bone2 = createbone(arenaLeftSideX()-20, 255, sansbone50, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
 				
-				if (instance_exists(necropbg) == false) {
-					necropbg = instance_create_depth(320, 480, depth, necroptosisbackgroundmaker);
-				}
+					if (instance_exists(necropbg) == false) {
+						necropbg = instance_create_depth(320, 480, depth, lagmachine);
+					}
 				 
-				createAttackWarning(183, 271, 100, 120, depth-4, 0);
-				//createAttackWarning(10, 10, 108, 108, -9999, 0, 3000);
-				global.arena.shakeang();
-				global.sans_obj.preset("blackoutwitheyes");
-				coverScreen = false;
+					createAttackWarning(183, 271, 100, 120, depth-4, 0);
+					//createAttackWarning(10, 10, 108, 108, -9999, 0, 3000);
+					global.arena.shakeang(0, 0);
+					global.sans_obj.preset("blackoutwitheyes");
+					coverScreen = false;
+				}
 			break;
 		}
 		initEnemyAttack = false;
@@ -497,7 +596,7 @@ if (global.battle_state == "enemyattack") {
 				audio_play_sound(heal, 1, false);
 				heals -= 1;
 				var h = instance_create_depth(10, 10, -999, heal_informer);
-				h.text = $"{heals}/999 heals remaining";
+				h.text = $"{heals}/3 heals remaining";
 				h.alphavel = -0.01;
 			}
 			
@@ -510,6 +609,8 @@ if (global.battle_state == "enemyattack") {
 				global.reinitialized = true;
 				global.arena.LerpToAngle(0);
 				global.screen.LerpToAngle(0);
+				global.player_hp = global.player_maxhp;
+				global.KR = 0;
 				with (boneattack) {instance_destroy();}
 				with (gasterblaster) {instance_destroy();}
 				with (gasterbeam) {instance_destroy();}
@@ -523,8 +624,8 @@ if (global.battle_state == "enemyattack") {
 			if (global.attacktimer == 30) {
 				bones1 = [];
 				for (var i = 0; i <= 8; i++) {
-					var tmp = createbone(186+12*i, arenaBottomSideY(), sansbone12, "white", irandom_range(-3, 3), 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4, true);
-					tmp.lerpToLength(irandom_range(200, 250));
+					var tmp = createbone(186+12*i, arenaBottomSideY()+5, sansbone12, "white", irandom_range(177, 183), 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4, false);
+					tmp.lerpToLength(irandom_range(110, 135));
 					array_push(bones1, tmp);
 				}
 				audio_play_sound(bigattack, 0.5, false);
@@ -579,15 +680,15 @@ if (global.battle_state == "enemyattack") {
 			}
 			
 			if (global.attacktimer == 325) {
-				createbone(global.arena.x, arenaTopSideY(), sansbone296, "blue", 90, 1, 1, 1, 0, 6, 0, 0, 0, 0, depth-4, true);
+				createbone(global.arena.x-148, arenaTopSideY(), sansbone296, "blue", 90, 1, 1, 1, 0, 6, 0, 0, 0, 0, depth-4, false);
 			}
 			
 			if (global.attacktimer == 330) {
 				bones2 = [];
-				for (var i = 0; i <= 14; i++) {
-					var tmp = createbone(arenaRightSideX(), arenaTopSideY()+12*i, sansbone12, "white", 270+irandom_range(-3, 3), 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4, true);
-					tmp.lerpToLength(irandom_range(350, 400));
-					array_push(bones2, tmp);
+				for (var i = 0; i <= 11; i++) {
+					var tmp = createbone(arenaRightSideX()+148, arenaTopSideY()+12*i, sansbone12, "white", irandom_range(267, 273), 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4, false);
+					tmp.lerpToLength(irandom_range(300, 350));
+					array_push(bones2, tmp)
 				}
 				audio_play_sound(bigattack, 0.5, false);
 				
@@ -600,7 +701,7 @@ if (global.battle_state == "enemyattack") {
 			}
 			
 			if (global.attacktimer == 370) {
-				for (var i = 0; i <= 13; i++) {
+				for (var i = 0; i <= 11; i++) {
 					bones2[i].moveToLength(13, 3);
 					bones2[i].x += 2;
 				}
@@ -625,8 +726,8 @@ if (global.battle_state == "enemyattack") {
 			if (global.attacktimer > 430 and global.attacktimer < 744) {
 				sintimer += 1;
 				if (global.attacktimer % 7 == 0) {
-					var leftbone = createbone(global.arena.x+(global.arena.width/2)-5, global.arena.y-(global.arena.height/2)-5, asset_get_index($"sansbone{round(65 + (sin(sintimer)*20))}"), "white", 270, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-4, false);
-					var rightbone = createbone(global.arena.x-(global.arena.width/2)+5, global.arena.y-(global.arena.height/2)+5, asset_get_index($"sansbone{round(35 + (sin(sintimer)*-20))}"), "white", 90, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-4, false);
+					var leftbone = createbone(global.arena.x+(global.arena.width/2)-5, global.arena.y-(global.arena.height/2)-5, asset_get_index($"sansbone{round(62 + (sin(sintimer)*20))}"), "white", 270, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-4, false);
+					var rightbone = createbone(global.arena.x-(global.arena.width/2)+5, global.arena.y-(global.arena.height/2)+5, asset_get_index($"sansbone{round(38 + (sin(sintimer)*-20))}"), "white", 90, 1, 1, 1, 0, 3, 0, 0, 0, 0, depth-4, false);
 					array_push(stickyleftsidebones, leftbone);
 					array_push(stickyrightsidebones, rightbone);
 				}
@@ -649,8 +750,9 @@ if (global.battle_state == "enemyattack") {
 			if (global.attacktimer == 800) {
 				bones3 = [];
 				for (var i = 0; i <= 3; i++) {
-					var tmp = createbone(300+10*i, arenaTopSideY(), sansbone12, "white", irandom_range(-3, 3), 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4, true);
-					tmp.lerpToLength(irandom_range(250, 280));
+					var tmp = createbone(300+10*i, arenaTopSideY()-global.arena.height/2, sansbone12, "white", irandom_range(-3, 3), 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4, false, true);
+					tmp.lerpToLength(irandom_range(190, 240));
+					
 					array_push(bones3, tmp);
 				}
 				audio_play_sound(bigattack, 0.5, false);
@@ -677,11 +779,234 @@ if (global.battle_state == "enemyattack") {
 				global.arena.LerpToSize(140, 140);
 			}
 			
-			if (global.attacktimer == 1300) {
-				show_message("END OF DEMO===\nThanks for playing!\n\nAs you can tell, there's a few bugs that need to be fixed--and obviously Necroptosis needs to be finished--but the game is mostly completed.");
-				game_end(0);
+			if (global.attacktimer == 1040) {
+				global.soul.LerpTo(312, 300);
 			}
 			
+			if (global.attacktimer == 1080) {
+				createbone(arenaRightSideX(), arenaTopSideY()+5, sansbone80, "white" , 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaRightSideX(), arenaTopSideY()+115, sansbone20, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone80, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+115, sansbone20, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+			}
+			
+			if (global.attacktimer == 1120) {
+				createbone(arenaRightSideX(), arenaTopSideY()+5, sansbone20, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaRightSideX(), arenaTopSideY()+55, sansbone80, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone20, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+55, sansbone80, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+			}
+			
+			if (global.attacktimer == 1160) {
+				createbone(arenaRightSideX(), arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaRightSideX(), arenaTopSideY()+85, sansbone50, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+85, sansbone50, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+			}
+			
+			if (global.attacktimer == 1200) {
+				createbone(arenaRightSideX(), arenaTopSideY()+5, sansbone80, "white" , 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaRightSideX(), arenaTopSideY()+115, sansbone20, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone80, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+115, sansbone20, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+			}
+			
+			if (global.attacktimer == 1240) {
+				createbone(arenaRightSideX(), arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaRightSideX(), arenaTopSideY()+85, sansbone50, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+85, sansbone50, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+			}
+			
+			if (global.attacktimer == 1280) {
+				createbone(arenaRightSideX(), arenaTopSideY()+5, sansbone20, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaRightSideX(), arenaTopSideY()+55, sansbone80, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone20, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+55, sansbone80, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+			}
+			
+			if (global.attacktimer == 1320) {
+				createbone(arenaRightSideX(), arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaRightSideX(), arenaTopSideY()+85, sansbone50, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+				createbone(arenaLeftSideX()-5, arenaTopSideY()+85, sansbone50, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+			}
+			
+			if (enable_scrapped_attacks) {
+				if (global.attacktimer == 1360) {
+					var fade = instance_create_depth(0, 0, -999, fader);
+					fade.bounce = true;
+					fade.startingOpacity = 0;
+					fade.fadeOverFrames = 50;
+					fade.targetOpacity = 1;
+					fade.destroyOnFinish = true;
+					fade.mode = "fadeOut";
+					fade.sprite_index = white;
+					fade.executeOnFirstBounce = function() {
+						fadeOverFrames = 20;
+						with (boneattack) {instance_destroy();}
+						with (gasterblaster) {instance_destroy();}
+						with (gasterbeam) {instance_destroy();}
+						global.arena.SetSize(350, 140);
+						global.soul.TurnBlue("right");
+						global.sans_obj.preset("sadredeyes");
+						bones4 = [];
+						bones5 = [];
+						var tx = arenaLeftSideX()-5;
+						for (var i = 0; i < 35; i++) {
+							tx += 10;
+							var bone = createbone(tx, arenaTopSideY()+5, sansbone20, "white", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4);
+							array_push(bones4, bone);
+						}
+						tx = arenaLeftSideX()-5;
+						for (var i = 0; i < 35; i++) {
+							tx += 10;
+							var bone_ = createbone(tx, arenaTopSideY()+115, sansbone20, "white", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-4);
+							array_push(bones5, bone_);
+						}
+					}
+					createbone(arenaRightSideX(), arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, -1, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaRightSideX(), arenaTopSideY()+85, sansbone50, "white", 0, 1, 1, 1, -1, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaLeftSideX()-5, arenaTopSideY()+85, sansbone50, "white", 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, depth-4, false);
+				}
+			
+				if (global.attacktimer >= 1410 and global.attacktimer <= 2000 and global.attacktimer % 30 == 0) {
+					createbone(arenaRightSideX(), arenaTopSideY()+72, sansbone30, "white", 90, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-4, false);
+				}
+			
+				if (global.attacktimer >= 1410 and global.attacktimer <= 2000 and global.attacktimer % 60 == 0) {
+					if (choose(0, 1) == 0) {
+						createNecroptosisGasterBlaster(-200, arenaTopSideY()+45, 200, arenaTopSideY()+45, false, depth-5, 90, 90, 45, 0.5, 1);
+					} else {
+						createNecroptosisGasterBlaster(-200, arenaTopSideY()+95, 200, arenaTopSideY()+95, false, depth-5, 90, 90, 45, 0.5, 1);
+					}
+				}
+			
+				if (global.attacktimer >= 2000 and global.attacktimer <= 2120) {
+					for (var i = 0; i < 35; i++) {
+						bones4[i].yvel += 0.02;
+						bones5[i].yvel -= 0.02;
+					}
+				}
+			
+				if (global.attacktimer == 2030) {
+					for (var i = 0; i < 35; i++) {
+						bones4[i].type = "orange";
+						bones5[i].type = "orange";
+					}
+					audio_play_sound(eyeflash, 0.5, false);
+					global.soul.TurnRed();
+				}
+			
+				if (global.attacktimer == 2100) {
+					coverScreen = true;
+					audio_play_sound(noise, 0.5, false);
+				}
+			
+				if (global.attacktimer == 2115) {
+					global.arena.SetSize(140, 140);
+					global.soul.MoveTo(320, 321);
+				}
+			
+				if (global.attacktimer == 2130) {
+					coverScreen = false;
+					audio_play_sound(noise, 0.5, false);
+				}
+			
+				if (global.attacktimer == 2190) {
+					createNecroptosisGasterBlaster(-200, -200, global.arena.x - 200, global.arena.y - 200, false, depth-9, 45, 45, 45, 1, 1);
+					createNecroptosisGasterBlaster(840, -200, global.arena.x + 200, global.arena.y - 200, false, depth-9, -45, -45, 45, 1, 1);
+				}
+			
+				if (global.attacktimer == 2250) {
+					createNecroptosisGasterBlaster(-200, arenaTopSideY()+5, global.arena.x - 200, arenaTopSideY()+5, false, depth-9, 90, 90, 45, 1, 1);
+					createNecroptosisGasterBlaster(arenaRightSideX()-5, -200, arenaRightSideX()-5, global.arena.y - 200, false, depth-9, 0, 0, 45, 1, 1);
+					createNecroptosisGasterBlaster(840, arenaBottomSideY()-5, global.arena.x + 200,arenaBottomSideY()-5, false, depth-9, -90, -90, 45, 1, 1);
+					createNecroptosisGasterBlaster(arenaLeftSideX()+5, -200, arenaLeftSideX()+5, global.arena.y + 200, false, depth-9, 180, 180, 45, 1, 1);
+				}
+			
+				if (global.attacktimer == 2310) {
+					createNecroptosisGasterBlaster(-200, -200, global.arena.x - 200, global.arena.y - 200, false, depth-9, 45, 45, 45, 1, 1);
+					createNecroptosisGasterBlaster(840, -200, global.arena.x + 200, global.arena.y - 200, false, depth-9, -45, -45, 45, 1, 1);
+				}
+			
+				if (global.attacktimer == 2370) {
+					createNecroptosisGasterBlaster(-200, -200, global.arena.x - 300, global.arena.y, false, depth-9, 90, 90, 45, 2, 2);
+					createNecroptosisGasterBlaster(840, -200, global.arena.x + 300, global.arena.y, false, depth-9, -90, -90, 45, 2, 2);
+					createNecroptosisGasterBlaster(global.arena.x, -200, global.arena.x, global.arena.y - 300, false, depth-9, 0, 0, 45, 2, 2);
+				}
+			
+				if (global.attacktimer == 2430) {
+					global.soul.TurnBlue("up");
+				}
+			
+				if (global.attacktimer == 2490) {
+					bn1 = createbone(arenaLeftSideX()+5, arenaBottomSideY(), sansbone130, "white", 90, 1, 1, 1, 0, 0, 0, 0, 0, 0, depth-6, false, true);
+					bn1.sinBetweenYPos(arenaBottomSideY(), global.arena.y + 50, 0.1);
+				}
+			
+				if (global.attacktimer >= 2490 and global.attacktimer <= 2900 and global.attacktimer % 60 == 0) {
+					createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone20, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-6, false, true);
+					createbone(arenaRightSideX(), arenaTopSideY()+5, sansbone20, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-6, false, true);
+				}
+			
+				if (global.attacktimer >= 2490 and global.attacktimer <= 2900 and (global.attacktimer + 30) % 120 == 0) {
+					createNecroptosisGasterBlaster(-200, -200, global.arena.x - 200, global.arena.y, false, depth-9, 90, 90, 30, 0.5, 1);
+					createNecroptosisGasterBlaster(840, -200, global.arena.x + 200, global.arena.y, false, depth-9, -90, -90, 30, 0.5, 1);
+				}
+			
+				if (global.attacktimer == 2901) {
+					bn1.sinBetweenYPos(0, 0, 0);
+					bn1.yvel = 2;
+				}
+			} else {
+				if (global.attacktimer == 1360) {
+					var fade = instance_create_depth(0, 0, -999, fader);
+					fade.bounce = true;
+					fade.startingOpacity = 0;
+					fade.fadeOverFrames = 50;
+					fade.targetOpacity = 1;
+					fade.destroyOnFinish = true;
+					fade.mode = "fadeOut";
+					fade.sprite_index = white;
+					fade.executeOnFirstBounce = function() {
+						fadeOverFrames = 20;
+						with (boneattack) {instance_destroy();};
+						with (gasterblaster) {instance_destroy();};
+						with (gasterbeam) {instance_destroy();};
+						global.arena.SetSize(400, 150);
+						global.soul.TurnBlue("down");
+						global.sans_obj.preset("sadredeyes");
+						createbone(arenaRightSideX(), 250, sansbone100, "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-4, false);
+						createbone(arenaRightSideX()+20, 250, sansbone100, "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-4, false);
+						createbone(arenaLeftSideX(), 250, sansbone140, "orange", 0, 1, 1, 1, 5, 0, 0, 0, 0, 0, depth-5, false);
+						
+						var a = createbone(arenaLeftSideX(), 355, sansbone35, "white", 0, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-4, false);
+						var b = createbone(arenaLeftSideX()-20, 360, sansbone30, "white", 0, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-4, false);
+						var c = createbone(arenaLeftSideX()-40, 365, sansbone25, "white", 0, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-4, false);
+						a.lengthbetween(30, 60, 0.5);
+						b.lengthbetween(30, 60, 0.5);
+						c.lengthbetween(30, 60, 0.5);
+					}
+				}
+				
+				if (global.attacktimer == 1420) {
+					createbone(arenaLeftSideX(), 250, sansbone140, "orange", 0, 1, 1, 1, 5, 0, 0, 0, 0, 0, depth-5, false);
+				}
+			}
+			
+			if (global.attacktimer == 5280) {
+				coverScreen = true;
+			}
+			
+			if (global.attacktimer == 5290) {
+				global.sans_obj.preset("blackout");
+			}
+			
+			if (global.attacktimer == 5328) {
+				coverScreen = false;
+			}
 		break;
 	}
 	

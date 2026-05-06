@@ -55,6 +55,9 @@ if (global.can_move == true) {
 		global.player_y2speed = distance_to_object(colliding(x, y + global.player_y2speed));
 	}
 	
+	
+	// this happens because when you press two simulaneously, it runs the code for it and RESETS THE SPRITE INDEX which is all fun and games until you have a two frame animation
+	// OH MY GOD I FIXED IT EUHGF auyg b7iwe gt78o43 ytn78 atynont8 7y 87oWYBO&*W$ *&^$TC&O*cg4t78
 	if (left) {
 		x -= global.player_x1speed;
 		//if (!right and !down and !up) {

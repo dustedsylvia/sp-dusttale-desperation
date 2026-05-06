@@ -27,6 +27,6 @@ executeOnCompletion = function() {
 // * oh.
 // * i could've swor
 // shut the fuck up
-// okay
+// * okay
 
 offset = 0;

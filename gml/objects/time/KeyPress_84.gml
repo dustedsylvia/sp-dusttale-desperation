@@ -4,4 +4,6 @@
 //	show_debug_message("m");
 //}
 
-show_debug_message("In room:" + string(room));
+//show_debug_message("In room:" + string(room));
+
+//global.cam.lerptozoom(320, 240, 3, 1);

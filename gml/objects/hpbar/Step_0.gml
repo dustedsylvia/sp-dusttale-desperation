@@ -1,10 +1,18 @@
+if (x != lerpx) {
+	x = lerp(x, lerpx, lerp_speed);
+}
+
+if (y != lerpy) {
+	y = lerp(y, lerpy, lerp_speed);
+}
+
 if (global.kr_enabled == true) {
 	clock += 1;
 
-	// i wrote this KR system for a 30fps battle engine. so, the simple solution is to
+	// i wrote this KR system in a 30fps battle engine. so, the simple solution is to
 	// run it every other frame.
 	// ...
-	// stop looking at me that way!!!!!
+	// * Stop looking at me that way.
 
 	if (clock % 2 == 0) {
 		if (global.KR > 40) {

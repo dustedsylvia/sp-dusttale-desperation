@@ -8,6 +8,5 @@ if (instance_number(player) > 1) {
 }
 
 if (instance_number(player) == 0) {
-	show_debug_message("No player object exists!");//\nSee the logs for more information.\n\n", true);
+	//show_debug_message("No player object exists!");//\nSee the logs for more information.\n\n", true);
 }
-

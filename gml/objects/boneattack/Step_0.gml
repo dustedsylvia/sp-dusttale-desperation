@@ -15,6 +15,25 @@ if (image_alpha > 1) { image_alpha = 1; };
 image_xscale += xscalevel;
 image_yscale += yscalevel;
 
+if (lerping) {
+	if (x != lerpx) {
+		x = lerp(x, lerpx, lerp_speed);
+	}
+
+	if (y != lerpy) {
+		y = lerp(y, lerpy, lerp_speed);
+	}
+	if (y == lerpy and x == lerpx) {
+		lerping = false;
+	}
+	
+}
+
+if (sinspeed != 0) {
+	sintmr += sinspeed;
+	y = lerp(starty, targety, abs(sin(sintmr)));
+}
+
 // time for my incredible coding skills :cool:
 // in case it's not blatantly obvious that was satire
 length = sprite_get_height(sprite_index);
@@ -22,7 +41,11 @@ length = sprite_get_height(sprite_index);
 if (length != lerplength and lerplength != -1) {
 	length = lerp(length, lerplength, lerpspeed);
 	if (centerpivoted) {
-		tmpsprite = sprite_duplicate(asset_get_index("sansbone" + string(round(length))));
+		try {
+			sprite_delete(tmpsprite);
+		} catch (e) {};
+		tmpsprite = sprite_duplicate(asset_get_index("sansbone" + string(round(length))));//black_pixel;//noone;//sprite_duplicate(asset_get_index("sansbone" + string(round(length))));
+		show_debug_message($"{id} called sprite_duplicate, and {id} has centerpivoted as {centerpivoted}");
 		sprite_assign(tmpsprite, asset_get_index("sansbone" + string(round(length))));
 		sprite_set_offset(tmpsprite, round(sprite_get_width(tmpsprite)/2), round(sprite_get_height(tmpsprite)/2));
 		sprite_index = tmpsprite;
@@ -62,7 +85,11 @@ if (len != lentomoveto and lentomoveto != -1) {
 	}
 	if (!done) {
 		if (centerpivoted and round(len) >= 12) {
-			tmpsprite = sprite_duplicate(asset_get_index("sansbone" + string(round(len))));
+			try {
+				sprite_delete(tmpsprite);
+			} catch (e) {};
+			tmpsprite = sprite_duplicate(asset_get_index("sansbone" + string(round(length))));//black_pixel;//sprite_duplicate(asset_get_index("sansbone" + string(round(len))));
+			show_debug_message($"{id} called sprite_duplicate, and {id} has centerpivoted as {centerpivoted}");
 			sprite_assign(tmpsprite, asset_get_index("sansbone" + string(round(len))));
 			sprite_set_offset(tmpsprite, round(sprite_get_width(tmpsprite)/2), round(sprite_get_height(tmpsprite)/2));
 			sprite_index = tmpsprite;
@@ -87,13 +114,16 @@ if (lengthing) {
 	}
 	if (state == 2) {
 		linearlength -= lengthspeed;
-		y += lengthspeed;		
+		y += lengthspeed;
 		if (linearlength <= lengthmin) {
 			state = 1;
 		}
 	}
 	if (centerpivoted) {
-		tmpsprite = sprite_duplicate(asset_get_index("sansbone" + string(round(linearlength))));
+		try {
+			sprite_delete(tmpsprite);
+		} catch (e) {};
+		tmpsprite = sprite_duplicate(asset_get_index("sansbone" + string(round(length))));//black_pixel;//sprite_duplicate(asset_get_index("sansbone" + string(round(linearlength))));
 		sprite_assign(tmpsprite, asset_get_index("sansbone" + string(round(linearlength))));
 		sprite_set_offset(tmpsprite, round(sprite_get_width(tmpsprite)/2), round(sprite_get_height(tmpsprite)/2));
 		sprite_index = tmpsprite;
@@ -103,5 +133,17 @@ if (lengthing) {
 	}
 }
 
+function MoveTo(newX, newY) {
+	x = newX;
+	y = newY;
+	lerpx = newX;
+	lerpy = newY;
+}
+
+function LerpTo(lerpX, lerpY) {
+	lerpx = lerpX;
+	lerpy = lerpY;
+}
+
 if (lifetime <= 0) { instance_destroy(); };
-if (!place_meeting(x, y, arenainteract) and destroyIfNotTouchingArena) { instance_destroy(); }
+//if (!place_meeting(x, y, arenainteract) and destroyIfNotTouchingArena) { instance_destroy(); }

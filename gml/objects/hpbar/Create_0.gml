@@ -80,3 +80,19 @@ applyheal = function(healamt) {
 		return false; // false if it didn't
 	}
 }
+
+lerpx = x;
+lerpy = y;
+lerp_speed = 0.3;
+
+function MoveTo(newX, newY) {
+	x = newX;
+	y = newY;
+	lerpx = newX;
+	lerpy = newY;
+}
+
+function LerpTo(lerpX, lerpY) {
+	lerpx = lerpX;
+	lerpy = lerpY;
+}

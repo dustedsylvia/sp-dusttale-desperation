@@ -1,4 +1,12 @@
-text = string_repeat("0", max(0, 2 - string_length(string(global.player_hp + global.KR)))) + string(global.player_hp + global.KR) + " / " + string(global.player_maxhp);
+if (x != lerpx) {
+	x = lerp(x, lerpx, lerp_speed);
+}
+
+if (y != lerpy) {
+	y = lerp(y, lerpy, lerp_speed);
+}
+
+text = string_repeat("0", max(0, 2 - string_length(string(clamp(round(global.player_hp + global.KR), 0, global.player_maxhp))))) + string(clamp(round(global.player_hp + global.KR), 0, round(global.player_maxhp))) + " / " + string(round(global.player_maxhp));
 
 if (global.KR > 0) {
 	color = #ff00ff;

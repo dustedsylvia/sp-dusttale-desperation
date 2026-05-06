@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"no_way_back",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":31.84348,
+  "exportDir":"",
+  "name":"no_way_back",
+  "parent":{
+    "name":"music",
+    "path":"folders/Sounds/music.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":48000,
+  "soundFile":"no_way_back.mp3",
+  "volume":0.41,
+}

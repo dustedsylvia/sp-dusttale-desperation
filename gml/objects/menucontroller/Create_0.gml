@@ -18,3 +18,13 @@ settingstexty = 500;
 fileExists = ini_file_exists("file0.ini");
 
 dontLoadFile = false; // please don't enable this on releases
+
+music = noone;
+
+active = true;
+
+tinyclock = 0;
+
+agreedToTermsOfDeathAndDespair = false;
+
+debug = true;
