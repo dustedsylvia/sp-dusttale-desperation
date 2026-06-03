@@ -2,8 +2,6 @@
 <h2 align="center">an <a href="https://gamejolt.com/games/spdusttaledesperation/1018009">SP!Dusttale take</a> directed by Ketchup_sans2009</h2>
 <p align="right">build 20260009</p>
 
-<hr>
-
 <p align="center"><img src="readme_assets/credits.png"></p>
  - Toby Fox and Temmie Chang: Created UNDERTALE<br>
  - 反正是sprins就对了: Created Canon!SP!Dusttale<br>
