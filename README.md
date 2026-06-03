@@ -1,12 +1,12 @@
 <p align="center"><img src="readme_assets/logo.png"></p>
-<h2 align="center">an <a href="https://gamejolt.com/games/spdusttaledesperation/1018009">SP!Dusttale take</a> directed by Ketchup_sans2009</h2>
+<h2 align="center">an <a href="https://gamejolt.com/games/spdusttaledesperation/1018009">SP!Dusttale take</a> directed by Ketchupsans_2009</h2>
 <p align="right">build 20260009</p>
 
 <p align="center"><img src="readme_assets/credits.png"></p>
  - Toby Fox and Temmie Chang: Created UNDERTALE<br>
  - 反正是sprins就对了: Created Canon!SP!Dusttale<br>
  - xxbredxx-357: NECROPTOSIS (Track)<br>
- - Ketchupsans_2009: Writing, sprites<br>
+ - Ketchupsans_2009 (@randomahhguy396 on GitHub): Writing, sprites<br>
  - Tinnpangpang: Music<br>
  - dustedsylvia: Coding<br>
  - Full credits in-game<br>
