@@ -27,7 +27,7 @@ build 20260009:<br>
 <p align="center"><img src="readme_assets/faq.png"></p>
 Q: When will the game release?<br>
 A: We don't have a specific release date in mind, but it will be released by the end of 2026, and most likely much earlier.<br>
-
+<br>
 Q: Can I use *song or sprite* for *your content here*?<br>
 A: No, not without EXPLICIT permission from Ketchupsans_2009. More legalities are below.<br>
 
@@ -49,9 +49,9 @@ This game was built in the latest version of <a href="https://gamemaker.io/en/do
 
 
 <p align="center"><img src="readme_assets/legal.png"></p>
-**You are not permitted to copy, redistribute, modify, or use the sprites, music, artwork, code, writing, or other original assets created specifically for this fangame without permission from Ketchupsans_2009. All original content created for this fangame is owned by Ketchupsans_2009. Unauthorized use, reproduction, or distribution of these original assets may result in a cease-and-desist notice or other legal action where permitted by applicable copyright and intellectual property laws.<br>
-UNDERTALE and its original characters, assets, and trademarks belong to Toby Fox. This fangame is a non-commercial fan project and is not affiliated with or endorsed by Toby Fox.**
+**You are not permitted to copy, redistribute, modify, or use the sprites, music, artwork, code, writing, or other original assets created specifically for this fangame without permission from Ketchupsans_2009. All original content created for this fangame is owned by Ketchupsans_2009. Unauthorized use, reproduction, or distribution of these original assets may result in a cease-and-desist notice or other legal action where permitted by applicable copyright and intellectual property laws.**<br>
+**UNDERTALE and its original characters, assets, and trademarks belong to Toby Fox. This fangame is a non-commercial fan project and is not affiliated with or endorsed by Toby Fox.**
 
-*This README was updated on Wednesday, June 3rd, 2026. Any legal information in any previous versions of the README are no longer applicable as of this date.*
+*This README was last updated on Wednesday, June 3rd, 2026. Any legal information in any previous versions of the README are no longer applicable as of this date.*
 
 © dustedsylvia and ketchupsans_2009 2026-present. All rights reserved.
