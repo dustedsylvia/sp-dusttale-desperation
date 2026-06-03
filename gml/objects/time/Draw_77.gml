@@ -30,3 +30,9 @@
 //	// Center the window.
 //	window_set_position(display_width/2 - window_width/2, display_height/2 - window_height/2);
 //}
+
+if (delta_time - s >= global.lag_spike_threshold_time) {
+	show_debug_message($"Excessive frame time detected!");
+	show_debug_message($"Frame time: \"{delta_time - s}\"");
+	show_debug_message($"Note: This is not a lagspike detected in an exclusive object. `time` detected this lagspike when measuring the delta_time.");
+}

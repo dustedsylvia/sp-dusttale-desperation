@@ -1,3 +1,5 @@
+var s = delta_time;
+
 if (!global.drewMaskSurfacesPhaseOne) {
 	global.drewMaskSurfacesPhaseOne = true;
 	
@@ -8,6 +10,14 @@ if (!global.drewMaskSurfacesPhaseOne) {
 	
 	//if (!surface_exists(global.bone_mask_surface) or redrawMask) {
 		//redrawMask = false;
+	if (surface_exists(global.bone_mask_surface)) {
+		surface_free(global.bone_mask_surface);
+	}
+	
+	if (surface_exists(global.bone_clip_surface)) {
+		surface_free(global.bone_clip_surface);
+	}
+	
 	global.bone_mask_surface = surface_create(room_width, room_height);
 	surface_set_target(global.bone_mask_surface);
 	draw_clear(c_black);
@@ -17,8 +27,6 @@ if (!global.drewMaskSurfacesPhaseOne) {
 	surface_reset_target();
 	//show_debug_message("Made new surface at " + string(current_time));
 	//}
-	
-	
 	
 	if (!surface_exists(global.bone_clip_surface)) {
 		global.bone_clip_surface = surface_create(room_width, room_height);
@@ -34,3 +42,16 @@ if (!global.drewMaskSurfacesPhaseOne) {
 }
 
 // oh lord have mercy
+
+if (delta_time - s >= global.lag_spike_threshold_time) {
+	show_debug_message($"Lagspike detected!");
+	show_debug_message($"Details:");
+	show_debug_message($"Spike time: \"{delta_time - s}\"");
+	show_debug_message($"_GMFUNCTION_: \"{_GMFUNCTION_}\"");
+	show_debug_message($"Object: \"{object_get_name(object_index)}\"");
+	show_debug_message($"Event: \"{event_type}:{event_number}\"");
+	show_debug_message($"Callstack:");
+	show_debug_message($"   0: \"{debug_get_callstack()[0]}\"");
+	show_debug_message($"   1: \"{debug_get_callstack()[1]}\"");
+	show_debug_message($"End details.");
+}

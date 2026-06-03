@@ -1,3 +1,5 @@
+var s = delta_time;
+
 if (global.is_gm_live_enabled) {
 	if (live_call()) return live_result;
 }
@@ -442,6 +444,14 @@ if (global.battle_state == "dialog") {
 		initDialog = false;
 	}
 	
+	// thanks to the Ending Time Octet [Cage of Abyss]'s Phase 3 (ULB) for the following piece of code.
+	audio_timer += 1;
+	if (audio_is_playing(audioid)) {
+	    if (abs((audio_sound_get_track_position(audioid) - (audio_timer / 60))) >= 0.02) {
+	        audio_sound_set_track_position(audioid, (audio_timer / 60))
+		}
+	}
+	
 	rainclock += 1;
 	if (rainclock >= 0 and rainclock <= 1320 and rainclock % 5 == 0) {
 		instance_create_depth(irandom(640), 0, 0, raindrop);
@@ -515,6 +525,7 @@ if (global.battle_state == "dialog") {
 		global.battle_state = "enemyattack";
 		initEnemyAttack = true;
 		audio_sound_set_track_position(audioid, 24.7);
+		audio_timer = 1482;
 		necropbg = instance_create_depth(320, 480, depth, lagmachine);
 		global.reinitialized = false;
 		global.nametext.MoveTo(31, 401);
@@ -555,6 +566,7 @@ if (global.battle_state == "enemyattack") {
 					global.sans_obj.preset("sadredeyes");
 					coverScreen = false;
 					global.arena.shakeang(0, 0);
+					instance_create_depth(0, 0, -9999, viginobj);
 				} else {
 					global.attacktimer = 0;
 					global.arena.MoveTo(320, 400);
@@ -580,6 +592,7 @@ if (global.battle_state == "enemyattack") {
 					global.arena.shakeang(0, 0);
 					global.sans_obj.preset("blackoutwitheyes");
 					coverScreen = false;
+					instance_create_depth(0, 0, -9999, viginobj);
 				}
 			break;
 		}
@@ -590,6 +603,14 @@ if (global.battle_state == "enemyattack") {
 	
 	switch (attackid) { // this isn't the best way to handle attacks, but it works and its fairly simple
 		case 0:
+			// thanks to the Ending Time Octet [Cage of Abyss]'s Phase 3 (ULB) for the following piece of code.
+			audio_timer += 1;
+			if (audio_is_playing(audioid)) {
+			    if (abs((audio_sound_get_track_position(audioid) - (audio_timer / 60))) >= 0.02) {
+			        audio_sound_set_track_position(audioid, (audio_timer / 60))
+				}
+			}
+			
 			if (keyboard_check_pressed(ord("C")) and heals != 0 and global.player_hp != global.player_maxhp) {
 				global.player_hp = global.player_maxhp;
 				global.KR = 0;
@@ -869,6 +890,8 @@ if (global.battle_state == "enemyattack") {
 					createbone(arenaRightSideX(), arenaTopSideY()+85, sansbone50, "white", 0, 1, 1, 1, -1, 0, 0, 0, 0, 0, depth-4, false);
 					createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, depth-4, false);
 					createbone(arenaLeftSideX()-5, arenaTopSideY()+85, sansbone50, "white", 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, depth-4, false);
+					instance_create_depth(0, 0, 0, rgb_shader);
+					with (viginobj) { instance_destroy(); };
 				}
 			
 				if (global.attacktimer >= 1410 and global.attacktimer <= 2000 and global.attacktimer % 30 == 0) {
@@ -980,7 +1003,6 @@ if (global.battle_state == "enemyattack") {
 						global.sans_obj.preset("sadredeyes");
 						createbone(arenaRightSideX(), 250, sansbone100, "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-4, false);
 						createbone(arenaRightSideX()+20, 250, sansbone100, "white", 0, 1, 1, 1, -3, 0, 0, 0, 0, 0, depth-4, false);
-						createbone(arenaLeftSideX(), 250, sansbone140, "orange", 0, 1, 1, 1, 5, 0, 0, 0, 0, 0, depth-5, false);
 						
 						var a = createbone(arenaLeftSideX(), 355, sansbone35, "white", 0, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-4, false);
 						var b = createbone(arenaLeftSideX()-20, 360, sansbone30, "white", 0, 1, 1, 1, 3, 0, 0, 0, 0, 0, depth-4, false);
@@ -988,24 +1010,194 @@ if (global.battle_state == "enemyattack") {
 						a.lengthbetween(30, 60, 0.5);
 						b.lengthbetween(30, 60, 0.5);
 						c.lengthbetween(30, 60, 0.5);
+						instance_create_depth(0, 0, 0, rgb_shader);
+						with (viginobj) { instance_destroy(); };
 					}
 				}
 				
-				if (global.attacktimer == 1420) {
+				if (global.attacktimer >= 1420 and global.attacktimer <= 1700 and global.attacktimer % 60 == 0) {
 					createbone(arenaLeftSideX(), 250, sansbone140, "orange", 0, 1, 1, 1, 5, 0, 0, 0, 0, 0, depth-5, false);
+					audio_play_sound(bigattack, 0.5, false);
+				}
+				
+				if (global.attacktimer == 1490) {
+					var spd = 4;
+					createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, spd, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaLeftSideX()-5, arenaTopSideY()+95, sansbone50, "white", 0, 1, 1, 1, spd, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaLeftSideX()-25, arenaTopSideY()+5, sansbone50, "white", 0, 1, 1, 1, spd, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaLeftSideX()-25, arenaTopSideY()+95, sansbone50, "white", 0, 1, 1, 1, spd, 0, 0, 0, 0, 0, depth-4, false);
+				}
+				
+				if (global.attacktimer == 1530) {
+					// * The Roaring Knight appeared.
+					
+					var spd = -2.75;
+					bone3 = createbone(arenaLeftSideX()+5, arenaBottomSideY()+15, sansbone135, "white", 90, 1, 1, 1, 0, spd, 0, 0, 0, 0, depth-4, false);
+					bone4 = createbone(arenaLeftSideX()+5, arenaBottomSideY()+30, sansbone130, "white", 90, 1, 1, 1, 0, spd, 0, 0, 0, 0, depth-4, false);
+					bone5 = createbone(arenaLeftSideX()+5, arenaBottomSideY()+45, sansbone125, "white", 90, 1, 1, 1, 0, spd, 0, 0, 0, 0, depth-4, false);
+					
+					bone3.lengthbetweenbutvertical(100, 150, 0.5, 1);
+					bone4.lengthbetweenbutvertical(100, 150, 0.5, 1);
+					bone5.lengthbetweenbutvertical(100, 150, 0.5, 1);
+				}
+				
+				if (global.attacktimer == 1550) {
+					var spd = 2.75;
+					bone3 = createbone(arenaRightSideX()-5, arenaTopSideY()-15, sansbone135, "white", 270, 1, 1, 1, 0, spd, 0, 0, 0, 0, depth-4, false);
+					bone4 = createbone(arenaRightSideX()-5, arenaTopSideY()-30, sansbone130, "white", 270, 1, 1, 1, 0, spd, 0, 0, 0, 0, depth-4, false);
+					bone5 = createbone(arenaRightSideX()-5, arenaTopSideY()-45, sansbone125, "white", 270, 1, 1, 1, 0, spd, 0, 0, 0, 0, depth-4, false);
+				
+					bone3.lengthbetweenbutvertical(100, 150, 0.5, 1);
+					bone4.lengthbetweenbutvertical(100, 150, 0.5, 1);
+					bone5.lengthbetweenbutvertical(100, 150, 0.5, 1);
+				}
+				
+				if (global.attacktimer == 1600) {
+					createbone(arenaRightSideX(), arenaTopSideY()+5, sansbone80, "white" , 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaRightSideX(), arenaTopSideY()+125, sansbone20, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false).lengthbetween(14, 55, 0.6, 1);
+					createbone(arenaRightSideX()+15, arenaTopSideY()+5, sansbone80, "white" , 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaRightSideX()+15, arenaTopSideY()+125, sansbone20, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false).lengthbetween(14, 55, 0.6, 1);
+				}
+				
+				if (global.attacktimer == 1660) {
+					createbone(arenaLeftSideX()-5, arenaBottomSideY()-75, sansbone140, "white", 0, 1, 1, 1, 3, 0, 3, 0, 0, 0, depth-4, true);
+				}
+				
+				if (global.attacktimer == 1690) {
+					var spd = -2.75;
+					bone3 = createbone(arenaLeftSideX()+5, arenaBottomSideY()+15, sansbone135, "white", 90, 1, 1, 1, 0, spd, 0, 0, 0, 0, depth-4, false);
+					bone4 = createbone(arenaLeftSideX()+5, arenaBottomSideY()+30, sansbone130, "white", 90, 1, 1, 1, 0, spd, 0, 0, 0, 0, depth-4, false);
+					bone5 = createbone(arenaLeftSideX()+5, arenaBottomSideY()+45, sansbone125, "white", 90, 1, 1, 1, 0, spd, 0, 0, 0, 0, depth-4, false);
+					
+					bone3.lengthbetweenbutvertical(100, 150, 0.5, 1);
+					bone4.lengthbetweenbutvertical(100, 150, 0.5, 1);
+					bone5.lengthbetweenbutvertical(100, 150, 0.5, 1);
+				}
+				
+				if (global.attacktimer == 1740) {
+					createbone(arenaLeftSideX()-5, arenaTopSideY()+5, sansbone140, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaLeftSideX()-55, arenaTopSideY()+5, sansbone140, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaLeftSideX()-105, arenaTopSideY()+5, sansbone140, "white", 0, 1, 1, 1, 2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaRightSideX()+5, arenaTopSideY()+5, sansbone140, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaRightSideX()+55, arenaTopSideY()+5, sansbone140, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+					createbone(arenaRightSideX()+105, arenaTopSideY()+5, sansbone140, "white", 0, 1, 1, 1, -2.5, 0, 0, 0, 0, 0, depth-4, false);
+				}
+				
+				if (global.attacktimer == 1810) {
+					instance_create_depth(0, 0, -9999, whitefader);
+					with (boneattack) {instance_destroy();}
+					with (gasterblaster) {instance_destroy();}
+					with (gasterbeam) {instance_destroy();}
+					with (platform) {instance_destroy();}
+					global.soul.MoveTo(320, 320);
+					audio_play_sound(eyeflash, 0.5, false);
 				}
 			}
 			
-			if (global.attacktimer == 5280) {
+			if (checkAudioPos(audioid, 88) and !isExecuted("necroptosis_event_controller_1")) {
 				coverScreen = true;
+				isExecuted("necroptosis_event_controller_1", true);
 			}
 			
-			if (global.attacktimer == 5290) {
+			if (checkAudioPos(audioid, 88.4) and !isExecuted("necroptosis_event_controller_2")) {
 				global.sans_obj.preset("blackout");
+				instance_destroy(necropbg);
+				with (rgb_shader) { instance_destroy(); };
+				isExecuted("necroptosis_event_controller_2", true);
 			}
 			
-			if (global.attacktimer == 5328) {
+			if (checkAudioPos(audioid, 88.8) and !isExecuted("necroptosis_event_controller_3")) {
 				coverScreen = false;
+				isExecuted("necroptosis_event_controller_3", true);
+			}
+			
+			if (checkAudioPos(audioid, 98.4) and !isExecuted("necroptosis_event_controller_4")) {
+				coverScreen = true;
+				isExecuted("necroptosis_event_controller_4", true);
+			}
+			
+			if (checkAudioPos(audioid, 99) and !isExecuted("necroptosis_event_controller_5")) {
+				global.sans_obj.preset("desperate");
+				instance_create_depth(0, 0, 0, rgb_shader);
+				necropbg = instance_create_depth(320, 480, depth, lagmachine_redcroptosis);
+				isExecuted("necroptosis_event_controller_5", true);
+			}
+			
+			if (checkAudioPos(audioid, 102.1) and !isExecuted("necroptosis_event_controller_6")) {
+				coverScreen = false;
+				isExecuted("necroptosis_event_controller_6", true);
+			}
+			
+			if (checkAudioPos(audioid, 118) and !isExecuted("necroptosis_event_controller_7")) {
+				startColorInversion();
+				isExecuted("necroptosis_event_controller_7", true);
+			}
+			
+			if (checkAudioPos(audioid, 120.85) and !isExecuted("necroptosis_event_controller_8")) {
+				stopColorInversion();
+				coverScreen = true;
+				isExecuted("necroptosis_event_controller_8", true);
+			}
+			
+			if (checkAudioPos(audioid, 121.3) and !isExecuted("necroptosis_event_controller_9")) {
+				global.sans_obj.preset("blackoutshrug");
+				instance_destroy(necropbg);
+				instance_destroy(rgb_shader);
+				isExecuted("necroptosis_event_controller_9", true);
+			}
+			
+			if (checkAudioPos(audioid, 122) and !isExecuted("necroptosis_event_controller_10")) {
+				coverScreen = false;
+				isExecuted("necroptosis_event_controller_10", true);
+			}
+			
+			if (checkAudioPos(audioid, 143.3) and !isExecuted("necroptosis_event_controller_11")) {
+				coverScreen = true;
+				isExecuted("necroptosis_event_controller_11", true);
+			}
+			
+			if (checkAudioPos(audioid, 144) and !isExecuted("necroptosis_event_controller_12")) {
+				global.sans_obj.preset("slashed");
+				drawtext = "* PLACEHOLDER";
+				isExecuted("necroptosis_event_controller_12", true);
+			}
+			
+			if (checkAudioPos(audioid, 163) and !isExecuted("necroptosis_event_controller_13")) {
+				drawtext = "";
+				isExecuted("necroptosis_event_controller_13", true);
+			}
+			
+			if (checkAudioPos(audioid, 166) and !isExecuted("necroptosis_event_controller_14")) {
+				drawtext = "* the day we came back to the surface.\nthe night where you made so many friends.\nthe day where everyone was happy.\nDo you really want to throw all of this away...?";
+				isExecuted("necroptosis_event_controller_14", true);
+			}
+			
+			if (checkAudioPos(audioid, 221.4) and !isExecuted("necroptosis_event_controller_15")) {
+				coverScreen = false;
+				necropbg = instance_create_depth(320, 480, depth, lagmachine_necroptosis);
+				isExecuted("necroptosis_event_controller_15", true);
+				drawtext = "";
+			}
+			
+			if (checkAudioPos(audioid, 242.73) and !isExecuted("necroptosis_event_controller_16")) {
+				instance_destroy(necropbg);
+				necropbg = instance_create_depth(320, 480, depth, lagmachine_redcroptosis);
+				isExecuted("necroptosis_event_controller_16", true);
+			}
+			
+			if (checkAudioPos(audioid, 264.1) and !isExecuted("necroptosis_event_controller_17")) {
+				coverScreen = true;
+				isExecuted("necroptosis_event_controller_17", true);
+			}
+			
+			if (checkAudioPos(audioid, 269.34) and !isExecuted("necroptosis_event_controller_18")) {
+				drawtext = "* YOU WON.\n* Your LOVE increased to 20.";
+				isExecuted("necroptosis_event_controller_18", true);
+			}
+			
+			if (checkAudioPos(audioid, 309) and !isExecuted("necroptosis_event_controller_19")) {
+				game_end();
+				isExecuted("necroptosis_event_controller_19", true);
 			}
 		break;
 	}
@@ -1046,4 +1238,17 @@ if (global.battle_state == "customstart") {
 		global.battle_state = "dialog";
 		initDialog = true;
 	}
+}
+
+if (delta_time - s >= global.lag_spike_threshold_time) {
+	show_debug_message($"Lagspike detected!");
+	show_debug_message($"Details:");
+	show_debug_message($"Spike time: \"{delta_time - s}\"");
+	show_debug_message($"_GMFUNCTION_: \"{_GMFUNCTION_}\"");
+	show_debug_message($"Object: \"{object_get_name(object_index)}\"");
+	show_debug_message($"Event: \"{event_type}:{event_number}\"");
+	show_debug_message($"Callstack:");
+	show_debug_message($"   0: \"{debug_get_callstack()[0]}\"");
+	show_debug_message($"   1: \"{debug_get_callstack()[1]}\"");
+	show_debug_message($"End details.");
 }

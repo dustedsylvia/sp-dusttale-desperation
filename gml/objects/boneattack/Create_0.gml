@@ -33,6 +33,7 @@ lengthmin = 12;
 lengthmax = 640;
 state = 1;
 lengthing = false;
+lengthingbutvertical = false;
 
 centerpivoted = false;
 
@@ -86,6 +87,14 @@ lengthbetween = function(minimum, maximum, length_speed=1, startingState=1) {
 	lengthmax = maximum;
 	state = startingState;
 	lengthing = true;
+}
+
+lengthbetweenbutvertical = function(minimum, maximum, length_speed=1, startingState=1) {
+	lengthspeed = length_speed;
+	lengthmin = minimum;
+	lengthmax = maximum;
+	state = startingState;
+	lengthingbutvertical = true;
 }
 
 moveToLength = function(newLength, moveSpeedSpeed=2) {

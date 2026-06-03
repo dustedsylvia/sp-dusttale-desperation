@@ -1,3 +1,5 @@
+var s = delta_time;
+
 // THANKS TO https://yal.cc/gamemaker-draw-clip/ FOR THIS!!!!!!!!!!!!!!!!!!!
 // i genuinely want to kiss the writer of that article on the lips
 
@@ -28,4 +30,17 @@ if (maskToArena) {
 	surface_reset_target();
 } else {
 	draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, image_color, image_alpha);
+}
+
+if (delta_time - s >= global.lag_spike_threshold_time) {
+	show_debug_message($"Lagspike detected!");
+	show_debug_message($"Details:");
+	show_debug_message($"Spike time: \"{delta_time - s}\"");
+	show_debug_message($"_GMFUNCTION_: \"{_GMFUNCTION_}\"");
+	show_debug_message($"Object: \"{object_get_name(object_index)}\"");
+	show_debug_message($"Event: \"{event_type}:{event_number}\"");
+	show_debug_message($"Callstack:");
+	show_debug_message($"   0: \"{debug_get_callstack()[0]}\"");
+	show_debug_message($"   1: \"{debug_get_callstack()[1]}\"");
+	show_debug_message($"End details.");
 }

@@ -1,3 +1,5 @@
+var s = delta_time;
+
 lifetime -= 1;
 
 if (initLen) {
@@ -104,6 +106,9 @@ if (len != lentomoveto and lentomoveto != -1) {
 	length = len;
 }
 
+
+// im definitely transfem im sitting on a table with a starbucks drink while wearing a skirt im so gay
+// copyright rachel 2026-present
 if (lengthing) {
 	if (state == 1) {
 		linearlength += lengthspeed;
@@ -115,6 +120,33 @@ if (lengthing) {
 	if (state == 2) {
 		linearlength -= lengthspeed;
 		y += lengthspeed;
+		if (linearlength <= lengthmin) {
+			state = 1;
+		}
+	}
+	if (centerpivoted) {
+		try {
+			sprite_delete(tmpsprite);
+		} catch (e) {};
+		tmpsprite = sprite_duplicate(asset_get_index("sansbone" + string(round(length))));//black_pixel;//sprite_duplicate(asset_get_index("sansbone" + string(round(linearlength))));
+		sprite_assign(tmpsprite, asset_get_index("sansbone" + string(round(linearlength))));
+		sprite_set_offset(tmpsprite, round(sprite_get_width(tmpsprite)/2), round(sprite_get_height(tmpsprite)/2));
+		sprite_index = tmpsprite;
+		removeThisOnDestroy = tmpsprite;
+	} else {
+		sprite_index = asset_get_index("sansbone" + string(round(linearlength)));
+	}
+}
+
+if (lengthingbutvertical) {
+	if (state == 1) {
+		linearlength += lengthspeed;
+		if (linearlength >= lengthmax) {
+			state = 2;
+		}
+	}
+	if (state == 2) {
+		linearlength -= lengthspeed;
 		if (linearlength <= lengthmin) {
 			state = 1;
 		}
@@ -147,3 +179,16 @@ function LerpTo(lerpX, lerpY) {
 
 if (lifetime <= 0) { instance_destroy(); };
 //if (!place_meeting(x, y, arenainteract) and destroyIfNotTouchingArena) { instance_destroy(); }
+
+if (delta_time - s >= global.lag_spike_threshold_time) {
+	show_debug_message($"Lagspike detected!");
+	show_debug_message($"Details:");
+	show_debug_message($"Spike time: \"{delta_time - s}\"");
+	show_debug_message($"_GMFUNCTION_: \"{_GMFUNCTION_}\"");
+	show_debug_message($"Object: \"{object_get_name(object_index)}\"");
+	show_debug_message($"Event: \"{event_type}:{event_number}\"");
+	show_debug_message($"Callstack:");
+	show_debug_message($"   0: \"{debug_get_callstack()[0]}\"");
+	show_debug_message($"   1: \"{debug_get_callstack()[1]}\"");
+	show_debug_message($"End details.");
+}

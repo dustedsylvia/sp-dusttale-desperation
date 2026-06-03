@@ -50,14 +50,26 @@ if (sanslegsprite == legs_blackout) {
 		draw_sprite_ext(head_whiteout, 0, sansheadpos[0]-i, sansheadpos[1]+i, 2, 2, image_angle, c_white, alpha);
 	}
 	
-	for (var i = 0; i < outline_thickness+1; i++) {
-		draw_sprite_ext(body_whiteout, 0, sansbodypos[0]-i, sansbodypos[1]-i, 2, 2, image_angle, c_white, alpha);
-		draw_sprite_ext(body_whiteout, 0, sansbodypos[0], sansbodypos[1]-i, 2, 2, image_angle, c_white, alpha);
-		draw_sprite_ext(body_whiteout, 0, sansbodypos[0]+i, sansbodypos[1]-i, 2, 2, image_angle, c_white, alpha);
-		draw_sprite_ext(body_whiteout, 0, sansbodypos[0]+i, sansbodypos[1], 2, 2, image_angle, c_white, alpha);
-		draw_sprite_ext(body_whiteout, 0, sansbodypos[0]+i, sansbodypos[1]+i, 2, 2, image_angle, c_white, alpha);
-		draw_sprite_ext(body_whiteout, 0, sansbodypos[0], sansbodypos[1]+i, 2, 2, image_angle, c_white, alpha);
-		draw_sprite_ext(body_whiteout, 0, sansbodypos[0]-i, sansbodypos[1]+i, 2, 2, image_angle, c_white, alpha);
+	if (sansbodysprite == body_blackout) {
+		for (var i = 0; i < outline_thickness+1; i++) {
+			draw_sprite_ext(body_whiteout, 0, sansbodypos[0]-i, sansbodypos[1]-i, 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout, 0, sansbodypos[0], sansbodypos[1]-i, 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout, 0, sansbodypos[0]+i, sansbodypos[1]-i, 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout, 0, sansbodypos[0]+i, sansbodypos[1], 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout, 0, sansbodypos[0]+i, sansbodypos[1]+i, 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout, 0, sansbodypos[0], sansbodypos[1]+i, 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout, 0, sansbodypos[0]-i, sansbodypos[1]+i, 2, 2, image_angle, c_white, alpha);
+		}
+	} else {
+		for (var i = 0; i < outline_thickness+1; i++) {
+			draw_sprite_ext(body_whiteout_shrug, 0, sansbodypos[0]-i, sansbodypos[1]-i, 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout_shrug, 0, sansbodypos[0], sansbodypos[1]-i, 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout_shrug, 0, sansbodypos[0]+i, sansbodypos[1]-i, 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout_shrug, 0, sansbodypos[0]+i, sansbodypos[1], 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout_shrug, 0, sansbodypos[0]+i, sansbodypos[1]+i, 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout_shrug, 0, sansbodypos[0], sansbodypos[1]+i, 2, 2, image_angle, c_white, alpha);
+			draw_sprite_ext(body_whiteout_shrug, 0, sansbodypos[0]-i, sansbodypos[1]+i, 2, 2, image_angle, c_white, alpha);
+		}
 	}
 	
 	for (var i = 0; i < outline_thickness+1; i++) {

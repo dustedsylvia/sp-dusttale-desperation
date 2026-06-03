@@ -145,6 +145,7 @@ hys = 1;
 bn1 = false;
 
 enable_scrapped_attacks = false;
+audio_timer = 0;
 
 onspare = function() {
 	if (global.canspare) {

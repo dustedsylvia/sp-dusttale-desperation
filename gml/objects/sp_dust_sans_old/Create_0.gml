@@ -69,6 +69,13 @@ function preset(newPreset) {
 			sanslegsprite = legs_blackout;
 		break;
 		
+		case "blackoutshrug":
+			animationstyle = 1;
+			sansheadsprite = head_blackout;
+			sansbodysprite = body_blackout_shrug;
+			sanslegsprite = legs_blackout;
+		break;
+		
 		case "blackoutwitheyes":
 			animationstyle = 1;
 			sansheadsprite = head_blackout_eyes;
@@ -80,6 +87,13 @@ function preset(newPreset) {
 			animationstyle = 1;
 			sansheadsprite = head_eyesclosed;
 			sansbodysprite = body_handsbehindback;
+			sanslegsprite = legs_normal;
+		break;
+		
+		case "slashed":
+			animationstyle = 1;
+			sansheadsprite = head_danger;
+			sansbodysprite = body_ouch;
 			sanslegsprite = legs_normal;
 		break;
 		
@@ -132,8 +146,8 @@ function preset(newPreset) {
 			sansheadsprite = head_determined_eyes_dangerous;
 			sansbodysprite = body_cool_looking;
 			sanslegsprite = legs_powerfulpose;
-			sansrightarmsprite = rightarm_uhoh;
-			sansleftarmsprite = leftarm_uhoh;
+			sansrightarmsprite = leftarm_uhoh;
+			sansleftarmsprite = rightarm_uhoh;
 		break;
 	}
 }

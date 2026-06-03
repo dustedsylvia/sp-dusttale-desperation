@@ -36,3 +36,10 @@ global.drewMaskSurfacesPhaseTwo = false;
 global.disablepivotedbonewarning = false;
 
 global.is_gm_live_enabled = false;
+
+global.lag_spike_threshold_time = 50000000; // note: this is in microseconds
+// and it STILL doesn't fucking work :sob:
+
+global.memoryLeakHelperDetector = false;
+
+global.discordrichpresence = instance_create_depth(0, 0, 0, discord_rich_presence);
