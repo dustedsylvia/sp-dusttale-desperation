@@ -1,4 +1,4 @@
-![SP!Dusttale logo](readme_assets/logo.png)
+<p align="center"><img src="readme_assets/logo.png"></p>
 <h2 align="center">an <a href="https://gamejolt.com/games/spdusttaledesperation/1018009">SP!Dusttale take</a> directed by Ketchup_sans2009</h2>
 <p align="right">build 20260009</p>
 
@@ -15,7 +15,7 @@
 
 
 <p align="center"><img src="readme_assets/changelog.png"></p>
-version nightly-9:<br>
+build 20260009:<br>
  - Added an RGB shader.<br>
  - Further work on NECROPTOSIS has been completed.<br>
  - Added a vignette to the beginning of the fight.<br>
@@ -26,7 +26,7 @@ version nightly-9:<br>
 
 <p align="center"><img src="readme_assets/faq.png"></p>
 Q: When will the game release?<br>
-A: We don't have a specific release date in mind, but it will be released by the end of 2026, and most likely much earlier.<br> 
+A: We don't have a specific release date in mind, but it will be released by the end of 2026, and most likely much earlier.<br>
 
 Q: Can I use *song or sprite* for *your content here*?<br>
 A: No, not without EXPLICIT permission from Ketchupsans_2009. More legalities are below.<br>
@@ -45,7 +45,7 @@ A: No. This is a take on SP!Dusttale by Ketchupsans_2009.<br>
 
 
 <p align="center"><img src="readme_assets/source.png"></p>
-This game was built in the latest version of [GameMaker BETA](https://gamemaker.io/en/download) (click the "GameMaker BETA version" dropdown). Once you've installed GameMaker for your platform, download/clone this repo and open the `yyp` file.
+This game was built in the latest version of <a href="https://gamemaker.io/en/download">GameMaker BETA</a> (click the "GameMaker BETA version" dropdown). Once you've installed GameMaker for your platform, download/clone this repo and open the `yyp` file.
 
 
 <p align="center"><img src="readme_assets/legal.png"></p>
@@ -54,4 +54,4 @@ UNDERTALE and its original characters, assets, and trademarks belong to Toby Fox
 
 *This README was updated on Wednesday, June 3rd, 2026. Any legal information in any previous versions of the README are no longer applicable as of this date.*
 
-© dustedsylvia and ketchupsans_2009 2026-. All Rights Reserved.
+© dustedsylvia and ketchupsans_2009 2026-present. All rights reserved.
