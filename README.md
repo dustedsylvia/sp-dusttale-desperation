@@ -5,28 +5,28 @@
 <hr>
 
 <p align="center"><img src="readme_assets/credits.png"></p>
- - Toby Fox and Temmie Chang: Created UNDERTALE
- - 反正是sprins就对了: Created Canon!SP!Dusttale
- - xxbredxx-357: NECROPTOSIS (Track)
- - Ketchupsans_2009: Writing, sprites
- - Tinnpangpang: Music
- - dustedsylvia: Coding
- - Full credits in-game
+ - Toby Fox and Temmie Chang: Created UNDERTALE  
+ - 反正是sprins就对了: Created Canon!SP!Dusttale  
+ - xxbredxx-357: NECROPTOSIS (Track)  
+ - Ketchupsans_2009: Writing, sprites  
+ - Tinnpangpang: Music  
+ - dustedsylvia: Coding  
+ - Full credits in-game  
 
 
 <p align="center"><img src="readme_assets/changelog.png"></p>
-version nightly-9:
- - Added an RGB shader.
- - Further work on NECROPTOSIS has been completed.
- - Added a vignette to the beginning of the fight.
- - Fixed the lag (there were a lot of surface_create calls that i didnt know about...)
- - Added Discord Rich Presence
- - Added more attacks
+version nightly-9:  
+ - Added an RGB shader.  
+ - Further work on NECROPTOSIS has been completed.  
+ - Added a vignette to the beginning of the fight.  
+ - Fixed the lag (there were a lot of surface_create calls that i didnt know about...)  
+ - Added Discord Rich Presence  
+ - Added more attacks  
 
 
 <p align="center"><img src="readme_assets/faq.png"></p>
 Q: When will the game release?  
-A: We don't have a specific release date in mind, but it will be released by the end of 2026, and most likely much earlier.  
+A: We don't have a specific release date in mind, but it will be released by the end of 2026, and most likely much earlier.   
 
 Q: Can I use *song or sprite* for *your content here*?  
 A: No, not without EXPLICIT permission from Ketchupsans_2009. More legalities are below.  
