@@ -49,3 +49,5 @@ This game was built in the latest version of [GameMaker BETA](https://gamemaker.
 UNDERTALE and its original characters, assets, and trademarks belong to Toby Fox. This fangame is a non-commercial fan project and is not affiliated with or endorsed by Toby Fox.**
 
 *This README was updated on Wednesday, June 3rd, 2026. Any legal information in any previous versions of the README are no longer applicable as of this date.*
+
+© dustedsylvia and ketchupsans_2009 2026-. All Rights Reserved.
