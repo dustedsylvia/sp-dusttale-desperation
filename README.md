@@ -6,7 +6,7 @@
  - Toby Fox and Temmie Chang: Created UNDERTALE<br>
  - 反正是sprins就对了: Created Canon!SP!Dusttale<br>
  - xxbredxx-357: NECROPTOSIS (Track)<br>
- - Ketchupsans_2009 (@randomahhguy396 on GitHub): Writing, sprites<br>
+ - Ketchupsans_2009: Writing, sprites<br>
  - Tinnpangpang: Music<br>
  - dustedsylvia: Coding<br>
  - Full credits in-game<br>
