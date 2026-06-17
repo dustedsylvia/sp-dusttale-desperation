@@ -2,6 +2,8 @@
 <h2 align="center">an <a href="https://gamejolt.com/games/spdusttaledesperation/1018009">SP!Dusttale take</a> directed by Ketchupsans_2009</h2>
 <p align="right">build 20260009</p>
 
+<p>Note: As of 6/17/2026, this game is permanently cancelled due to [Ketchupsans_2009's actions](https://gamejolt.com/p/so-you-ve-probably-been-wondering-what-s-been-going-on-with-the-ga-87utjtba). The old README and source, however, will stay up, because I believe that all code should be open source.</p>
+
 <p align="center"><img src="readme_assets/credits.png"></p>
  - Toby Fox and Temmie Chang: Created UNDERTALE<br>
  - 反正是sprins就对了: Created Canon!SP!Dusttale<br>
