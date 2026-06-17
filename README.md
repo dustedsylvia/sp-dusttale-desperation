@@ -2,7 +2,7 @@
 <h2 align="center">an <a href="https://gamejolt.com/games/spdusttaledesperation/1018009">SP!Dusttale take</a> directed by Ketchupsans_2009</h2>
 <p align="right">build 20260009</p>
 
-<p>Note: As of 6/17/2026, this game is permanently cancelled due to [Ketchupsans_2009's actions](https://gamejolt.com/p/so-you-ve-probably-been-wondering-what-s-been-going-on-with-the-ga-87utjtba). The old README and source, however, will stay up, because I believe that all code should be open source.</p>
+<center><p>Note: As of 6/17/2026, I will *no longer be working on this game* due to (Ketchupsans_2009's actions)[https://gamejolt.com/p/so-you-ve-probably-been-wondering-what-s-been-going-on-with-the-ga-87utjtba]. The old README and source, however, will stay up, because I believe that all code should be open source.</p><br><p>For those that were here, thank you. I couldn't have done all of this without you.</p></center>
 
 <p align="center"><img src="readme_assets/credits.png"></p>
  - Toby Fox and Temmie Chang: Created UNDERTALE<br>
@@ -26,19 +26,19 @@ build 20260009:<br>
 
 <p align="center"><img src="readme_assets/faq.png"></p>
 Q: When will the game release?<br>
-A: We don't have a specific release date in mind, but it will be released by the end of 2026, and most likely much earlier.<br>
+A: I'm not sure. Ask Ketchupsans_2009.<br>
 <br>
 Q: Can I use *song or sprite* for *your content here*?<br>
 A: No, not without EXPLICIT permission from Ketchupsans_2009. More legalities are below.<br>
 
 Q: Is this project dead?<br>
-A: No. In fact, as of writing this, it is nearing completion.<br>
+A: No, but I will no longer be working on it.<br>
 
 Q: What platforms will this release for?<br>
-A: Windows, MacOS, and Linux, for starters. An Android port may be released someday.<br>
+A: No idea, sorry<br>
 
 Q: Will there be official translations for this game?<br>
-A: At this time, it is hard to give a certain answer, but it is entirely possible that we will translate the game into German.<br>
+A: No idea, sorry<br>
 
 Q: Is this game canon to SP!Dusttale?<br>
 A: No. This is a take on SP!Dusttale by Ketchupsans_2009.<br>
