@@ -2,7 +2,7 @@
 <h2 align="center">an <a href="https://gamejolt.com/games/spdusttaledesperation/1018009">SP!Dusttale take</a> directed by Ketchupsans_2009</h2>
 <p align="right">build 20260009</p>
 
-<center><p>Note: As of 6/17/2026, I will *no longer be working on this game* due to <a href="https://gamejolt.com/p/so-you-ve-probably-been-wondering-what-s-been-going-on-with-the-ga-87utjtba">Ketchupsans_2009's actions.</a>. The old README and source, however, will stay up, because I believe that all code should be open source.</p><br><p>For those that were here, thank you. I couldn't have done all of this without you.</p></center>
+<center><p>Note: As of 6/17/2026, I will *no longer be working on this game* due to Ketchupsans_2009's actions. This README and source, however, will stay up, because I believe that all code should be open source.</p><br><p>For those that were here, thank you. I couldn't have done all of this without you.</p></center>
 
 <p align="center"><img src="readme_assets/credits.png"></p>
  - Toby Fox and Temmie Chang: Created UNDERTALE<br>
@@ -52,6 +52,6 @@ This game was built in the latest version of <a href="https://gamemaker.io/en/do
 **You are not permitted to copy, redistribute, modify, or use the sprites, music, artwork, code, writing, or other original assets created specifically for this fangame without permission from Ketchupsans_2009. All original content created for this fangame is owned by Ketchupsans_2009. Unauthorized use, reproduction, or distribution of these original assets may result in a cease-and-desist notice or other legal action where permitted by applicable copyright and intellectual property laws.**<br>
 **UNDERTALE and its original characters, assets, and trademarks belong to Toby Fox. This fangame is a non-commercial fan project and is not affiliated with or endorsed by Toby Fox.**
 
-*This README was last updated on Wednesday, June 3rd, 2026. Any legal information in any previous versions of the README are no longer applicable as of this date.*
+*This README was last updated on Wednesday, June 11th, 2026. Any legal information in any previous versions of the README are no longer applicable as of this date.*
 
 © dustedsylvia and ketchupsans_2009 2026-present. All rights reserved.
